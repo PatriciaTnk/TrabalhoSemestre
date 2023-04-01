@@ -6,10 +6,6 @@ package franquiamedica;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author miyuk
- */
 public class PessoaDAO {
     //adicionar, mostrar, conferir se tem registro, deletar e atualizar.
     //para já ter dados cadastrados, popular dados no construtor
@@ -130,14 +126,41 @@ public class PessoaDAO {
         }
     }
     
-    public boolean temRegistro(String nome) {
-        for (Pessoa pessoa : pessoas) {
-            if (pessoa.getNome().equals(nome)){
+    /**busca de registro por nome, podemos alterar o requisito de busca
+        public boolean temRegistro(String nome, String login) {
+        for (Pessoa pessoa : pessoasp) {
+            if (pessoa.getNome().equals(nome)
+                 && pessoa.getLogin().equals(login)){
                 return true;
             }            
         }
         return false;
+     * @param nome}
+     * @return */
+    
+    public Pessoa verificaRegistro(String nome) {
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa != null && pessoa.getNome().equals(nome)) {
+                Pessoa p = pessoa;
+                return p;
+            }            
+        }
+        return null;
     }
+    
+    /** * a exclusao do registro se da pelo nome, mas podemos solicitar outra informacao
+     * dai tem que mexer na UI para solicitar a outra informacao do parametro
+         public boolean remove(String nome, String login) {
+        for (int i = 0; i < pessoasp.length; i++) {
+            if (pessoasp[i] != null && pessoasp[i].getNome().equals(nome)
+                && && pessoasp[i].getLogin().equals(login)) {
+                pessoasp[i] = null;
+                return true;
+            }
+        }
+        return false;
+     * @param nome
+     * @return }*/
     
     public boolean remove(String nome) {
         for (int i = 0; i < pessoas.length; i++) {
@@ -151,12 +174,15 @@ public class PessoaDAO {
 
     /**
      * Todas os updates precisam de modify data
+     * @param nome
+     * @param novoNome
+     * @return 
      */
     public boolean alterarNome(String nome, String novoNome) {
-        for (Pessoa pessoas : pessoas) {
-            if (pessoas != null && pessoas.getNome().equals(nome)) {
-                pessoas.setNome(novoNome);
-                pessoas.setDatamodificacao(LocalDateTime.now());
+        for (Pessoa pessoasp : pessoas) {
+            if (pessoasp != null && pessoasp.getNome().equals(nome)) {
+                pessoasp.setNome(novoNome);
+                pessoasp.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -164,10 +190,10 @@ public class PessoaDAO {
     }
 
     public boolean alterarEndereco(String endereco, String novoEndereco) {
-        for (Pessoa pessoas : pessoas) {
-            if (pessoas != null && pessoas.getEndereco().equals(endereco)) {
-                pessoas.setEndereco(novoEndereco);
-                pessoas.setDatamodificacao(LocalDateTime.now());
+        for (Pessoa pessoaspp : pessoas) {
+            if (pessoaspp != null && pessoaspp.getEndereco().equals(endereco)) {
+                pessoaspp.setEndereco(novoEndereco);
+                pessoaspp.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -175,10 +201,10 @@ public class PessoaDAO {
     }
 
     public boolean alterarCpf(String cpf, String novoCpf) {
-        for (Pessoa pessoas : pessoas) {
-            if (pessoas != null && pessoas.getCpf().equals(cpf)) {
-                pessoas.setCpf(novoCpf);
-                pessoas.setDatamodificacao(LocalDateTime.now());
+        for (Pessoa pessoase : pessoas) {
+            if (pessoase != null && pessoase.getCpf().equals(cpf)) {
+                pessoase.setCpf(novoCpf);
+                pessoase.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -186,10 +212,10 @@ public class PessoaDAO {
     }
 
     public boolean alterarTelefone(String telefone, String novoTelefone) {
-        for (Pessoa pessoas : pessoas) {
-            if (pessoas != null && pessoas.getTelefone().equals(telefone)) {
-                pessoas.setTelefone(novoTelefone);
-                pessoas.setDatamodificacao(LocalDateTime.now());
+        for (Pessoa pessoasee : pessoas) {
+            if (pessoasee != null && pessoasee.getTelefone().equals(telefone)) {
+                pessoasee.setTelefone(novoTelefone);
+                pessoasee.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -197,10 +223,10 @@ public class PessoaDAO {
     }
 
     public boolean alterarLogin(String login, String novoLogin) {
-        for (Pessoa pessoas : pessoas) {
-            if (pessoas != null && pessoas.getLogin().equals(login)) {
-                pessoas.setLogin(novoLogin);
-                pessoas.setDatamodificacao(LocalDateTime.now());
+        for (Pessoa pessoass : pessoas) {
+            if (pessoass != null && pessoass.getLogin().equals(login)) {
+                pessoass.setLogin(novoLogin);
+                pessoass.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -208,10 +234,10 @@ public class PessoaDAO {
     }
 
     public boolean alterarSenha(String senha, String novaSenha) {
-        for (Pessoa pessoas : pessoas) {
-            if (pessoas != null && pessoas.getSenha().equals(senha)) {
-                pessoas.setSenha(novaSenha);
-                pessoas.setDatamodificacao(LocalDateTime.now());
+        for (Pessoa pessoasss : pessoas) {
+            if (pessoasss != null && pessoasss.getSenha().equals(senha)) {
+                pessoasss.setSenha(novaSenha);
+                pessoasss.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }

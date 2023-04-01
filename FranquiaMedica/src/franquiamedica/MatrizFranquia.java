@@ -7,43 +7,60 @@ package franquiamedica;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Medico {
-
+public class MatrizFranquia {
+    
     private long id;
-    private String especialidade;
-    private String crm;
-    private Pessoa pessoa;
+    private String nome;
+    private String cnpj;
+    private String endereco;
+    private String cidade;
+    private Pessoa dono;
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
 
-    //so inicia medico depois de escolher a Pessoa
-    public Medico(Pessoa pessoa) {
-        this.id = pessoa.getId();
-        this.pessoa = pessoa;
-        this.pessoa.setTipoUsuario("Medico");
+    public MatrizFranquia(Pessoa dono) {
+        this.id = dono.getId();
+        this.dono = dono;
+        this.dono.setTipoUsuario("Dono da Matriz");
         this.dataCriacao = LocalDateTime.now();
         this.datamodificacao = LocalDateTime.now();
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getNome() {
+        return nome;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCrm() {
-        return crm;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCrm(String crm) {
-        this.crm = crm;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public Pessoa getDono() {
+        return dono;
     }
 
     public LocalDateTime getDatamodificacao() {
@@ -57,10 +74,13 @@ public class Medico {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Medico{");
+        sb.append("MatrizFranquia{");
         sb.append("id=").append(id);
-        sb.append(", especialidade=").append(especialidade);
-        sb.append(", pessoa=").append(pessoa);
+        sb.append(", nome=").append(nome);
+        sb.append(", cnpj=").append(cnpj);
+        sb.append(", endereco=").append(endereco);
+        sb.append(", cidade=").append(cidade);
+        sb.append(", dono=").append(dono);
         sb.append(", dataCriacao=").append(dataCriacao);
         sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
@@ -70,8 +90,8 @@ public class Medico {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.especialidade);
-        hash = 13 * hash + Objects.hashCode(this.pessoa);
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.dono);
         return hash;
     }
 
@@ -86,13 +106,12 @@ public class Medico {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Medico other = (Medico) obj;
-        if (!Objects.equals(this.especialidade, other.especialidade)) {
+        final MatrizFranquia other = (MatrizFranquia) obj;
+        if (this.id != other.id) {
             return false;
         }
-        return Objects.equals(this.pessoa, other.pessoa);
+        return Objects.equals(this.dono, other.dono);
     }
     
     
-
 }

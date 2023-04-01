@@ -6,10 +6,6 @@ package franquiamedica;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author miyuk
- */
 public class MedicoDAO {
 //adicionar, mostrar, conferir se tem registro, deletar e atualizar.
     //para já ter dados cadastrados, popular dados no construtor
@@ -18,31 +14,32 @@ public class MedicoDAO {
     Medico[] medicos = new Medico[15];
 
     public MedicoDAO() {
+        //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA
         Pessoa p1 = new Pessoa();
-        p1.setNome("josephina");
-        p1.setEndereco("jose");
-        p1.setCpf("jose");
-        p1.setTelefone("josephina");
-        p1.setLogin("jose");
-        p1.setSenha("jose");
+        p1.setNome("Mjosephina");
+        p1.setEndereco("Mjose");
+        p1.setCpf("Mjose");
+        p1.setTelefone("Mjosephina");
+        p1.setLogin("Mjose");
+        p1.setSenha("Mjose");
 
 
         Pessoa p2 = new Pessoa();
-        p2.setNome("jaspion");
-        p2.setEndereco("jas");
-        p2.setCpf("jas");
-        p2.setTelefone("jaspion");
-        p2.setLogin("jas");
-        p2.setSenha("jas");
+        p2.setNome("Mjaspion");
+        p2.setEndereco("Mjas");
+        p2.setCpf("Mjas");
+        p2.setTelefone("Mjaspion");
+        p2.setLogin("Mjas");
+        p2.setSenha("Mjas");
 
 
         Pessoa p3 = new Pessoa();
-        p3.setNome("jiraia");
-        p3.setEndereco("jir");
-        p3.setCpf("jir");
-        p3.setTelefone("jiraia");
-        p3.setLogin("jir");
-        p3.setSenha("jir");
+        p3.setNome("Mjiraia");
+        p3.setEndereco("Mir");
+        p3.setCpf("Mjir");
+        p3.setTelefone("Mjiraia");
+        p3.setLogin("Mjir");
+        p3.setSenha("Mjir");
 
         
         Medico m1 = new Medico(p1);
@@ -90,13 +87,13 @@ public class MedicoDAO {
         }
     }
 
-    public boolean temRegistro(String nome) {
+    public Medico verificaRegistro(String nome) {
         for (Medico medico : medicos) {          
             if (medico.getPessoa().getNome().equals(nome)) {
-                return true;
+                return medico;
             }
         }
-        return false;
+        return null;
     }
 
     public boolean remove(String nome) {
@@ -116,7 +113,7 @@ public class MedicoDAO {
         for (Medico medico : medicos) {
             if (medico != null && medico.getPessoa().getNome().equals(nome)) {
                 medico.getPessoa().setNome(novoNome);
-                medico.setDatamodificacao(LocalDateTime.now());
+                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -127,7 +124,7 @@ public class MedicoDAO {
         for (Medico medico : medicos) {
             if (medico != null && medico.getPessoa().getEndereco().equals(endereco)) {
                 medico.getPessoa().setEndereco(novoEndereco);
-                medico.setDatamodificacao(LocalDateTime.now());
+                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -138,7 +135,7 @@ public class MedicoDAO {
         for (Medico medico : medicos) {
             if (medico != null && medico.getPessoa().getCpf().equals(cpf)) {
                 medico.getPessoa().setCpf(novoCpf);
-                medico.setDatamodificacao(LocalDateTime.now());
+                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -149,7 +146,7 @@ public class MedicoDAO {
         for (Medico medico : medicos) {
             if (medico != null && medico.getPessoa().getTelefone().equals(telefone)) {
                 medico.getPessoa().setTelefone(novoTelefone);
-                medico.setDatamodificacao(LocalDateTime.now());
+                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -160,7 +157,7 @@ public class MedicoDAO {
         for (Medico medico : medicos) {
             if (medico != null && medico.getPessoa().getLogin().equals(login)) {
                 medico.getPessoa().setLogin(novoLogin);
-                medico.setDatamodificacao(LocalDateTime.now());
+                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -171,7 +168,7 @@ public class MedicoDAO {
         for (Medico medico : medicos) {
             if (medico != null && medico.getPessoa().getSenha().equals(senha)) {
                 medico.getPessoa().setSenha(novaSenha);
-                medico.setDatamodificacao(LocalDateTime.now());
+                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
