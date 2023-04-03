@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Franquia {
-    
+
     private long id;
     private String endereco;
     private String cidade;
-    private Pessoa[] responsavel = new Pessoa[3];
+    private Pessoa[] responsavel = new Pessoa[5];
     private MatrizFranquia franquia;
 
     private LocalDateTime dataCriacao;
@@ -47,16 +47,35 @@ public class Franquia {
         this.cidade = cidade;
     }
 
-    public Pessoa getResponsavel() {
+    public Pessoa getResponsavelPrincipal() {
         return responsavel[0];
     }
-    
-    public void addResponsavel(Pessoa responsavelExtra) {
-        this.responsavel[1] = responsavelExtra;
+
+    public void mostraTodosResponsaveis() {
+        for (Pessoa pessoa : responsavel) {
+            if (pessoa != null) {
+                System.out.println(pessoa);
+            }
+        }
     }
-    
-    public void addResponsavel2(Pessoa responsavelExtra) {
-        this.responsavel[2] = responsavelExtra;
+
+    public boolean addResponsavel(Pessoa responsavelExtra) {
+        for (int i = 0; i < responsavel.length; i++) {
+            if (responsavel[i] == null) {
+                responsavel[i] = responsavelExtra;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Pessoa encontraUmResponsavel(String nome) {
+        for (Pessoa pessoa : responsavel) {
+            if (pessoa.getNome().equals(nome)) {
+                return pessoa;
+            }
+        }
+        return null;
     }
 
     public MatrizFranquia getFranquia() {
@@ -82,7 +101,9 @@ public class Franquia {
         sb.append("id=").append(id);
         sb.append(", endereco=").append(endereco);
         sb.append(", cidade=").append(cidade);
-        sb.append(", responsavel=").append(responsavel);
+        for (Pessoa pessoa : responsavel) {
+            sb.append(", responsavel=").append(pessoa);
+        }
         sb.append(", franquia=").append(franquia);
         sb.append(", dataCriacao=").append(dataCriacao);
         sb.append(", datamodificacao=").append(datamodificacao);
@@ -115,7 +136,5 @@ public class Franquia {
         }
         return Objects.equals(this.franquia, other.franquia);
     }
-    
-    
 
 }

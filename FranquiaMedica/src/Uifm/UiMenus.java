@@ -6,24 +6,32 @@ package Uifm;
 
 //Criar o menu do login e os menus de cada um dos 5 perfis
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
-import franquiamedica.Medico;
+import franquiamedica.Franquia;
+import franquiamedica.FranquiaDAO;
+import franquiamedica.MatrizFranquia;
 import java.util.Scanner;
 import franquiamedica.PessoaDAO;
-import franquiamedica.MedicoDAO;
 import franquiamedica.Pessoa;
+import franquiamedica.MedicoDAO;
+import franquiamedica.Medico;
+import franquiamedica.MatrizFranquiaDAO;
 
 public class UiMenus {
 
     Scanner scanner = new Scanner(System.in);
     PessoaDAO p = new PessoaDAO();
     MedicoDAO m = new MedicoDAO();
+    MatrizFranquiaDAO mf = new MatrizFranquiaDAO();
+    FranquiaDAO f = new FranquiaDAO();
 
     public UiMenus() {
 
         //tela de login, senha, cadastrar nova pessoa
         int opcaoUsuario = 4;
         String recebeString;
-        while (opcaoUsuario != 9) {
+        String string2;
+        String string3;
+        while (opcaoUsuario != 30) {
             opcaoUsuario = this.opcaoUsuarioTelaInicial();
             switch (opcaoUsuario) {
                 case 0:
@@ -66,7 +74,7 @@ public class UiMenus {
                     //m.mostraTodos();
                     break;
 
-                case 4://adicionar Pessoa
+                case 4://testado adicionar Pessoa
                     Pessoa novaP = new Pessoa();
                     System.out.println("\nadicionar pessoa");
                     System.out.println("\nQual o nome ?");
@@ -100,7 +108,7 @@ public class UiMenus {
 
                     break;
 
-                case 5://adicionar Medico precisa de uma pessoa cadastrada                    
+                case 5://testado adicionar Medico precisa de uma pessoa cadastrada                    
                     System.out.println("\nadicionar medico");
                     //p.mostraTodos();
                     System.out.println("\nInforme o nome da pessoa, para realizar uma busca em nosso cadastro: ");
@@ -119,14 +127,134 @@ public class UiMenus {
                         System.out.println("Novo registro de medico com sucesso");
                     }
                     //m.mostraTodos();
-
                     break;
 
-                case 6://alterar franquia
+                case 6://testado alterar matriz - Nome precisa ser idêntico
+                    System.out.println("\nalterar dados da Matriz");
+                    mf.mostraTodos();
+                    System.out.println("\nQual o nome ?");
+                    recebeString = scanner.nextLine();
+                    if (mf.verificaRegistro(recebeString) == null) {
+                        System.out.println("Matriz não cadastrada");
+                    } else {
+                        System.out.println("\nQual o novo nome ?");
+                        mf.alterarNome(recebeString, scanner.nextLine());
+                        System.out.println("Alteração realizada");
+                    }
+                    mf.mostraTodos();
                     break;
-                case 7://adicionar franquia
+
+                case 7://adicionar matriz
+                    System.out.println("\nadicionar matriz");
+                    //mf.mostraTodos();
+                    System.out.println("\nInforme o nome do dono, para realizar uma busca em nosso cadastro: ");
+                    recebeString = scanner.nextLine();
+
+                    if (p.verificaRegistro(recebeString) == null) {
+                        System.out.println("\nDono nao esta cadastrado, por gentileza realizar cadastro.");
+                    } else {
+                        MatrizFranquia novaMF = new MatrizFranquia(p.verificaRegistro(recebeString));
+                        System.out.println("\nQual o nome da matriz?");
+                        novaMF.setNome(scanner.nextLine());
+
+                        System.out.println("\nQual o cnpj ?");
+                        novaMF.setCnpj(scanner.nextLine());
+
+                        System.out.println("\nQual a cidade ?");
+                        novaMF.setCidade(scanner.nextLine());
+
+                        System.out.println("\nQual o endereço ?");
+                        novaMF.setEndereco(scanner.nextLine());
+
+                        mf.adiciona(novaMF);
+                        System.out.println("Novo registro de matriz realizado com sucesso");
+                    }
+                    mf.mostraTodos();
                     break;
-                case 8:
+
+                case 8://alterar franquia
+                    System.out.println("\nalterar dados da Franquia");
+                    f.mostraTodos();
+                    System.out.println("\nQual o nome da Franquia?");
+                    recebeString = scanner.nextLine();
+                    
+                    System.out.println("\nE o nome do responsavel?");
+                    string2 = scanner.nextLine();                    
+                    
+                    if (f.verificaRegistro(recebeString, string2) == null) {
+                        System.out.println("Franquia não encontrada");
+                    } else {
+                        System.out.println("\nQual o login?");
+                        string3 = scanner.nextLine();
+                        
+                        System.out.println("\nQual o novo login?");
+                        recebeString = scanner.nextLine();                        
+                        
+                        f.alterarLogin(string2, string3, recebeString);
+                        System.out.println("Alteração realizada");
+                    }
+                    mf.mostraTodos();
+                    break;
+
+                case 9://adicionar franquia
+                    System.out.println("\nadicionar franquia");
+                    //p.mostraTodos();
+                    System.out.println("\nInforme o nome do responsável, para realizar uma busca em nosso cadastro: ");
+                    recebeString = scanner.nextLine();
+                    
+                    System.out.println("\nInforme o nome da matriz, para realizar uma busca em nosso cadastro: ");
+                    string2 = scanner.nextLine();
+
+                    if (p.verificaRegistro(recebeString) == null) {
+                        System.out.println("\nResponsavel nao esta cadastrado, por gentileza realizar cadastro.");
+                    } else if (mf.verificaRegistro(string2) == null ){
+                        System.out.println("\nMatriz nao cadastrada, por gentileza realizar cadastro.");
+                    } else {
+                        Franquia novaF = new Franquia(p.verificaRegistro(recebeString), mf.verificaRegistro(string2));
+                        System.out.println("\nQual o endereço ?");
+                        novaF.setEndereco(scanner.nextLine());
+
+                        System.out.println("\nQual a cidade?");
+                        novaF.setCidade(scanner.nextLine());
+                        
+                        f.adiciona(novaF);
+                        System.out.println("Novo registro de franquia realizado com sucesso");
+                    }
+                    //m.mostraTodos();
+                    
+                    break;
+
+                case 10:
+                    break;
+
+                case 11:
+                    break;
+
+                case 12:
+                    break;
+
+                case 13:
+                    break;
+
+                case 14:
+                    break;
+
+                case 15:
+                    break;
+
+                case 16:
+                    break;
+
+                case 17:
+                    break;
+
+                case 18:
+                    break;
+
+                case 19:
+                    break;
+
+                case 20:
                     break;
             }
         }
@@ -149,6 +277,10 @@ public class UiMenus {
         builderInicio.append("\n3 - Teste - alterar o nome medico");
         builderInicio.append("\n4 - Teste - adicionar pessoa");
         builderInicio.append("\n5 - Teste - adicionar medico");
+        builderInicio.append("\n6 - Teste - alterar dados Matriz");
+        builderInicio.append("\n7 - Teste - adicionar Matriz");
+        builderInicio.append("\n8 - Teste - alterar dados Franquia");
+        builderInicio.append("\n9 - Teste - adicionar Franquia");
         builderInicio.append("\nQual sua opção ? R: ");
 
         System.out.print(builderInicio.toString());

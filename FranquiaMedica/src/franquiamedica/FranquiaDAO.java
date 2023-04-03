@@ -126,11 +126,14 @@ public class FranquiaDAO {
     }
     
     /**A Franquia tbm verifica registro de acordo com o nome da Matriz
-    Além disso com o nome do responsavel*/
+    Além disso com o nome do responsave
+     * @param nome
+     * @param nomeResponsavel
+     * @return */
     public Franquia verificaRegistro(String nome, String nomeResponsavel) {
         for (Franquia f : franquias) {
             if (f.getFranquia().getNome().equals(nome)
-                    && f.getResponsavel().equals(nomeResponsavel)) {
+                    && f.encontraUmResponsavel(nomeResponsavel) != null) {
                 return f;
             }
         }
@@ -140,7 +143,7 @@ public class FranquiaDAO {
     public boolean remove(String nome, String nomeResponsavel) {
         for (int i = 0; i < franquias.length; i++) {
             if (franquias[i] != null && franquias[i].getFranquia().getNome().equals(nome)
-                    && franquias[i].getResponsavel().equals(nomeResponsavel)) {
+                    && franquias[i].encontraUmResponsavel(nomeResponsavel)!= null) {
                 franquias[i] = null;
                 return true;
             }
@@ -173,22 +176,24 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarLogin(String login, String novoLogin) {
+    public boolean alterarLogin(String nome, String login, String novoLogin) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getLogin().equals(login)) {
-                f.getResponsavel().setLogin(novoLogin);
-                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.encontraUmResponsavel(nome) != null
+                    && f.encontraUmResponsavel(nome).getLogin().equals(login)) {
+                f.encontraUmResponsavel(nome).setLogin(novoLogin);
+                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarSenha(String senha, String novaSenha) {
+    public boolean alterarSenha(String nome, String senha, String novaSenha) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getSenha().equals(senha)) {
-                f.getResponsavel().setSenha(novaSenha);
-                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.encontraUmResponsavel(nome) != null
+                    && f.encontraUmResponsavel(nome).getSenha().equals(senha)) {
+                f.encontraUmResponsavel(nome).setSenha(novaSenha);
+                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
@@ -197,42 +202,45 @@ public class FranquiaDAO {
 
     public boolean alteraResponsavelNome(String nome, String novoNome) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getNome().equals(nome)) {
-                f.getResponsavel().setNome(novoNome);
-                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.encontraUmResponsavel(nome) != null) {
+                f.encontraUmResponsavel(nome).setNome(novoNome);
+                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarResponsavelEndereco(String endereco, String novaEndereco) {
+    public boolean alterarResponsavelEndereco(String nome, String endereco, String novaEndereco) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getEndereco().equals(endereco)) {
-                f.getResponsavel().setEndereco(novaEndereco);
-                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.encontraUmResponsavel(nome) != null
+                    && f.encontraUmResponsavel(nome).getEndereco().equals(endereco)) {
+                f.encontraUmResponsavel(nome).setEndereco(novaEndereco);
+                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarResponsavelCpf(String cpf, String novoCpf) {
+    public boolean alterarResponsavelCpf(String nome, String cpf, String novoCpf) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getCpf().equals(cpf)) {
-                f.getResponsavel().setCpf(novoCpf);
-                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.encontraUmResponsavel(nome) != null
+                    && f.encontraUmResponsavel(nome).getCpf().equals(cpf)) {
+                f.encontraUmResponsavel(nome).setCpf(novoCpf);
+                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarResponsavelTelefone(String telefone, String novoTelefone) {
+    public boolean alterarResponsavelTelefone(String nome, String telefone, String novoTelefone) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getTelefone().equals(telefone)) {
-                f.getResponsavel().setTelefone(novoTelefone);
-                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.encontraUmResponsavel(nome) != null
+                    && f.encontraUmResponsavel(nome).getTelefone().equals(telefone)) {
+                f.encontraUmResponsavel(nome).setTelefone(novoTelefone);
+                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }

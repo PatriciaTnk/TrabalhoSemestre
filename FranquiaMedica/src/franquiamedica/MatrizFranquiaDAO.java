@@ -38,21 +38,21 @@ public class MatrizFranquiaDAO {
         p3.setSenha("MFjir");
 
         MatrizFranquia m1 = new MatrizFranquia(p1);
-        m1.setNome("Unidade A");
+        m1.setNome("UnidadeA");
         m1.setCnpj("111.456.789.-0001");
         m1.setEndereco("123oftalmo");
         m1.setCidade("Araxa");
         adiciona(m1);
 
         MatrizFranquia m2 = new MatrizFranquia(p2);
-        m2.setNome("Unidade B");
+        m2.setNome("UnidadeB");
         m2.setCnpj("222.456.789.-0001");
         m2.setEndereco("123oftalmo");
         m2.setCidade("Araxa");
         adiciona(m2);
 
         MatrizFranquia m3 = new MatrizFranquia(p3);
-        m3.setNome("Unidade A");
+        m3.setNome("UnidadeC");
         m3.setCnpj("333.456.789.-0001");
         m3.setEndereco("123oftalmo");
         m3.setCidade("Araxa");
