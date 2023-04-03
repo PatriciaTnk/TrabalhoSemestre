@@ -6,10 +6,7 @@ package franquiamedica;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author miyuk
- */
+
 public class MatrizFranquiaDAO {
 
     MatrizFranquia[] matrizes = new MatrizFranquia[15];
