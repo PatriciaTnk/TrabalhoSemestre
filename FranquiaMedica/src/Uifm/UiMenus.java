@@ -6,6 +6,9 @@ package Uifm;
 
 //Criar o menu do login e os menus de cada um dos 5 perfis
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
+/*import franquiamedica.Consulta;
+import franquiamedica.ConsultaDAO;*/
+import franquiamedica.ConsultaDAO;
 import franquiamedica.Franquia;
 import franquiamedica.FranquiaDAO;
 import franquiamedica.MatrizFranquia;
@@ -15,6 +18,7 @@ import franquiamedica.Pessoa;
 import franquiamedica.MedicoDAO;
 import franquiamedica.Medico;
 import franquiamedica.MatrizFranquiaDAO;
+import java.math.BigDecimal;
 
 public class UiMenus {
 
@@ -23,6 +27,7 @@ public class UiMenus {
     MedicoDAO m = new MedicoDAO();
     MatrizFranquiaDAO mf = new MatrizFranquiaDAO();
     FranquiaDAO f = new FranquiaDAO();
+    ConsultaDAO c = new ConsultaDAO();
 
     public UiMenus() {
 
@@ -176,21 +181,18 @@ public class UiMenus {
                     System.out.println("\nalterar dados da Franquia");
                     f.mostraTodos();
                     System.out.println("\nQual o nome da Franquia?");
-                    recebeString = scanner.nextLine();
+                    recebeString = scanner.nextLine();                            
                     
-                    System.out.println("\nE o nome do responsavel?");
-                    string2 = scanner.nextLine();                    
-                    
-                    if (f.verificaRegistro(recebeString, string2) == null) {
+                    if (f.verificaRegistro(recebeString) == null) {
                         System.out.println("Franquia não encontrada");
                     } else {
                         System.out.println("\nQual o login?");
-                        string3 = scanner.nextLine();
+                        recebeString = scanner.nextLine();
                         
                         System.out.println("\nQual o novo login?");
-                        recebeString = scanner.nextLine();                        
+                        string2 = scanner.nextLine();                        
                         
-                        f.alterarLogin(string2, string3, recebeString);
+                        f.alterarLogin(recebeString, string2);
                         System.out.println("Alteração realizada");
                     }
                     mf.mostraTodos();
@@ -199,17 +201,18 @@ public class UiMenus {
                 case 9://adicionar franquia
                     System.out.println("\nadicionar franquia");
                     //p.mostraTodos();
-                    System.out.println("\nInforme o nome do responsável, para realizar uma busca em nosso cadastro: ");
+                    System.out.println("\nInforme o nome do responsável cadastrado: ");
                     recebeString = scanner.nextLine();
-                    
-                    System.out.println("\nInforme o nome da matriz, para realizar uma busca em nosso cadastro: ");
-                    string2 = scanner.nextLine();
 
                     if (p.verificaRegistro(recebeString) == null) {
                         System.out.println("\nResponsavel nao esta cadastrado, por gentileza realizar cadastro.");
-                    } else if (mf.verificaRegistro(string2) == null ){
-                        System.out.println("\nMatriz nao cadastrada, por gentileza realizar cadastro.");
                     } else {
+                        System.out.println("\nInforme o nome da matriz, para realizar uma busca em nosso cadastro: ");
+                        string2 = scanner.nextLine();
+                        
+                        if (mf.verificaRegistro(string2) == null){
+                        System.out.println("\nMatriz nao cadastrada, por gentileza realizar cadastro.");
+                        } else {                    
                         Franquia novaF = new Franquia(p.verificaRegistro(recebeString), mf.verificaRegistro(string2));
                         System.out.println("\nQual o endereço ?");
                         novaF.setEndereco(scanner.nextLine());
@@ -219,24 +222,46 @@ public class UiMenus {
                         
                         f.adiciona(novaF);
                         System.out.println("Novo registro de franquia realizado com sucesso");
+                        }
                     }
-                    //m.mostraTodos();
+                    f.mostraTodos();
                     
                     break;
 
-                case 10:
+                case 10:// testado - altera consulta, só pode cancelar ou alterar o valor
+                    //para trocar o dia, o medico ou unidade é preciso cancelar a consulta agendada e agendar Nova consulta
+                    c.mostraTodos();
+                    System.out.println("\nalterar o valor da consulta");
+                    
+                    System.out.println("\nInforme o nome do paciente: ");
+                    recebeString = scanner.nextLine();
+                    
+                    System.out.println("\nInforme o nome do medico: ");
+                    string2 = scanner.nextLine();
+                    
+                    System.out.println("\nInforme o novo valor: ");
+                    string3 = scanner.nextLine();                    
+                    BigDecimal novoValor = new BigDecimal(string3);
+                    
+                    if (c.verificaRegistro(recebeString, string2) != null){
+                        c.alteraValor(c.verificaRegistro(recebeString, string2).getId(), novoValor);
+                        System.out.println("Valor alterado com sucesso");
+                    }
+                    
+                    c.mostraTodos();
+                    
                     break;
 
-                case 11:
+                case 11://adiciona consulta
                     break;
 
-                case 12:
+                case 12://altera procedimento
                     break;
 
-                case 13:
+                case 13://adiciona procedimento
                     break;
 
-                case 14:
+                case 14://mostra crud financeiro medico       
                     break;
 
                 case 15:
@@ -265,7 +290,7 @@ public class UiMenus {
         new UiMenus();
     }
 
-    //1ª tela - Início
+    //1ª tela - Início || Com - Teste - Ainda para testar, o resto testado
     private int opcaoUsuarioTelaInicial() {
 
         StringBuilder builderInicio = new StringBuilder("");
@@ -273,14 +298,19 @@ public class UiMenus {
         builderInicio.append("TELA INICIAL\n\n");
         builderInicio.append("\n0 - Mostrar pessoas");
         builderInicio.append("\n1 - Mostrar medicos");
-        builderInicio.append("\n2 - Teste - alterar o nome pessoa");
-        builderInicio.append("\n3 - Teste - alterar o nome medico");
-        builderInicio.append("\n4 - Teste - adicionar pessoa");
-        builderInicio.append("\n5 - Teste - adicionar medico");
-        builderInicio.append("\n6 - Teste - alterar dados Matriz");
+        builderInicio.append("\n2 - alterar o nome pessoa");
+        builderInicio.append("\n3 - alterar o nome medico");
+        builderInicio.append("\n4 - adicionar pessoa");
+        builderInicio.append("\n5 - adicionar medico");
+        builderInicio.append("\n6 - alterar dados Matriz");
         builderInicio.append("\n7 - Teste - adicionar Matriz");
         builderInicio.append("\n8 - Teste - alterar dados Franquia");
         builderInicio.append("\n9 - Teste - adicionar Franquia");
+        builderInicio.append("\n10 - Teste - alterar consulta");
+        builderInicio.append("\n11 - Teste - adicionar consulta");
+        builderInicio.append("\n12 - Teste - alterar procedimento");
+        builderInicio.append("\n13 - Teste - adicionar procedimento");
+        builderInicio.append("\n14 - Teste - mostrar financeiro medico");
         builderInicio.append("\nQual sua opção ? R: ");
 
         System.out.print(builderInicio.toString());
@@ -324,5 +354,5 @@ public class UiMenus {
 
         return Integer.parseInt(scanner.nextLine());
     }
-
+    
 }

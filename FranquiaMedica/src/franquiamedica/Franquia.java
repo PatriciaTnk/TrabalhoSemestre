@@ -19,7 +19,7 @@ public class Franquia {
     private LocalDateTime datamodificacao;
 
     public Franquia(Pessoa funcionario, MatrizFranquia sede) {
-        this.id = responsavel.getId();
+        this.id = funcionario.getId();
         this.responsavel= funcionario;
         this.responsavel.setTipoUsuario("Responsavel pela Franquia");
         this.franquia = sede;
@@ -47,7 +47,7 @@ public class Franquia {
         this.cidade = cidade;
     }
 
-    public Pessoa getResponsavelPrincipal() {
+    public Pessoa getResponsavel() {
         return responsavel;
     }
     
@@ -74,7 +74,7 @@ public class Franquia {
         sb.append("id=").append(id);
         sb.append(", endereco=").append(endereco);
         sb.append(", cidade=").append(cidade);        
-            sb.append(", responsavel=").append(pessoa);       
+        sb.append(", responsavel=").append(responsavel);       
         sb.append(", franquia=").append(franquia);
         sb.append(", dataCriacao=").append(dataCriacao);
         sb.append(", datamodificacao=").append(datamodificacao);

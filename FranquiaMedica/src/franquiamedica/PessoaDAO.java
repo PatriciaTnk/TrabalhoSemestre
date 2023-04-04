@@ -7,10 +7,12 @@ package franquiamedica;
 import java.time.LocalDateTime;
 
 public class PessoaDAO {
-    //adicionar, mostrar, conferir se tem registro, deletar e atualizar.
-    //para já ter dados cadastrados, popular dados no construtor
-
-    //preciso de um array para popular
+    /**adicionar, mostrar, conferir se tem registro, deletar e atualizar.
+    para já ter dados cadastrados, popular dados no construtor
+    preciso de um array para popular
+    OBS: Para atender
+    Uma pessoa pode ser cadastrada com diferentes papéis. Cada login diferente irá diferenciar os usuários.
+    Deverão ser realizados mais cadastros da mesma pessoa, pois para cada id de cadastro só pode ser atribuido um login e um papel*/
     Pessoa[] pessoas = new Pessoa[15];
 
     public PessoaDAO() {

@@ -13,84 +13,84 @@ public class FranquiaDAO {
 
     public FranquiaDAO() {
         //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA
-        Pessoa p1 = new Pessoa();
-        p1.setNome("MFjosephina");
-        p1.setEndereco("MFjose");
-        p1.setCpf("MFjose");
-        p1.setTelefone("MFjosephina");
-        p1.setLogin("MFjose");
-        p1.setSenha("MFjose");
+        Pessoa pMF1 = new Pessoa();
+        pMF1.setNome("MFjosephina");
+        pMF1.setEndereco("MFjose");
+        pMF1.setCpf("MFjose");
+        pMF1.setTelefone("MFjosephina");
+        pMF1.setLogin("MFjose");
+        pMF1.setSenha("MFjose");
 
-        Pessoa p2 = new Pessoa();
-        p2.setNome("MFjaspion");
-        p2.setEndereco("MFjas");
-        p2.setCpf("MFjas");
-        p2.setTelefone("MFjaspion");
-        p2.setLogin("MFjas");
-        p2.setSenha("MFjas");
+        Pessoa pMF2 = new Pessoa();
+        pMF2.setNome("MFjaspion");
+        pMF2.setEndereco("MFjas");
+        pMF2.setCpf("MFjas");
+        pMF2.setTelefone("MFjaspion");
+        pMF2.setLogin("MFjas");
+        pMF2.setSenha("MFjas");
 
-        Pessoa p3 = new Pessoa();
-        p3.setNome("MFjiraia");
-        p3.setEndereco("MFir");
-        p3.setCpf("MFjir");
-        p3.setTelefone("MFjiraia");
-        p3.setLogin("MFjir");
-        p3.setSenha("MFjir");
+        Pessoa pMF3 = new Pessoa();
+        pMF3.setNome("MFjiraia");
+        pMF3.setEndereco("MFir");
+        pMF3.setCpf("MFjir");
+        pMF3.setTelefone("MFjiraia");
+        pMF3.setLogin("MFjir");
+        pMF3.setSenha("MFjir");
         
-        Pessoa p4 = new Pessoa();
-        p4.setNome("FRjosephina");
-        p4.setEndereco("FRjose");
-        p4.setCpf("FRjose");
-        p4.setTelefone("FRjosephina");
-        p4.setLogin("FRjose");
-        p4.setSenha("FRjose");
+        Pessoa pMF4 = new Pessoa();
+        pMF4.setNome("FRjosephina");
+        pMF4.setEndereco("FRjose");
+        pMF4.setCpf("FRjose");
+        pMF4.setTelefone("FRjosephina");
+        pMF4.setLogin("FRjose");
+        pMF4.setSenha("FRjose");
 
-        Pessoa p5 = new Pessoa();
-        p5.setNome("FRjaspion");
-        p5.setEndereco("FRjas");
-        p5.setCpf("FRjas");
-        p5.setTelefone("FRjaspion");
-        p5.setLogin("FRjas");
-        p5.setSenha("FRjas");
+        Pessoa pMF5 = new Pessoa();
+        pMF5.setNome("FRjaspion");
+        pMF5.setEndereco("FRjas");
+        pMF5.setCpf("FRjas");
+        pMF5.setTelefone("FRjaspion");
+        pMF5.setLogin("FRjas");
+        pMF5.setSenha("FRjas");
 
-        Pessoa p6 = new Pessoa();
-        p6.setNome("FRjiraia");
-        p6.setEndereco("FRir");
-        p6.setCpf("FRjir");
-        p6.setTelefone("FRjiraia");
-        p6.setLogin("FRjir");
-        p6.setSenha("FRjir");
+        Pessoa pMF6 = new Pessoa();
+        pMF6.setNome("FRjiraia");
+        pMF6.setEndereco("FRir");
+        pMF6.setCpf("FRjir");
+        pMF6.setTelefone("FRjiraia");
+        pMF6.setLogin("FRjir");
+        pMF6.setSenha("FRjir");
 
-        MatrizFranquia m1 = new MatrizFranquia(p1);
+        MatrizFranquia m1 = new MatrizFranquia(pMF1);
         m1.setNome("Unidade A");
         m1.setCnpj("111.456.789.-0001");
         m1.setEndereco("123oftalmo");
         m1.setCidade("Araxa");
 
-        MatrizFranquia m2 = new MatrizFranquia(p2);
+        MatrizFranquia m2 = new MatrizFranquia(pMF2);
         m2.setNome("Unidade B");
         m2.setCnpj("222.456.789.-0001");
         m2.setEndereco("123oftalmo");
         m2.setCidade("Araxa");
 
-        MatrizFranquia m3 = new MatrizFranquia(p3);
+        MatrizFranquia m3 = new MatrizFranquia(pMF3);
         m3.setNome("Unidade A");
         m3.setCnpj("333.456.789.-0001");
         m3.setEndereco("123oftalmo");
         m3.setCidade("Araxa");
         
         
-        Franquia f1 = new Franquia(p4, m1);
+        Franquia f1 = new Franquia(pMF4, m1);
         f1.setEndereco("123oftalmo");
         f1.setCidade("Araxa");
         adiciona(f1);
 
-        Franquia f2 = new Franquia(p5, m2);
+        Franquia f2 = new Franquia(pMF5, m2);
         f2.setEndereco("123oftalmo");
         f2.setCidade("Araxa");
         adiciona(f2);
 
-        Franquia f3 = new Franquia(p6, m3);
+        Franquia f3 = new Franquia(pMF6, m3);
         f3.setEndereco("123oftalmo");
         f3.setCidade("Araxa");
         adiciona(f3);
@@ -125,25 +125,21 @@ public class FranquiaDAO {
         }
     }
     
-    /**A Franquia tbm verifica registro de acordo com o nome da Matriz
-    Além disso com o nome do responsave
+    /**A Franquia verifica registro de acordo com o nome da Matriz
      * @param nome
-     * @param nomeResponsavel
      * @return */
-    public Franquia verificaRegistro(String nome, String nomeResponsavel) {
+    public Franquia verificaRegistro(String nome) {
         for (Franquia f : franquias) {
-            if (f.getFranquia().getNome().equals(nome)
-                    && f.encontraUmResponsavel(nomeResponsavel) != null) {
+            if (f.getFranquia().getNome().equals(nome)) {
                 return f;
             }
         }
         return null;
     }
 
-    public boolean remove(String nome, String nomeResponsavel) {
+    public boolean remove(String nome) {
         for (int i = 0; i < franquias.length; i++) {
-            if (franquias[i] != null && franquias[i].getFranquia().getNome().equals(nome)
-                    && franquias[i].encontraUmResponsavel(nomeResponsavel)!= null) {
+            if (franquias[i] != null && franquias[i].getFranquia().getNome().equals(nome)) {
                 franquias[i] = null;
                 return true;
             }
@@ -176,71 +172,70 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarLogin(String nome, String login, String novoLogin) {
+    public boolean alterarLogin(String login, String novoLogin) {
         for (Franquia f : franquias) {
-            if (f != null && f.encontraUmResponsavel(nome) != null
-                    && f.encontraUmResponsavel(nome).getLogin().equals(login)) {
-                f.encontraUmResponsavel(nome).setLogin(novoLogin);
-                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
+            if (f != null && f.getResponsavel().getLogin().equals(login)) {
+                f.getResponsavel().setLogin(novoLogin);
+                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarSenha(String nome, String senha, String novaSenha) {
+    public boolean alterarSenha(String senha, String novaSenha) {
         for (Franquia f : franquias) {
-            if (f != null && f.encontraUmResponsavel(nome) != null
-                    && f.encontraUmResponsavel(nome).getSenha().equals(senha)) {
-                f.encontraUmResponsavel(nome).setSenha(novaSenha);
-                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
+            if (f != null
+                    && f.getResponsavel().getSenha().equals(senha)) {
+                f.getResponsavel().setSenha(novaSenha);
+                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alteraResponsavelNome(String nome, String novoNome) {
+    public boolean alteraResponsavelNome(String novoNome) {
         for (Franquia f : franquias) {
-            if (f != null && f.encontraUmResponsavel(nome) != null) {
-                f.encontraUmResponsavel(nome).setNome(novoNome);
-                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
+            if (f != null) {
+                f.getResponsavel().setNome(novoNome);
+                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarResponsavelEndereco(String nome, String endereco, String novaEndereco) {
+    public boolean alterarResponsavelEndereco(String endereco, String novaEndereco) {
         for (Franquia f : franquias) {
-            if (f != null && f.encontraUmResponsavel(nome) != null
-                    && f.encontraUmResponsavel(nome).getEndereco().equals(endereco)) {
-                f.encontraUmResponsavel(nome).setEndereco(novaEndereco);
-                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
+            if (f != null
+                    && f.getResponsavel().getEndereco().equals(endereco)) {
+                f.getResponsavel().setEndereco(novaEndereco);
+                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarResponsavelCpf(String nome, String cpf, String novoCpf) {
+    public boolean alterarResponsavelCpf(String cpf, String novoCpf) {
         for (Franquia f : franquias) {
-            if (f != null && f.encontraUmResponsavel(nome) != null
-                    && f.encontraUmResponsavel(nome).getCpf().equals(cpf)) {
-                f.encontraUmResponsavel(nome).setCpf(novoCpf);
-                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
+            if (f != null
+                    && f.getResponsavel().getCpf().equals(cpf)) {
+                f.getResponsavel().setCpf(novoCpf);
+                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarResponsavelTelefone(String nome, String telefone, String novoTelefone) {
+    public boolean alterarResponsavelTelefone(String telefone, String novoTelefone) {
         for (Franquia f : franquias) {
-            if (f != null && f.encontraUmResponsavel(nome) != null
-                    && f.encontraUmResponsavel(nome).getTelefone().equals(telefone)) {
-                f.encontraUmResponsavel(nome).setTelefone(novoTelefone);
-                f.encontraUmResponsavel(nome).setDatamodificacao(LocalDateTime.now());
+            if (f != null
+                    && f.getResponsavel().getTelefone().equals(telefone)) {
+                f.getResponsavel().setTelefone(novoTelefone);
+                f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
