@@ -166,7 +166,7 @@ public class ConsultaDAO {
         matrizfranquiadao.adiciona(mF2);
 
         MatrizFranquia mF3 = new MatrizFranquia(pMF3);
-        mF3.setNome("Unidade A");
+        mF3.setNome("Unidade C");
         mF3.setCnpj("333.456.789.-0001");
         mF3.setEndereco("123oftalmo");
         mF3.setCidade("Araxa");
@@ -237,12 +237,14 @@ public class ConsultaDAO {
      *
      * @param paciente
      * @param medico
+     * @param id
      * @return
      */
-    public Consulta verificaRegistro(String paciente, String medico) {
+    public Consulta verificaRegistro(String paciente, String medico, long id) {
         for (Consulta c : consultas) {
             if (c.getMedico().getPessoa().getNome().equals(medico)
-                    && (c.getPaciente().getNome().equals(paciente))) {
+                    && (c.getPaciente().getNome().equals(paciente))
+                        && c.getId() == id) {
                 return c;
             }
         }

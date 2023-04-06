@@ -82,7 +82,7 @@ public class FranquiaDAO {
         matrizfranquiadao.adiciona(m2);
 
         MatrizFranquia m3 = new MatrizFranquia(pMF3);
-        m3.setNome("Unidade A");
+        m3.setNome("Unidade C");
         m3.setCnpj("333.456.789.-0001");
         m3.setEndereco("123oftalmo");
         m3.setCidade("Araxa");
@@ -136,10 +136,12 @@ public class FranquiaDAO {
     
     /**A Franquia verifica registro de acordo com o nome da Matriz
      * @param nome
+     * @param id
      * @return */
-    public Franquia verificaRegistro(String nome) {
+    public Franquia verificaRegistro(String nome, long id) {
         for (Franquia f : franquias) {
-            if (f.getFranquia().getNome().equals(nome)) {
+            if (f.getFranquia().getNome().equals(nome)
+                    && f.getId() == id) {
                 return f;
             }
         }

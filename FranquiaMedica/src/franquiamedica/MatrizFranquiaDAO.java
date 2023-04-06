@@ -91,9 +91,10 @@ public class MatrizFranquiaDAO {
         }
     }
 
-    public MatrizFranquia verificaRegistro(String nome) {
+    public MatrizFranquia verificaRegistro(String nome, long id) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getNome().equals(nome)) {
+            if (matriz.getNome().equals(nome)
+                    &&matriz.getId() == id) {
                 return matriz;
             }
         }

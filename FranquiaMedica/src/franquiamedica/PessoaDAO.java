@@ -138,13 +138,13 @@ public class PessoaDAO {
         }
         return false;
      * @param nome}
+     * @param id
      * @return */
     
-    public Pessoa verificaRegistro(String nome) {
+    public Pessoa verificaRegistro(String nome, long id) {
         for (Pessoa pessoa : pessoas) {
-            if (pessoa != null && pessoa.getNome().equals(nome)) {
-                Pessoa p = pessoa;
-                return p;
+            if (pessoa.getNome().equals(nome) && pessoa.getId()== id) {                
+                return pessoa;
             }            
         }
         return null;

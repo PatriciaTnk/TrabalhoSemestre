@@ -26,7 +26,11 @@ public class Medico {
         this.dataCriacao = LocalDateTime.now();
         this.datamodificacao = LocalDateTime.now();
     }
-
+    
+    public long getId() {
+        return id;
+    }
+    
     public String getEspecialidade() {
         return especialidade;
     }
@@ -62,12 +66,10 @@ public class Medico {
         sb.append("id=").append(id);
         sb.append(", especialidade=").append(especialidade);
         sb.append(", pessoa=").append(pessoa);
-        sb.append(", dataCriacao=").append(dataCriacao);
-        sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
         return sb.toString();
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -93,7 +95,5 @@ public class Medico {
         }
         return Objects.equals(this.pessoa, other.pessoa);
     }
-    
-    
 
 }

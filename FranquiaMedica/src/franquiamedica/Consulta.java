@@ -106,19 +106,12 @@ public class Consulta {
         StringBuilder sb = new StringBuilder();
         sb.append("Consulta{");
         sb.append("id=").append(id);
-        sb.append(", estado=").append(estado);
-        sb.append(", diaHorario=").append(diaHorario);
-        sb.append(", valor=").append(valor);
         sb.append(", paciente=").append(paciente);
         sb.append(", medico=").append(medico);
         sb.append(", unidade=").append(unidade);
-        sb.append(", dataCriacao=").append(dataCriacao);
-        sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
         return sb.toString();
     }
-
-   
 
     @Override
     public int hashCode() {

@@ -114,18 +114,10 @@ public class Pessoa {
         sb.append("Pessoa{");
         sb.append("id=").append(id);
         sb.append(", nome=").append(nome);
-        sb.append(", endereco=").append(endereco);
-        sb.append(", cpf=").append(cpf);
-        sb.append(", telefone=").append(telefone);
-        sb.append(", login=").append(login);
-        sb.append(", senha=").append(senha);
-        sb.append(", tipoUsuario=").append(tipoUsuario);
-        sb.append(", dataCriacao=").append(dataCriacao);
-        sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
         return sb.toString();
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;

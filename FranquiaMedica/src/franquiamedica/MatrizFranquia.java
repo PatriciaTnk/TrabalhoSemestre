@@ -27,6 +27,10 @@ public class MatrizFranquia {
         this.dataCriacao = LocalDateTime.now();
         this.datamodificacao = LocalDateTime.now();
     }
+    
+    public long getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;
@@ -78,12 +82,7 @@ public class MatrizFranquia {
         sb.append("MatrizFranquia{");
         sb.append("id=").append(id);
         sb.append(", nome=").append(nome);
-        sb.append(", cnpj=").append(cnpj);
-        sb.append(", endereco=").append(endereco);
-        sb.append(", cidade=").append(cidade);
         sb.append(", dono=").append(dono);
-        sb.append(", dataCriacao=").append(dataCriacao);
-        sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
         return sb.toString();
     }
@@ -112,7 +111,6 @@ public class MatrizFranquia {
             return false;
         }
         return Objects.equals(this.dono, other.dono);
-    }
-    
+    }    
     
 }

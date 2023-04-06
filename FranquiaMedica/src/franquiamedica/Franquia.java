@@ -73,15 +73,13 @@ public class Franquia {
         StringBuilder sb = new StringBuilder();
         sb.append("Franquia{");
         sb.append("id=").append(id);
-        sb.append(", endereco=").append(endereco);
-        sb.append(", cidade=").append(cidade);        
-        sb.append(", responsavel=").append(responsavel);       
+        sb.append(", responsavel=").append(responsavel);
         sb.append(", franquia=").append(franquia);
-        sb.append(", dataCriacao=").append(dataCriacao);
-        sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
         return sb.toString();
     }
+
+   
 
     @Override
     public int hashCode() {

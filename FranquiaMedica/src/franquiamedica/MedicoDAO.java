@@ -89,9 +89,11 @@ public class MedicoDAO {
         }
     }
 
-    public Medico verificaRegistro(String nome) {
+    public Medico verificaRegistro(String nome, long id) {
         for (Medico medico : medicos) {          
-            if (medico.getPessoa().getNome().equals(nome)) {
+            if (!medico.getPessoa().getNome().equals(nome)
+                    && medico.getId() != id) {
+            } else {
                 return medico;
             }
         }

@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Uifm;
+package Controller;
 
 //Criar o menu do login e os menus de cada um dos 5 perfis
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
-/*import franquiamedica.Consulta;
-import franquiamedica.ConsultaDAO;*/
+import franquiamedica.Consulta;
+import franquiamedica.ConsultaDAO;
 import franquiamedica.ConsultaDAO;
 import franquiamedica.Franquia;
 import franquiamedica.FranquiaDAO;
@@ -21,7 +21,7 @@ import franquiamedica.MatrizFranquiaDAO;
 import java.math.BigDecimal;
 
 
-public class UiMenus {
+public class Controller {
 
     Scanner scanner = new Scanner(System.in);
     PessoaDAO p = new PessoaDAO();
@@ -30,23 +30,29 @@ public class UiMenus {
     FranquiaDAO f = new FranquiaDAO(p,mf);
     ConsultaDAO c = new ConsultaDAO(p,m,mf,f);
 
-    public UiMenus() {
+    public Controller() {
 
         //tela de login, senha, cadastrar nova pessoa
-        int opcaoUsuario = 4;
+        int opcaoUsuario = 0;
         String recebeString;
         String string2;
         String string3;
+        long id;
         while (opcaoUsuario != 30) {
             opcaoUsuario = this.opcaoUsuarioTelaInicial();
             switch (opcaoUsuario) {
                 case 0:
                     System.out.println("\nmostrar todos");
                     p.mostraTodos();
+                    System.out.println("\n\n\n");
                     m.mostraTodos();
+                    System.out.println("\n\n\n");
                     mf.mostraTodos();
+                    System.out.println("\n\n\n");
                     f.mostraTodos();
+                    System.out.println("\n\n\n");
                     c.mostraTodos();
+                    System.out.println("\n\n\n");
                     break;
 
                 case 1:
@@ -59,7 +65,10 @@ public class UiMenus {
                     //p.mostraTodos();
                     System.out.println("\nQual o nome ?");
                     recebeString = scanner.nextLine();
-                    if (p.verificaRegistro(recebeString) != null) {
+                    System.out.println("\nQual o id da pessoa?");
+                    string2 = scanner.nextLine();
+                    id = Long.parseLong(string2);
+                    if (p.verificaRegistro(recebeString,id) != null) {
                         System.out.println("\nQual o novo nome ?");
                         p.alterarNome(recebeString, scanner.nextLine());
                         System.out.println("Alteração realizada");
@@ -74,7 +83,10 @@ public class UiMenus {
                     //m.mostraTodos();
                     System.out.println("\nQual o nome ?");
                     recebeString = scanner.nextLine();
-                    if (m.verificaRegistro(recebeString) != null) {
+                                        System.out.println("\nQual o id do medico?");
+                    string2 = scanner.nextLine();
+                    id = Long.parseLong(string2);
+                    if (m.verificaRegistro(recebeString,id) != null) {
                         System.out.println("\nQual o novo nome ?");
                         m.alterarNome(recebeString, scanner.nextLine());
                         System.out.println("Alteração realizada");
@@ -90,9 +102,7 @@ public class UiMenus {
                     System.out.println("\nQual o nome ?");
                     recebeString = scanner.nextLine();
 
-                    if (p.verificaRegistro(recebeString) != null) {
-                        System.out.println("\nJá temos um cadastro");
-                    } else {
+                    
 
                         novaP.setNome(recebeString);
 
@@ -313,7 +323,7 @@ public class UiMenus {
     }
 
     //1ª tela - Início || Com - Teste - Ainda para testar, o resto testado
-    private int opcaoUsuarioTelaInicial() {
+    public int opcaoUsuarioTelaInicial() {
 
         StringBuilder builderInicio = new StringBuilder("");
 
