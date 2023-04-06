@@ -235,26 +235,22 @@ public class ConsultaDAO {
     /**
      * A Consulta verifica registro de acordo com o nome da Matriz
      *
-     * @param paciente
-     * @param medico
-     * @param id
+     * @param idConsulta
      * @return
      */
-    public Consulta verificaRegistro(String paciente, String medico, long id) {
+    public Consulta verificaRegistro(long idConsulta) {
         for (Consulta c : consultas) {
-            if (c.getMedico().getPessoa().getNome().equals(medico)
-                    && (c.getPaciente().getNome().equals(paciente))
-                        && c.getId() == id) {
+            if (c.getId() == idConsulta) {
                 return c;
             }
         }
         return null;
     }
 
-    public boolean cancelaComMedico(String paciente, String medico) {
+    public boolean cancelaConsuta(String paciente, long idConsulta) {
         for (Consulta consulta : consultas) {
-            if (consulta != null && consulta.getPaciente().getNome().equals(paciente)
-                    && consulta.getMedico().getPessoa().getNome().equals(medico)) {
+            if (consulta != null && consulta.getPaciente().getNome().equals(paciente)                    
+                        && consulta.getId() == idConsulta){
                 consulta.setEstado("cancelada");
                 consulta.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -263,18 +259,6 @@ public class ConsultaDAO {
         return false;
     }
 
-    public boolean cancelaComUnidade(String paciente, String unidade) {
-        for (Consulta consulta : consultas) {
-            if (consulta != null && consulta.getPaciente().getNome().equals(paciente)
-                    && consulta.getUnidade().getFranquia().getNome().equals(unidade)) {
-                consulta.setEstado("cancelada");
-                consulta.setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-    
     //Precisa do nome do paciente e do medico para verificar a cosulta dai alterar valor
     public boolean alteraValor (long idConsulta, BigDecimal novoValor){
          for (Consulta consulta : consultas) {

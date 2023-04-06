@@ -141,9 +141,9 @@ public class PessoaDAO {
      * @param id
      * @return */
     
-    public Pessoa verificaRegistro(String nome, long id) {
+    public Pessoa verificaRegistro(long id) {
         for (Pessoa pessoa : pessoas) {
-            if (pessoa.getNome().equals(nome) && pessoa.getId()== id) {                
+            if (pessoa.getId()== id) {                
                 return pessoa;
             }            
         }
@@ -164,9 +164,9 @@ public class PessoaDAO {
      * @param nome
      * @return }*/
     
-    public boolean remove(String nome) {
+    public boolean remove(long id) {
         for (int i = 0; i < pessoas.length; i++) {
-            if (pessoas[i] != null && pessoas[i].getNome().equals(nome)) {
+            if (pessoas[i].getId() == id) {
                 pessoas[i] = null;
                 return true;
             }
@@ -176,70 +176,70 @@ public class PessoaDAO {
 
     /**
      * Todas os updates precisam de modify data
-     * @param nome
+     * @param id
      * @param novoNome
      * @return 
      */
-    public boolean alterarNome(String nome, String novoNome) {
-        for (Pessoa pessoasp : pessoas) {
-            if (pessoasp != null && pessoasp.getNome().equals(nome)) {
-                pessoasp.setNome(novoNome);
-                pessoasp.setDatamodificacao(LocalDateTime.now());
+    public boolean alterarNome(long id, String novoNome) {
+        for (Pessoa p : pessoas) {
+            if (p.getId() == id) {
+                p.setNome(novoNome);
+                p.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarEndereco(String endereco, String novoEndereco) {
-        for (Pessoa pessoaspp : pessoas) {
-            if (pessoaspp != null && pessoaspp.getEndereco().equals(endereco)) {
-                pessoaspp.setEndereco(novoEndereco);
-                pessoaspp.setDatamodificacao(LocalDateTime.now());
+    public boolean alterarEndereco(long id, String novoEndereco) {
+        for (Pessoa p : pessoas) {
+            if (p.getId() == id) {
+                p.setEndereco(novoEndereco);
+                p.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarCpf(String cpf, String novoCpf) {
-        for (Pessoa pessoase : pessoas) {
-            if (pessoase != null && pessoase.getCpf().equals(cpf)) {
-                pessoase.setCpf(novoCpf);
-                pessoase.setDatamodificacao(LocalDateTime.now());
+    public boolean alterarCpf(long id, String novoCpf) {
+        for (Pessoa p : pessoas) {
+            if (p.getId() == id) {
+                p.setCpf(novoCpf);
+                p.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarTelefone(String telefone, String novoTelefone) {
-        for (Pessoa pessoasee : pessoas) {
-            if (pessoasee != null && pessoasee.getTelefone().equals(telefone)) {
-                pessoasee.setTelefone(novoTelefone);
-                pessoasee.setDatamodificacao(LocalDateTime.now());
+    public boolean alterarTelefone(long id, String novoTelefone) {
+        for (Pessoa p : pessoas) {
+            if (p.getId() == id) {
+                p.setTelefone(novoTelefone);
+                p.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarLogin(String login, String novoLogin) {
-        for (Pessoa pessoass : pessoas) {
-            if (pessoass != null && pessoass.getLogin().equals(login)) {
-                pessoass.setLogin(novoLogin);
-                pessoass.setDatamodificacao(LocalDateTime.now());
+    public boolean alterarLogin(long id, String novoLogin) {
+        for (Pessoa p : pessoas) {
+            if (p.getId() == id) {
+                p.setLogin(novoLogin);
+                p.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean alterarSenha(String senha, String novaSenha) {
-        for (Pessoa pessoasss : pessoas) {
-            if (pessoasss != null && pessoasss.getSenha().equals(senha)) {
-                pessoasss.setSenha(novaSenha);
-                pessoasss.setDatamodificacao(LocalDateTime.now());
+    public boolean alterarSenha(long id, String novaSenha) {
+        for (Pessoa p : pessoas) {
+            if (p.getId() == id) {
+                p.setSenha(novaSenha);
+                p.setDatamodificacao(LocalDateTime.now());
                 return true;
             }
         }

@@ -89,11 +89,9 @@ public class MedicoDAO {
         }
     }
 
-    public Medico verificaRegistro(String nome, long id) {
+    public Medico verificaRegistro(long id) {
         for (Medico medico : medicos) {          
-            if (!medico.getPessoa().getNome().equals(nome)
-                    && medico.getId() != id) {
-            } else {
+            if (medico.getId() == id) {            
                 return medico;
             }
         }
@@ -113,9 +111,9 @@ public class MedicoDAO {
     /**
      * Todas os updates precisam de modify data
      */
-    public boolean alterarNome(String nome, String novoNome) {
+    public boolean alterarNome(long idMedico, String novoNome) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getPessoa().getNome().equals(nome)) {
+            if (medico.getId() == idMedico) {
                 medico.getPessoa().setNome(novoNome);
                 medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -124,9 +122,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarEndereco(String endereco, String novoEndereco) {
+    public boolean alterarEndereco(long idMedico, String novoEndereco) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getPessoa().getEndereco().equals(endereco)) {
+            if (medico.getId() == idMedico) {
                 medico.getPessoa().setEndereco(novoEndereco);
                 medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -135,9 +133,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarCpf(String cpf, String novoCpf) {
+    public boolean alterarCpf(long idMedico, String novoCpf) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getPessoa().getCpf().equals(cpf)) {
+            if (medico.getId() == idMedico) {
                 medico.getPessoa().setCpf(novoCpf);
                 medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -146,9 +144,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarTelefone(String telefone, String novoTelefone) {
+    public boolean alterarTelefone(long idMedico, String novoTelefone) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getPessoa().getTelefone().equals(telefone)) {
+            if (medico.getId() == idMedico) {
                 medico.getPessoa().setTelefone(novoTelefone);
                 medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -157,9 +155,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarLogin(String login, String novoLogin) {
+    public boolean alterarLogin(long idMedico, String novoLogin) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getPessoa().getLogin().equals(login)) {
+            if (medico.getId() == idMedico) {
                 medico.getPessoa().setLogin(novoLogin);
                 medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -168,9 +166,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarSenha(String senha, String novaSenha) {
+    public boolean alterarSenha(long idMedico, String novaSenha) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getPessoa().getSenha().equals(senha)) {
+            if (medico.getId() == idMedico) {
                 medico.getPessoa().setSenha(novaSenha);
                 medico.getPessoa().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -179,9 +177,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarEspecialidade(String especialidade, String novaEspecialidade) {
+    public boolean alterarEspecialidade(long idMedico, String novaEspecialidade) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getEspecialidade().equals(especialidade)) {
+            if (medico.getId() == idMedico) {
                 medico.setEspecialidade(novaEspecialidade);
                 medico.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -190,9 +188,9 @@ public class MedicoDAO {
         return false;
     }
 
-    public boolean alterarCrm(String crm, String novoCrm) {
+    public boolean alterarCrm(long idMedico, String novoCrm) {
         for (Medico medico : medicos) {
-            if (medico != null && medico.getCrm().equals(crm)) {
+            if (medico.getId() == idMedico) {
                 medico.setCrm(novoCrm);
                 medico.setDatamodificacao(LocalDateTime.now());
                 return true;

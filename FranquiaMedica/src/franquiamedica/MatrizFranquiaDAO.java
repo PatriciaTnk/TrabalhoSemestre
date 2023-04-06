@@ -91,10 +91,9 @@ public class MatrizFranquiaDAO {
         }
     }
 
-    public MatrizFranquia verificaRegistro(String nome, long id) {
+    public MatrizFranquia verificaRegistro(long id) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getNome().equals(nome)
-                    &&matriz.getId() == id) {
+            if (matriz.getId() == id) {
                 return matriz;
             }
         }
@@ -114,9 +113,9 @@ public class MatrizFranquiaDAO {
     /**
      * Todas os updates precisam de modify data
      */
-    public boolean alterarNome(String nome, String novoNome) {
+    public boolean alterarNome(long idMatriz, String novoNome) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getNome().equals(nome)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.setNome(novoNome);
                 matriz.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -125,9 +124,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarCnpj(String cnpj, String novoCnpj) {
+    public boolean alterarCnpj(long idMatriz, String novoCnpj) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getCnpj().equals(cnpj)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.setCnpj(novoCnpj);
                 matriz.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -136,9 +135,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarEndereco(String endereco, String novoEndereco) {
+    public boolean alterarEndereco(long idMatriz, String novoEndereco) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getEndereco().equals(endereco)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.setEndereco(novoEndereco);
                 matriz.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -147,9 +146,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarCidade(String cidade, String novoCidade) {
+    public boolean alterarCidade(long idMatriz, String novoCidade) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getCidade().equals(cidade)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.setCidade(novoCidade);
                 matriz.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -158,9 +157,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarLogin(String login, String novoLogin) {
+    public boolean alterarLogin(long idMatriz, String novoLogin) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getDono().getLogin().equals(login)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.getDono().setLogin(novoLogin);
                 matriz.getDono().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -169,9 +168,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarSenha(String senha, String novaSenha) {
+    public boolean alterarSenha(long idMatriz, String novaSenha) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getDono().getSenha().equals(senha)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.getDono().setSenha(novaSenha);
                 matriz.getDono().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -180,9 +179,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alteraDonoNome(String nome, String novoNome) {
+    public boolean alteraDonoNome(long idMatriz, String novoNome) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getDono().getNome().equals(nome)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.getDono().setNome(novoNome);
                 matriz.getDono().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -191,9 +190,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarDonoEndereco(String endereco, String novaEndereco) {
+    public boolean alterarDonoEndereco(long idMatriz, String novaEndereco) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getDono().getEndereco().equals(endereco)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.getDono().setEndereco(novaEndereco);
                 matriz.getDono().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -202,9 +201,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarDonoCpf(String cpf, String novoCpf) {
+    public boolean alterarDonoCpf(long idMatriz, String novoCpf) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getDono().getCpf().equals(cpf)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.getDono().setCpf(novoCpf);
                 matriz.getDono().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -213,9 +212,9 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarDonoTelefone(String telefone, String novoTelefone) {
+    public boolean alterarDonoTelefone(long idMatriz, String novoTelefone) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz != null && matriz.getDono().getTelefone().equals(telefone)) {
+            if (matriz.getId() == idMatriz) {
                 matriz.getDono().setTelefone(novoTelefone);
                 matriz.getDono().setDatamodificacao(LocalDateTime.now());
                 return true;

@@ -6,8 +6,9 @@ package Controller;
 
 //Criar o menu do login e os menus de cada um dos 5 perfis
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
+/*import franquiamedica.Consulta;
+import franquiamedica.ConsultaDAO;*/
 import franquiamedica.Consulta;
-import franquiamedica.ConsultaDAO;
 import franquiamedica.ConsultaDAO;
 import franquiamedica.Franquia;
 import franquiamedica.FranquiaDAO;
@@ -20,15 +21,14 @@ import franquiamedica.Medico;
 import franquiamedica.MatrizFranquiaDAO;
 import java.math.BigDecimal;
 
-
 public class Controller {
 
     Scanner scanner = new Scanner(System.in);
     PessoaDAO p = new PessoaDAO();
     MedicoDAO m = new MedicoDAO(p);
     MatrizFranquiaDAO mf = new MatrizFranquiaDAO(p);
-    FranquiaDAO f = new FranquiaDAO(p,mf);
-    ConsultaDAO c = new ConsultaDAO(p,m,mf,f);
+    FranquiaDAO f = new FranquiaDAO(p, mf);
+    ConsultaDAO c = new ConsultaDAO(p, m, mf, f);
 
     public Controller() {
 
@@ -36,8 +36,10 @@ public class Controller {
         int opcaoUsuario = 0;
         String recebeString;
         String string2;
-        String string3;
+
         long id;
+        long id2;
+        long id3;
         while (opcaoUsuario != 30) {
             opcaoUsuario = this.opcaoUsuarioTelaInicial();
             switch (opcaoUsuario) {
@@ -63,14 +65,12 @@ public class Controller {
                 case 2: //testado alterado o nome
                     System.out.println("\nalterar pessoa nome");
                     //p.mostraTodos();
-                    System.out.println("\nQual o nome ?");
-                    recebeString = scanner.nextLine();
                     System.out.println("\nQual o id da pessoa?");
-                    string2 = scanner.nextLine();
-                    id = Long.parseLong(string2);
-                    if (p.verificaRegistro(recebeString,id) != null) {
+                    id = Long.parseLong(scanner.nextLine());
+
+                    if (p.verificaRegistro(id) != null) {
                         System.out.println("\nQual o novo nome ?");
-                        p.alterarNome(recebeString, scanner.nextLine());
+                        p.alterarNome(id, scanner.nextLine());
                         System.out.println("Alteração realizada");
                     } else {
                         System.out.println("Pessoa não encontrada");
@@ -81,14 +81,11 @@ public class Controller {
                 case 3://testado alterado o nome médico
                     System.out.println("\nalterar medico nome");
                     //m.mostraTodos();
-                    System.out.println("\nQual o nome ?");
-                    recebeString = scanner.nextLine();
-                                        System.out.println("\nQual o id do medico?");
-                    string2 = scanner.nextLine();
-                    id = Long.parseLong(string2);
-                    if (m.verificaRegistro(recebeString,id) != null) {
+                    System.out.println("\nQual o id do medico?");
+                    id = Long.parseLong(scanner.nextLine());
+                    if (m.verificaRegistro(id) != null) {
                         System.out.println("\nQual o novo nome ?");
-                        m.alterarNome(recebeString, scanner.nextLine());
+                        m.alterarNome(id, scanner.nextLine());
                         System.out.println("Alteração realizada");
                     } else {
                         System.out.println("Medico não encontrado");
@@ -99,29 +96,25 @@ public class Controller {
                 case 4://testado adicionar Pessoa
                     Pessoa novaP = new Pessoa();
                     System.out.println("\nadicionar pessoa");
+
                     System.out.println("\nQual o nome ?");
-                    recebeString = scanner.nextLine();
+                    novaP.setNome(scanner.nextLine());
 
-                    
+                    System.out.println("\nQual o endereço ?");
+                    novaP.setEndereco(scanner.nextLine());
 
-                        novaP.setNome(recebeString);
+                    System.out.println("\nQual o CPF ?");
+                    novaP.setCpf(scanner.nextLine());
 
-                        System.out.println("\nQual o endereço ?");
-                        novaP.setEndereco(scanner.nextLine());
+                    System.out.println("\nQual o telefone ?");
+                    novaP.setTelefone(scanner.nextLine());
 
-                        System.out.println("\nQual o CPF ?");
-                        novaP.setCpf(scanner.nextLine());
+                    System.out.println("\nQual o Login ?");
+                    novaP.setLogin(scanner.nextLine());
 
-                        System.out.println("\nQual o telefone ?");
-                        novaP.setTelefone(scanner.nextLine());
-
-                        System.out.println("\nQual o Login ?");
-                        novaP.setLogin(scanner.nextLine());
-
-                        System.out.println("\nQual a Senha ?");
-                        novaP.setSenha(scanner.nextLine());
-                        p.adiciona(novaP);
-                    }
+                    System.out.println("\nQual a Senha ?");
+                    novaP.setSenha(scanner.nextLine());
+                    p.adiciona(novaP);
 
                     p.mostraTodos();
                     System.out.println("Seu cadastro foi realizado com sucesso");
@@ -131,13 +124,14 @@ public class Controller {
                 case 5://testado adicionar Medico precisa de uma pessoa cadastrada                    
                     System.out.println("\nadicionar medico");
                     //p.mostraTodos();
-                    System.out.println("\nInforme o nome da pessoa, para realizar uma busca em nosso cadastro: ");
-                    recebeString = scanner.nextLine();
 
-                    if (p.verificaRegistro(recebeString) == null) {
+                    System.out.println("\nQual o id da pessoa?");
+                    id = Long.parseLong(scanner.nextLine());
+
+                    if (p.verificaRegistro(id) == null) {
                         System.out.println("\nNao esta cadastrado, por gentileza realizar cadastro.");
                     } else {
-                        Medico novoM = new Medico(p.verificaRegistro(recebeString));
+                        Medico novoM = new Medico(p.verificaRegistro(id));
                         System.out.println("\nQual a especialidade ?");
                         novoM.setEspecialidade(scanner.nextLine());
 
@@ -152,13 +146,13 @@ public class Controller {
                 case 6://testado alterar matriz - Nome precisa ser idêntico
                     System.out.println("\nalterar dados da Matriz");
                     mf.mostraTodos();
-                    System.out.println("\nQual o nome ?");
-                    recebeString = scanner.nextLine();
-                    if (mf.verificaRegistro(recebeString) == null) {
+                    System.out.println("\nQual o id da matriz?");
+                    id = Long.parseLong(scanner.nextLine());
+                    if (mf.verificaRegistro(id) == null) {
                         System.out.println("Matriz não cadastrada");
                     } else {
                         System.out.println("\nQual o novo nome ?");
-                        mf.alterarNome(recebeString, scanner.nextLine());
+                        mf.alterarNome(id, scanner.nextLine());
                         System.out.println("Alteração realizada");
                     }
                     mf.mostraTodos();
@@ -166,14 +160,10 @@ public class Controller {
 
                 case 7://adicionar matriz
                     System.out.println("\nadicionar matriz");
-                    //mf.mostraTodos();
-                    System.out.println("\nInforme o nome do dono, para realizar uma busca em nosso cadastro: ");
-                    recebeString = scanner.nextLine();
-
-                    if (p.verificaRegistro(recebeString) == null) {
-                        System.out.println("\nDono nao esta cadastrado, por gentileza realizar cadastro.");
-                    } else {
-                        MatrizFranquia novaMF = new MatrizFranquia(p.verificaRegistro(recebeString));
+                    System.out.println("\nQual o id do dono?");
+                    id = Long.parseLong(scanner.nextLine());
+                    if (p.verificaRegistro(id) != null) {
+                        MatrizFranquia novaMF = new MatrizFranquia(p.verificaRegistro(id));
                         System.out.println("\nQual o nome da matriz?");
                         novaMF.setNome(scanner.nextLine());
 
@@ -188,26 +178,25 @@ public class Controller {
 
                         mf.adiciona(novaMF);
                         System.out.println("Novo registro de matriz realizado com sucesso");
+                    } else {
+                        System.out.println("Dono nao cadastrado, realizar cadastro");
                     }
+
                     mf.mostraTodos();
                     break;
 
                 case 8://alterar franquia
-                    System.out.println("\nalterar dados da Franquia");
+                    System.out.println("\nalterar dados da franquia");
                     f.mostraTodos();
-                    System.out.println("\nQual o nome da Franquia?");
-                    recebeString = scanner.nextLine();                            
-                    
-                    if (f.verificaRegistro(recebeString) == null) {
+
+                    System.out.println("\nQual o id da franquia?");
+                    id = Long.parseLong(scanner.nextLine());
+
+                    if (f.verificaRegistro(id) == null) {
                         System.out.println("Franquia não encontrada");
                     } else {
-                        System.out.println("\nQual o login?");
-                        recebeString = scanner.nextLine();
-                        
                         System.out.println("\nQual o novo login?");
-                        string2 = scanner.nextLine();                        
-                        
-                        f.alterarLogin(recebeString, string2);
+                        f.alterarLogin(id, scanner.nextLine());
                         System.out.println("Alteração realizada");
                     }
                     mf.mostraTodos();
@@ -216,74 +205,87 @@ public class Controller {
                 case 9://adicionar franquia
                     System.out.println("\nadicionar franquia");
                     //p.mostraTodos();
-                    System.out.println("\nInforme o nome do responsável cadastrado: ");
-                    recebeString = scanner.nextLine();
+                    System.out.println("\nQual o id do responsavel?");
+                    id = Long.parseLong(scanner.nextLine());
 
-                    if (p.verificaRegistro(recebeString) == null) {
+                    if (p.verificaRegistro(id) == null) {
                         System.out.println("\nResponsavel nao esta cadastrado, por gentileza realizar cadastro.");
                     } else {
-                        System.out.println("\nInforme o nome da matriz, para realizar uma busca em nosso cadastro: ");
-                        string2 = scanner.nextLine();
-                        
-                        if (mf.verificaRegistro(string2) == null){
-                        System.out.println("\nMatriz nao cadastrada, por gentileza realizar cadastro.");
-                        } else {                    
-                        Franquia novaF = new Franquia(p.verificaRegistro(recebeString), mf.verificaRegistro(string2));
-                        System.out.println("\nQual o endereço ?");
-                        novaF.setEndereco(scanner.nextLine());
+                        System.out.println("\nInforme o id da matriz?");
+                        id2 = Long.parseLong(scanner.nextLine());
 
-                        System.out.println("\nQual a cidade?");
-                        novaF.setCidade(scanner.nextLine());
-                        
-                        f.adiciona(novaF);
-                        System.out.println("Novo registro de franquia realizado com sucesso");
+                        if (mf.verificaRegistro(id2) == null) {
+                            System.out.println("\nMatriz nao cadastrada, por gentileza realizar cadastro.");
+                        } else {
+                            Franquia novaF = new Franquia(p.verificaRegistro(id), mf.verificaRegistro(id2));
+                            System.out.println("\nQual o endereço ?");
+                            novaF.setEndereco(scanner.nextLine());
+
+                            System.out.println("\nQual a cidade?");
+                            novaF.setCidade(scanner.nextLine());
+
+                            f.adiciona(novaF);
+                            System.out.println("Novo registro de franquia realizado com sucesso");
                         }
                     }
                     f.mostraTodos();
-                    
+
                     break;
 
                 case 10:// testado - altera consulta, só pode cancelar ou alterar o valor
                     //para trocar o dia, o medico ou unidade é preciso cancelar a consulta agendada e agendar Nova consulta
                     c.mostraTodos();
                     System.out.println("\nalterar o valor da consulta");
-                    
-                    System.out.println("\nInforme o nome do paciente: ");
-                    recebeString = scanner.nextLine();
-                    
-                    System.out.println("\nInforme o nome do medico: ");
-                    string2 = scanner.nextLine();
-                    
-                    System.out.println("\nInforme o novo valor: ");
-                    string3 = scanner.nextLine();                    
-                    BigDecimal novoValor = new BigDecimal(string3);
-                    
-                    if (c.verificaRegistro(recebeString, string2) != null){
-                        c.alteraValor(c.verificaRegistro(recebeString, string2).getId(), novoValor);
+
+                    System.out.println("\nQual o id da consulta?");
+                    id = Long.parseLong(scanner.nextLine());
+
+                    if (c.verificaRegistro(id) != null) {
+                        System.out.println("\nInforme o novo valor: ");
+                        BigDecimal novoValor = new BigDecimal(scanner.nextLine());
+
+                        c.alteraValor(id, novoValor);
                         System.out.println("Valor alterado com sucesso");
                     }
-                    
-                    c.mostraTodos();
-                    
-                    break;
 
+                    c.mostraTodos();
+
+                    break;
                 case 11://adiciona consulta
                     c.mostraTodos();
                     System.out.println("\nadicionar consulta");
-                    
-                    System.out.println("\nInforme o nome do paciente: ");
-                    recebeString = scanner.nextLine();
-                    
-                    System.out.println("\nInforme o nome do medico: ");
-                    string2 = scanner.nextLine();  
-                    
-                    if (c.verificaRegistro(recebeString, string2) == null){      
-                        f.mostraTodos();
-                        System.out.println("Onde gostaria de realizar a consulta?");
-                        string3 = scanner.nextLine();
-                        
+
+                    System.out.println("\nQual o id do Paciente?");
+                    id = Long.parseLong(scanner.nextLine());
+                    if (p.verificaRegistro(id) == null) {
+                        System.out.println("Paciente não cadastrado, realize o cadastro");
+                    } else {
+                        System.out.println("\nQual o id do Medico?");
+                        id2 = Long.parseLong(scanner.nextLine());
+                        if (m.verificaRegistro(id2) != null) {
+                            System.out.println("\nQual o id da Franquia?");
+                            id3 = Long.parseLong(scanner.nextLine());
+                            if (f.verificaRegistro(id3) != null) {
+                                System.out.println("");
+                                Consulta novaC = new Consulta(p.verificaRegistro(id), m.verificaRegistro(id2), f.verificaRegistro(id3));
+                                System.out.println("Informe qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                recebeString = scanner.nextLine();
+
+                                System.out.println("E qual o horario (No formato hh:mm): ");
+                                string2 = scanner.nextLine();
+
+                                novaC.setDiaHorario(recebeString, string2);
+                                c.adiciona(novaC);
+                                System.out.println("Nova consulta registrada com sucesso");
+
+                            } else {
+                                System.out.println("Franquia não encontrada");
+                            }
+                        } else {
+                            System.out.println("Medico não encontrado");
+                        }
                     }
-                    
+
                     c.mostraTodos();
                     break;
 
@@ -319,7 +321,7 @@ public class Controller {
     }
 
     public static void main(String[] args) {
-        new UiMenus();
+        new Controller();
     }
 
     //1ª tela - Início || Com - Teste - Ainda para testar, o resto testado
@@ -386,5 +388,5 @@ public class Controller {
 
         return Integer.parseInt(scanner.nextLine());
     }
-    
+
 }

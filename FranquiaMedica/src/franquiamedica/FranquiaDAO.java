@@ -135,22 +135,20 @@ public class FranquiaDAO {
     }
     
     /**A Franquia verifica registro de acordo com o nome da Matriz
-     * @param nome
      * @param id
      * @return */
-    public Franquia verificaRegistro(String nome, long id) {
+    public Franquia verificaRegistro(long id) {
         for (Franquia f : franquias) {
-            if (f.getFranquia().getNome().equals(nome)
-                    && f.getId() == id) {
+            if (f.getId() == id) {
                 return f;
             }
         }
         return null;
     }
 
-    public boolean remove(String nome) {
+    public boolean remove(long idFranquia) {
         for (int i = 0; i < franquias.length; i++) {
-            if (franquias[i] != null && franquias[i].getFranquia().getNome().equals(nome)) {
+            if (franquias[i].getId() == idFranquia) {
                 franquias[i] = null;
                 return true;
             }
@@ -160,10 +158,13 @@ public class FranquiaDAO {
 
     /**
      * Todas os updates precisam de modify data
+     * @param idFranquia
+     * @param novoEndereco
+     * @return 
      */ 
-    public boolean alterarEndereco(String endereco, String novoEndereco) {
+    public boolean alterarEndereco(long idFranquia, String novoEndereco) {
         for (Franquia f : franquias) {
-            if (f != null && f.getEndereco().equals(endereco)) {
+            if (f.getId() == idFranquia) {
                 f.setEndereco(novoEndereco);
                 f.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -172,9 +173,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarCidade(String cidade, String novoCidade) {
+    public boolean alterarCidade(long idFranquia, String novoCidade) {
         for (Franquia f : franquias) {
-            if (f != null && f.getCidade().equals(cidade)) {
+            if (f.getId() == idFranquia) {
                 f.setCidade(novoCidade);
                 f.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -183,9 +184,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarLogin(String login, String novoLogin) {
+    public boolean alterarLogin(long idFranquia, String novoLogin) {
         for (Franquia f : franquias) {
-            if (f != null && f.getResponsavel().getLogin().equals(login)) {
+            if (f.getId() == idFranquia) {
                 f.getResponsavel().setLogin(novoLogin);
                 f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -194,10 +195,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarSenha(String senha, String novaSenha) {
+    public boolean alterarSenha(long idFranquia, String novaSenha) {
         for (Franquia f : franquias) {
-            if (f != null
-                    && f.getResponsavel().getSenha().equals(senha)) {
+            if (f.getId() == idFranquia) {
                 f.getResponsavel().setSenha(novaSenha);
                 f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -206,9 +206,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alteraResponsavelNome(String novoNome) {
+    public boolean alteraResponsavelNome(long idFranquia, String novoNome) {
         for (Franquia f : franquias) {
-            if (f != null) {
+            if (f.getId() == idFranquia) {
                 f.getResponsavel().setNome(novoNome);
                 f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -217,10 +217,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarResponsavelEndereco(String endereco, String novaEndereco) {
+    public boolean alterarResponsavelEndereco(long idFranquia, String novaEndereco) {
         for (Franquia f : franquias) {
-            if (f != null
-                    && f.getResponsavel().getEndereco().equals(endereco)) {
+            if (f.getId() == idFranquia) {
                 f.getResponsavel().setEndereco(novaEndereco);
                 f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -229,10 +228,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarResponsavelCpf(String cpf, String novoCpf) {
+    public boolean alterarResponsavelCpf(long idFranquia, String novoCpf) {
         for (Franquia f : franquias) {
-            if (f != null
-                    && f.getResponsavel().getCpf().equals(cpf)) {
+            if (f.getId() == idFranquia) {
                 f.getResponsavel().setCpf(novoCpf);
                 f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -241,10 +239,9 @@ public class FranquiaDAO {
         return false;
     }
 
-    public boolean alterarResponsavelTelefone(String telefone, String novoTelefone) {
+    public boolean alterarResponsavelTelefone(long idFranquia, String novoTelefone) {
         for (Franquia f : franquias) {
-            if (f != null
-                    && f.getResponsavel().getTelefone().equals(telefone)) {
+            if (f.getId() == idFranquia) {
                 f.getResponsavel().setTelefone(novoTelefone);
                 f.getResponsavel().setDatamodificacao(LocalDateTime.now());
                 return true;
