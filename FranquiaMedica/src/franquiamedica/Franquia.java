@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Franquia {
 
     private long id;
+    private static long serial; //fica com o valor padrão
     private String endereco;
     private String cidade;
     private Pessoa responsavel;
@@ -19,7 +20,7 @@ public class Franquia {
     private LocalDateTime datamodificacao;
 
     public Franquia(Pessoa funcionario, MatrizFranquia sede) {
-        this.id = funcionario.getId();
+        this.id = Franquia.serial++;
         this.responsavel= funcionario;
         this.responsavel.setTipoUsuario("Responsavel pela Franquia");
         this.franquia = sede;

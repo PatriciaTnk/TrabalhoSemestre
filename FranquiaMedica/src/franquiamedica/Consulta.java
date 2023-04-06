@@ -16,6 +16,7 @@ public class Consulta {
 
     //
     private long id;
+    private static long serial; //fica com o valor padrão
     private String estado;
     private LocalDateTime diaHorario;
     private BigDecimal valor;
@@ -28,7 +29,7 @@ public class Consulta {
 
     //so inicia medico depois de escolher a Pessoa
     public Consulta(Pessoa paciente, Medico medico, Franquia franquia) {
-        this.id = paciente.getId();
+        this.id = Consulta.serial++;
         this.paciente = paciente;
         this.medico = medico;
         this.unidade = franquia;

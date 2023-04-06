@@ -20,14 +20,15 @@ import franquiamedica.Medico;
 import franquiamedica.MatrizFranquiaDAO;
 import java.math.BigDecimal;
 
+
 public class UiMenus {
 
     Scanner scanner = new Scanner(System.in);
     PessoaDAO p = new PessoaDAO();
-    MedicoDAO m = new MedicoDAO();
-    MatrizFranquiaDAO mf = new MatrizFranquiaDAO();
-    FranquiaDAO f = new FranquiaDAO();
-    ConsultaDAO c = new ConsultaDAO();
+    MedicoDAO m = new MedicoDAO(p);
+    MatrizFranquiaDAO mf = new MatrizFranquiaDAO(p);
+    FranquiaDAO f = new FranquiaDAO(p,mf);
+    ConsultaDAO c = new ConsultaDAO(p,m,mf,f);
 
     public UiMenus() {
 
@@ -40,8 +41,12 @@ public class UiMenus {
             opcaoUsuario = this.opcaoUsuarioTelaInicial();
             switch (opcaoUsuario) {
                 case 0:
-                    System.out.println("\nmostrar pessoas");
+                    System.out.println("\nmostrar todos");
                     p.mostraTodos();
+                    m.mostraTodos();
+                    mf.mostraTodos();
+                    f.mostraTodos();
+                    c.mostraTodos();
                     break;
 
                 case 1:

@@ -10,6 +10,7 @@ import java.util.Objects;
 public class MatrizFranquia {
     
     private long id;
+    private static long serial; //fica com o valor padrão
     private String nome;
     private String cnpj;
     private String endereco;
@@ -20,7 +21,7 @@ public class MatrizFranquia {
     private LocalDateTime datamodificacao;
 
     public MatrizFranquia(Pessoa dono) {
-        this.id = dono.getId();
+        this.id = MatrizFranquia.serial++;
         this.dono = dono;
         this.dono.setTipoUsuario("Dono da Matriz");
         this.dataCriacao = LocalDateTime.now();

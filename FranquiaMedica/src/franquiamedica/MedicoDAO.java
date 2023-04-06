@@ -11,9 +11,9 @@ public class MedicoDAO {
     //para já ter dados cadastrados, popular dados no construtor
 
     //preciso de um array para popular
-    Medico[] medicos = new Medico[15];
+    Medico[] medicos = new Medico[30];
 
-    public MedicoDAO() {
+    public MedicoDAO(PessoaDAO pessoadao) {
         //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA
         Pessoa p1 = new Pessoa();
         p1.setNome("Mjosephina");
@@ -22,7 +22,7 @@ public class MedicoDAO {
         p1.setTelefone("Mjosephina");
         p1.setLogin("Mjose");
         p1.setSenha("Mjose");
-
+        pessoadao.adiciona(p1);
 
         Pessoa p2 = new Pessoa();
         p2.setNome("Mjaspion");
@@ -31,6 +31,7 @@ public class MedicoDAO {
         p2.setTelefone("Mjaspion");
         p2.setLogin("Mjas");
         p2.setSenha("Mjas");
+        pessoadao.adiciona(p2);
 
 
         Pessoa p3 = new Pessoa();
@@ -40,6 +41,7 @@ public class MedicoDAO {
         p3.setTelefone("Mjiraia");
         p3.setLogin("Mjir");
         p3.setSenha("Mjir");
+        pessoadao.adiciona(p3);
 
         
         Medico m1 = new Medico(p1);

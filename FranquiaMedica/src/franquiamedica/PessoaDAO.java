@@ -13,7 +13,7 @@ public class PessoaDAO {
     OBS: Para atender
     Uma pessoa pode ser cadastrada com diferentes papéis. Cada login diferente irá diferenciar os usuários.
     Deverão ser realizados mais cadastros da mesma pessoa, pois para cada id de cadastro só pode ser atribuido um login e um papel*/
-    Pessoa[] pessoas = new Pessoa[15];
+    Pessoa[] pessoas = new Pessoa[60];
 
     public PessoaDAO() {
         Pessoa p0 = new Pessoa();

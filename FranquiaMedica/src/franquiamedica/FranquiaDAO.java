@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 
 public class FranquiaDAO {
 
-    Franquia[] franquias = new Franquia[15];
+    Franquia[] franquias = new Franquia[20];
 
-    public FranquiaDAO() {
+    public FranquiaDAO(PessoaDAO pessoadao, MatrizFranquiaDAO matrizfranquiadao) {
         //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA
         Pessoa pMF1 = new Pessoa();
         pMF1.setNome("MFjosephina");
@@ -20,6 +20,7 @@ public class FranquiaDAO {
         pMF1.setTelefone("MFjosephina");
         pMF1.setLogin("MFjose");
         pMF1.setSenha("MFjose");
+        pessoadao.adiciona(pMF1);
 
         Pessoa pMF2 = new Pessoa();
         pMF2.setNome("MFjaspion");
@@ -28,6 +29,7 @@ public class FranquiaDAO {
         pMF2.setTelefone("MFjaspion");
         pMF2.setLogin("MFjas");
         pMF2.setSenha("MFjas");
+        pessoadao.adiciona(pMF2);
 
         Pessoa pMF3 = new Pessoa();
         pMF3.setNome("MFjiraia");
@@ -36,6 +38,7 @@ public class FranquiaDAO {
         pMF3.setTelefone("MFjiraia");
         pMF3.setLogin("MFjir");
         pMF3.setSenha("MFjir");
+        pessoadao.adiciona(pMF3);
         
         Pessoa pMF4 = new Pessoa();
         pMF4.setNome("FRjosephina");
@@ -44,6 +47,7 @@ public class FranquiaDAO {
         pMF4.setTelefone("FRjosephina");
         pMF4.setLogin("FRjose");
         pMF4.setSenha("FRjose");
+        pessoadao.adiciona(pMF4);
 
         Pessoa pMF5 = new Pessoa();
         pMF5.setNome("FRjaspion");
@@ -52,6 +56,7 @@ public class FranquiaDAO {
         pMF5.setTelefone("FRjaspion");
         pMF5.setLogin("FRjas");
         pMF5.setSenha("FRjas");
+        pessoadao.adiciona(pMF5);
 
         Pessoa pMF6 = new Pessoa();
         pMF6.setNome("FRjiraia");
@@ -60,24 +65,28 @@ public class FranquiaDAO {
         pMF6.setTelefone("FRjiraia");
         pMF6.setLogin("FRjir");
         pMF6.setSenha("FRjir");
+        pessoadao.adiciona(pMF6);
 
         MatrizFranquia m1 = new MatrizFranquia(pMF1);
         m1.setNome("Unidade A");
         m1.setCnpj("111.456.789.-0001");
         m1.setEndereco("123oftalmo");
         m1.setCidade("Araxa");
+        matrizfranquiadao.adiciona(m1);
 
         MatrizFranquia m2 = new MatrizFranquia(pMF2);
         m2.setNome("Unidade B");
         m2.setCnpj("222.456.789.-0001");
         m2.setEndereco("123oftalmo");
         m2.setCidade("Araxa");
+        matrizfranquiadao.adiciona(m2);
 
         MatrizFranquia m3 = new MatrizFranquia(pMF3);
         m3.setNome("Unidade A");
         m3.setCnpj("333.456.789.-0001");
         m3.setEndereco("123oftalmo");
         m3.setCidade("Araxa");
+        matrizfranquiadao.adiciona(m3);
         
         
         Franquia f1 = new Franquia(pMF4, m1);

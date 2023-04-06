@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 
 public class MatrizFranquiaDAO {
 
-    MatrizFranquia[] matrizes = new MatrizFranquia[15];
+    MatrizFranquia[] matrizes = new MatrizFranquia[20];
 
-    public MatrizFranquiaDAO() {
+    public MatrizFranquiaDAO(PessoaDAO pessoadao) {
         //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA
         Pessoa p1 = new Pessoa();
         p1.setNome("MFjosephina");
@@ -20,6 +20,7 @@ public class MatrizFranquiaDAO {
         p1.setTelefone("MFjosephina");
         p1.setLogin("MFjose");
         p1.setSenha("MFjose");
+        pessoadao.adiciona(p1);
 
         Pessoa p2 = new Pessoa();
         p2.setNome("MFjaspion");
@@ -28,6 +29,7 @@ public class MatrizFranquiaDAO {
         p2.setTelefone("MFjaspion");
         p2.setLogin("MFjas");
         p2.setSenha("MFjas");
+        pessoadao.adiciona(p2);
 
         Pessoa p3 = new Pessoa();
         p3.setNome("MFjiraia");
@@ -36,6 +38,7 @@ public class MatrizFranquiaDAO {
         p3.setTelefone("MFjiraia");
         p3.setLogin("MFjir");
         p3.setSenha("MFjir");
+        pessoadao.adiciona(p3);
 
         MatrizFranquia m1 = new MatrizFranquia(p1);
         m1.setNome("UnidadeA");

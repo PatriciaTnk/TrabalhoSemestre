@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Medico {
 
     private long id;
+    private static long serial; //fica com o valor padrão
     private String especialidade;
     private String crm;
     private Pessoa pessoa;
@@ -19,7 +20,7 @@ public class Medico {
 
     //so inicia medico depois de escolher a Pessoa
     public Medico(Pessoa pessoa) {
-        this.id = pessoa.getId();
+        this.id = Medico.serial++;
         this.pessoa = pessoa;
         this.pessoa.setTipoUsuario("Medico");
         this.dataCriacao = LocalDateTime.now();
