@@ -253,6 +253,23 @@ public class UiMenus {
                     break;
 
                 case 11://adiciona consulta
+                    c.mostraTodos();
+                    System.out.println("\nadicionar consulta");
+                    
+                    System.out.println("\nInforme o nome do paciente: ");
+                    recebeString = scanner.nextLine();
+                    
+                    System.out.println("\nInforme o nome do medico: ");
+                    string2 = scanner.nextLine();  
+                    
+                    if (c.verificaRegistro(recebeString, string2) == null){      
+                        f.mostraTodos();
+                        System.out.println("Onde gostaria de realizar a consulta?");
+                        string3 = scanner.nextLine();
+                        
+                    }
+                    
+                    c.mostraTodos();
                     break;
 
                 case 12://altera procedimento

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.Locale;
 
 public class Consulta {
 
@@ -53,15 +54,18 @@ public class Consulta {
     }
     
     //"05/05/2023", "10:30"
-    public void setDiaHorario(String dia, String horario) {
-        //DateTimeFormatter formatterDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate day = LocalDate.parse(dia);
-                        
-        //DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("mm:HH");
+    public boolean setDiaHorario(String dia, String horario) {        
+        DateTimeFormatter formatterDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate day = LocalDate.parse(dia, formatterDia);                        
+       
         LocalTime hour = LocalTime.parse(horario);
-               
-        String str = dia.concat(horario);
-        this.diaHorario = LocalDateTime.of(day,hour);
+        
+        LocalDateTime hoje = LocalDateTime.now();
+        this.diaHorario = LocalDateTime.of(day, hour);
+        if(this.diaHorario.isBefore(hoje)){
+            return false;            
+        }
+        return true;
     }
     
     public BigDecimal getValor() {

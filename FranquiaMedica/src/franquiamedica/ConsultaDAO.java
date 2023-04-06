@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -165,17 +166,17 @@ public class ConsultaDAO {
         f3.setCidade("Araxa");
 
         Consulta c1 = new Consulta(p1, m1, f1);
-        //c1.setDiaHorario("05/05/2023", "10:30");
+        c1.setDiaHorario("05/05/2023", "10:30");
         c1.setValor(new BigDecimal(55.55));
         adiciona(c1);
         
         Consulta c2 = new Consulta(p2, m2, f2);
-        //c2.setDiaHorario("06/05/2023", "11:30");
+        c2.setDiaHorario("06/05/2023", "11:30");
         c2.setValor(new BigDecimal(55.55));
         adiciona(c2);
         
         Consulta c3 = new Consulta(p3, m3, f3);
-        //c3.setDiaHorario("07/05/2023", "12:30");
+        c3.setDiaHorario("07/05/2023", "12:30");
         c3.setValor(new BigDecimal(55.55));
         adiciona(c3);
     
