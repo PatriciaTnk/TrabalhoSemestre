@@ -114,6 +114,8 @@ public class Pessoa {
         sb.append("Pessoa{");
         sb.append("id=").append(id);
         sb.append(", nome=").append(nome);
+        sb.append(", login=").append(login);
+        sb.append(", senha=").append(senha);
         sb.append('}');
         return sb.toString();
     }

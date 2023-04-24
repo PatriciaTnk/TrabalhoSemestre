@@ -11,8 +11,25 @@ import java.time.LocalDateTime;
 public class InfoConsultaDAO {
 
     InfoConsulta[] infoCon = new InfoConsulta[30];
-    
-    
+
+    public InfoConsultaDAO(ConsultaDAO consultadao) {
+        InfoConsulta novo = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("0")));
+        novo.setDescricao("Paciente mostra recuperacao");
+        adiciona(novo);
+                
+        InfoConsulta novo1 = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("1")));
+        novo1.setDescricao("Paciente piorou");
+        adiciona(novo1);
+        
+        InfoConsulta novo2 = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("2")));
+        novo2.setDescricao("Paciente ainda nao realizou exame");
+        adiciona(novo2);
+        
+        /*InfoConsulta novo3 = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("3")));
+        novo3.setDescricao("Paciente recuperado");
+        adiciona(novo3);*/
+        
+    }
     
     private int proximaPosicaoLivre() {//só serve aqui dentro
         for (int i = 0; i < infoCon.length; i++) {
@@ -60,7 +77,7 @@ public class InfoConsultaDAO {
     public boolean adicionaMaisInfo (long idConsulta, String maisInfo){
          for (InfoConsulta ic : infoCon) {
             if (ic.getId() == idConsulta) {
-                String antes = ic.getDescricao()+maisInfo;
+                ic.setDescricao(ic.getDescricao()+maisInfo);
                 ic.setDatamodificacao(LocalDateTime.now());
                 return true;
             }        

@@ -6,19 +6,20 @@ package Controller;
 
 //Criar o menu do login e os menus de cada um dos 5 perfis
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
-/*import franquiamedica.Consulta;
-import franquiamedica.ConsultaDAO;*/
+
 import franquiamedica.Consulta;
 import franquiamedica.ConsultaDAO;
 import franquiamedica.Franquia;
 import franquiamedica.FranquiaDAO;
 import franquiamedica.MatrizFranquia;
-import java.util.Scanner;
-import franquiamedica.PessoaDAO;
-import franquiamedica.Pessoa;
-import franquiamedica.MedicoDAO;
-import franquiamedica.Medico;
 import franquiamedica.MatrizFranquiaDAO;
+import franquiamedica.Pessoa;
+import franquiamedica.PessoaDAO;
+import franquiamedica.Medico;
+import franquiamedica.MedicoDAO;
+import franquiamedica.InfoConsulta;
+import franquiamedica.InfoConsultaDAO;
+import java.util.Scanner;
 import java.math.BigDecimal;
 
 public class Controller {
@@ -29,6 +30,7 @@ public class Controller {
     MatrizFranquiaDAO mf = new MatrizFranquiaDAO(p);
     FranquiaDAO f = new FranquiaDAO(p, mf);
     ConsultaDAO c = new ConsultaDAO(p, m, mf, f);
+    InfoConsultaDAO ic = new InfoConsultaDAO(c);
 
     public Controller() {
 
@@ -54,6 +56,8 @@ public class Controller {
                     f.mostraTodos();
                     System.out.println("\n\n\n");
                     c.mostraTodos();
+                    System.out.println("\n\n\n");
+                    ic.mostraTodos();
                     System.out.println("\n\n\n");
                     break;
 
@@ -158,7 +162,7 @@ public class Controller {
                     mf.mostraTodos();
                     break;
 
-                case 7://adicionar matriz
+                case 7://testado adicionar matriz
                     System.out.println("\nadicionar matriz");
                     System.out.println("\nQual o id do dono?");
                     id = Long.parseLong(scanner.nextLine());
@@ -185,7 +189,7 @@ public class Controller {
                     mf.mostraTodos();
                     break;
 
-                case 8://alterar franquia
+                case 8://testado alterar franquia
                     System.out.println("\nalterar dados da franquia");
                     f.mostraTodos();
 
@@ -202,7 +206,7 @@ public class Controller {
                     mf.mostraTodos();
                     break;
 
-                case 9://adicionar franquia
+                case 9://testado adicionar franquia
                     System.out.println("\nadicionar franquia");
                     //p.mostraTodos();
                     System.out.println("\nQual o id do responsavel?");
@@ -251,19 +255,19 @@ public class Controller {
                     c.mostraTodos();
 
                     break;
-                case 11://adiciona consulta
+                case 11://testado adiciona consulta
                     c.mostraTodos();
                     System.out.println("\nadicionar consulta");
 
-                    System.out.println("\nQual o id do Paciente?");
+                    System.out.println("\nQual o id do Paciente que vai consultar?");
                     id = Long.parseLong(scanner.nextLine());
                     if (p.verificaRegistro(id) == null) {
                         System.out.println("Paciente não cadastrado, realize o cadastro");
                     } else {
-                        System.out.println("\nQual o id do Medico?");
+                        System.out.println("\nQual o id do Medico com quem gostaria de consultar?");
                         id2 = Long.parseLong(scanner.nextLine());
                         if (m.verificaRegistro(id2) != null) {
-                            System.out.println("\nQual o id da Franquia?");
+                            System.out.println("\nQual o id da Franquia onde gostaria de consultar?");
                             id3 = Long.parseLong(scanner.nextLine());
                             if (f.verificaRegistro(id3) != null) {
                                 System.out.println("");
@@ -289,7 +293,7 @@ public class Controller {
                     c.mostraTodos();
                     break;
 
-                case 12://altera procedimento
+                /*case 12://altera procedimento
                     break;
 
                 case 13://adiciona procedimento
@@ -314,7 +318,7 @@ public class Controller {
                     break;
 
                 case 20:
-                    break;
+                    break;*/
             }
         }
         System.out.println("Saí do menu");

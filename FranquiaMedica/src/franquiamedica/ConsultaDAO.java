@@ -180,12 +180,12 @@ public class ConsultaDAO {
         Franquia f2 = new Franquia(pMF5, mF2);
         f2.setEndereco("123oftalmo");
         f2.setCidade("Araxa");
-        franquiadao.adiciona(f1);
+        franquiadao.adiciona(f2);
 
         Franquia f3 = new Franquia(pMF6, mF3);
         f3.setEndereco("123oftalmo");
         f3.setCidade("Araxa");
-        franquiadao.adiciona(f1);
+        franquiadao.adiciona(f3);
 
         Consulta c1 = new Consulta(p1, m1, f1);
         c1.setDiaHorario("05/05/2023", "10:30");
