@@ -7,6 +7,7 @@ package franquiamedica;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import franquiamedica.Utilitario;
 
 /**
  * Toda vez que criar classe criar os getters e setters para o id usar o serial
@@ -32,8 +33,8 @@ public class Pessoa {
     public Pessoa() {
         this.id = Pessoa.serial++;
         this.tipoUsuario = "Paciente";
-        this.dataCriacao = LocalDateTime.now();
-        this.datamodificacao = LocalDateTime.now();
+        this.dataCriacao = Utilitario.dataCriacao;
+        this.datamodificacao = Utilitario.dataCriacao;
     }
 
     public long getId() {

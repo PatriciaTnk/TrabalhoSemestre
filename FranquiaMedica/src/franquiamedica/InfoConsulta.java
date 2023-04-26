@@ -7,6 +7,7 @@ package franquiamedica;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import franquiamedica.Utilitario;
 
 public class InfoConsulta {
     
@@ -25,8 +26,8 @@ public class InfoConsulta {
         this.descricao = "Esta acontecendo";
         this.consulta = origem;
         origem.setEstado("realizada");
-        this.dataCriacao = LocalDateTime.now();
-        this.datamodificacao = LocalDateTime.now();
+        this.dataCriacao = Utilitario.dataCriacao;
+        this.datamodificacao = Utilitario.dataCriacao;
     }
 
     public long getId() {

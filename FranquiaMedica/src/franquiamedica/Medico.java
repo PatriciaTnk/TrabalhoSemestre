@@ -6,6 +6,7 @@ package franquiamedica;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import franquiamedica.Utilitario;
 
 public class Medico {
 
@@ -23,8 +24,8 @@ public class Medico {
         this.id = Medico.serial++;
         this.pessoa = pessoa;
         this.pessoa.setTipoUsuario("Medico");
-        this.dataCriacao = LocalDateTime.now();
-        this.datamodificacao = LocalDateTime.now();
+        this.dataCriacao = Utilitario.dataCriacao;
+        this.datamodificacao = Utilitario.dataCriacao;        
     }
     
     public long getId() {

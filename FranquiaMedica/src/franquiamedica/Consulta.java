@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Locale;
+import franquiamedica.Utilitario;
 
 public class Consulta {
 
@@ -34,8 +35,8 @@ public class Consulta {
         this.medico = medico;
         this.unidade = franquia;
         this.estado = "Agendado";
-        this.dataCriacao = LocalDateTime.now();
-        this.datamodificacao = LocalDateTime.now();
+        this.dataCriacao = Utilitario.dataCriacao;
+        this.datamodificacao = Utilitario.dataCriacao;
     }
 
     public long getId() {

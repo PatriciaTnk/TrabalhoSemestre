@@ -6,6 +6,7 @@ package franquiamedica;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import franquiamedica.Utilitario;
 
 public class MatrizFranquia {
     
@@ -24,8 +25,8 @@ public class MatrizFranquia {
         this.id = MatrizFranquia.serial++;
         this.dono = dono;
         this.dono.setTipoUsuario("Dono da Matriz");
-        this.dataCriacao = LocalDateTime.now();
-        this.datamodificacao = LocalDateTime.now();
+        this.dataCriacao = Utilitario.dataCriacao;;
+        this.datamodificacao = Utilitario.dataCriacao;;
     }
     
     public long getId() {
