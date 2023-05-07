@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import java.util.Locale;
-import franquiamedica.Utilitario;
+import Controller.Conexoes;
 
+//implements Conexoes
 public class Consulta {
 
     //
@@ -150,6 +150,17 @@ public class Consulta {
             return false;
         }
         return Objects.equals(this.unidade, other.unidade);
+    }
+
+    
+    public boolean autenticavel(String login, String senha) {
+        return login.equals(this.medico.getPessoa().getLogin()) && senha.equals(this.medico.getPessoa().getSenha())
+                || login.equals(this.paciente.getLogin()) && senha.equals(this.paciente.getSenha());    
+    }
+
+    
+    public boolean visivel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

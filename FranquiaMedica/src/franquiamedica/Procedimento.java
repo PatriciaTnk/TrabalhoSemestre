@@ -36,6 +36,16 @@ public class Procedimento {
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }
+    
+    //O procedimento pode ser solicitado pelo paciente, sem realizar consulta
+    public Procedimento() {
+        this.id = Procedimento.serial++;
+        this.consulta = null;
+        this.estado = "Agendado";
+        this.laudo = "A ser completado";
+        this.dataCriacao = Utilitario.dataCriacao;
+        this.datamodificacao = Utilitario.dataCriacao;
+    }
 
     public String getNome() {
         return nome;

@@ -4,8 +4,20 @@
  */
 package View;
 
-//A parte bonita que exibe as mensagens para o usuário
+import javax.swing.JOptionPane;
 
-public class GUI {
+public class GUI extends javax.swing.JFrame {
+        /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Controller.Controller();
+            }
+        });
+    }
+    
     
 }
