@@ -4,28 +4,26 @@
  */
 package franquiamedica;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import franquiamedica.Utilitario;
 
-public class Medico {
+public class FinanceiroMedico {
 
     private long id;
     private static long serial; //fica com o valor padrão
-    private String crm;
-    private String especialidade;
-    private Pessoa pessoa;
+    private BigDecimal valor;
+    private Medico medico;
+    private String estado;
+    private Franquia unidade;
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
     private boolean visible;
 
-    //so inicia medico depois de escolher a Pessoa
-    public Medico(Pessoa pessoa) {
-        this.id = Medico.serial++;
+    public FinanceiroMedico() {
+        this.id = FinanceiroMedico.serial++;
         this.visible = true;
-        this.pessoa = pessoa;
-        this.pessoa.setTipoUsuario("Medico");
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }
@@ -34,24 +32,28 @@ public class Medico {
         return id;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public Medico getMedico() {
+        return medico;
     }
 
-    public String getCrm() {
-        return crm;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setCrm(String crm) {
-        this.crm = crm;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Franquia getUnidade() {
+        return unidade;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
     public LocalDateTime getDatamodificacao() {
@@ -75,19 +77,25 @@ public class Medico {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Medico{");
+        sb.append("Financeiro_Medico{");
         sb.append("id=").append(id);
-        sb.append(", especialidade=").append(especialidade);
-        sb.append(", pessoa=").append(pessoa);
+        sb.append(", valor=").append(valor);
+        sb.append(", medico=").append(medico);
+        sb.append(", estado=").append(estado);
+        sb.append(", unidade=").append(unidade);
+        sb.append(", dataCriacao=").append(dataCriacao);
+        sb.append(", datamodificacao=").append(datamodificacao);
+        sb.append(", visible=").append(visible);
         sb.append('}');
         return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.especialidade);
-        hash = 13 * hash + Objects.hashCode(this.pessoa);
+        int hash = 5;
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.valor);
+        hash = 73 * hash + Objects.hashCode(this.medico);
         return hash;
     }
 
@@ -102,11 +110,14 @@ public class Medico {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Medico other = (Medico) obj;
-        if (!Objects.equals(this.especialidade, other.especialidade)) {
+        final FinanceiroMedico other = (FinanceiroMedico) obj;
+        if (this.id != other.id) {
             return false;
         }
-        return Objects.equals(this.pessoa, other.pessoa);
+        if (!Objects.equals(this.valor, other.valor)) {
+            return false;
+        }
+        return Objects.equals(this.medico, other.medico);
     }
 
 }

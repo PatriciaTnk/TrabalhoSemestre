@@ -7,12 +7,15 @@ package franquiamedica;
 import java.time.LocalDateTime;
 
 public class PessoaDAO {
-    /**adicionar, mostrar, conferir se tem registro, deletar e atualizar.
-    para já ter dados cadastrados, popular dados no construtor
-    preciso de um array para popular
-    OBS: Para atender
-    Uma pessoa pode ser cadastrada com diferentes papéis. Cada login diferente irá diferenciar os usuários.
-    Deverão ser realizados mais cadastros da mesma pessoa, pois para cada id de cadastro só pode ser atribuido um login e um papel*/
+
+    /**
+     * adicionar, mostrar, conferir se tem registro, deletar e atualizar. para
+     * já ter dados cadastrados, popular dados no construtor preciso de um array
+     * para popular OBS: Para atender Uma pessoa pode ser cadastrada com
+     * diferentes papéis. Cada login diferente irá diferenciar os usuários.
+     * Deverão ser realizados mais cadastros da mesma pessoa, pois para cada id
+     * de cadastro só pode ser atribuido um login e um papel
+     */
     Pessoa[] pessoas = new Pessoa[60];
 
     public PessoaDAO() {
@@ -24,7 +27,7 @@ public class PessoaDAO {
         p0.setLogin("patri");
         p0.setSenha("patri");
         adiciona(p0);
-        
+
         Pessoa p1 = new Pessoa();
         p1.setNome("josephina");
         p1.setEndereco("jose");
@@ -51,7 +54,7 @@ public class PessoaDAO {
         p3.setLogin("jir");
         p3.setSenha("jir");
         adiciona(p3);
-        
+
         Pessoa p4 = new Pessoa();
         p4.setNome("marcelo");
         p4.setEndereco("marc");
@@ -97,9 +100,8 @@ public class PessoaDAO {
         p8.setSenha("manoe");
         adiciona(p8);
 
-
     }
-    
+
     private int proximaPosicaoLivre() {//só serve aqui dentro
         for (int i = 0; i < pessoas.length; i++) {
             Pessoa p = pessoas[i];
@@ -119,7 +121,7 @@ public class PessoaDAO {
             return false;
         }
     }
-    
+
     public void mostraTodos() {
         for (Pessoa p : pessoas) {
             if (p != null && p.getVisible() == true) {
@@ -127,43 +129,35 @@ public class PessoaDAO {
             }
         }
     }
-    
-    /**busca de registro por nome, podemos alterar o requisito de busca
-        public boolean temRegistro(String nome, String login) {
-        for (Pessoa pessoa : pessoasp) {
-            if (pessoa.getNome().equals(nome)
-                 && pessoa.getLogin().equals(login)){
-                return true;
-            }            
-        }
-        return false;
+
+    /**
+     * busca de registro por nome, podemos alterar o requisito de busca public
+     * boolean temRegistro(String nome, String login) { for (Pessoa pessoa :
+     * pessoasp) { if (pessoa.getNome().equals(nome) &&
+     * pessoa.getLogin().equals(login)){ return true; } } return false;
+     *
      * @param nome}
      * @param id
-     * @return */
-    
+     * @return
+     */
     public Pessoa verificaRegistro(long id) {
         for (Pessoa pessoa : pessoas) {
-            if (pessoa != null && pessoa.getId()== id && pessoa.getVisible()) {                
+            if (pessoa != null && pessoa.getId() == id && pessoa.getVisible()) {
                 return pessoa;
-            }            
+            }
         }
         return null;
     }
-    
-    /** * a exclusao do registro se da pelo nome, mas podemos solicitar outra informacao
-     * dai tem que mexer na UI para solicitar a outra informacao do parametro
-         public boolean remove(String nome, String login) {
-        for (int i = 0; i < pessoasp.length; i++) {
-            if (pessoasp[i] != null && pessoasp[i].getNome().equals(nome)
-                && && pessoasp[i].getLogin().equals(login)) {
-                pessoasp[i] = null;
-                return true;
-            }
-        }
-        return false;
-     * @param nome
-     * @return }*/
-    
+
+    /**
+     * * a exclusao do registro se da pelo nome, mas podemos solicitar outra
+     * informacao dai tem que mexer na UI para solicitar a outra informacao do
+     * parametro public boolean remove(String nome, String login) { for (int i =
+     * 0; i < pessoasp.length; i++) { if (pessoasp[i] != null &&
+     * pessoasp[i].getNome().equals(nome) && &&
+     * pessoasp[i].getLogin().equals(login)) { pessoasp[i] = null; return true;
+     * } } return false; @param nome @return }
+     */
     public boolean remove(long id) {
         for (int i = 0; i < pessoas.length; i++) {
             if (pessoas[i].getId() == id) {
@@ -176,9 +170,10 @@ public class PessoaDAO {
 
     /**
      * Todas os updates precisam de modify data
+     *
      * @param id
      * @param novoNome
-     * @return 
+     * @return
      */
     public boolean alterarNome(long id, String novoNome) {
         for (Pessoa p : pessoas) {
@@ -235,7 +230,6 @@ public class PessoaDAO {
         return false;
     }
 
-    
     public boolean alterarSenha(long id, String novaSenha) {
         for (Pessoa p : pessoas) {
             if (p.getId() == id) {
@@ -246,6 +240,5 @@ public class PessoaDAO {
         }
         return false;
     }
-
 
 }

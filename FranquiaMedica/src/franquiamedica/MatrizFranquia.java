@@ -27,8 +27,8 @@ public class MatrizFranquia {
         this.visible = true;
         this.dono = dono;
         this.dono.setTipoUsuario("Dono da Matriz");
-        this.dataCriacao = Utilitario.dataCriacao;;
-        this.datamodificacao = Utilitario.dataCriacao;;
+        this.dataCriacao = Utilitario.dataCriacao;
+        this.datamodificacao = Utilitario.dataCriacao;
     }
 
     public long getId() {

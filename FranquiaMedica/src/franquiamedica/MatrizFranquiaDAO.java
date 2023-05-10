@@ -99,9 +99,9 @@ public class MatrizFranquiaDAO {
         return null;
     }
 
-    public boolean remove(String nome) {
+    public boolean remove(long idMatriz) {
         for (int i = 0; i < matrizes.length; i++) {
-            if (matrizes[i] != null && matrizes[i].getNome().equals(nome)) {
+            if (matrizes[i] != null && matrizes[i].getId() == idMatriz) {
                 matrizes[i].notVisible(true);
                 return true;
             }

@@ -6,11 +6,11 @@ package Controller;
 
 //Criar o menu do login e os menus de cada um dos 5 perfis
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
-
 import franquiamedica.Consulta;
 import franquiamedica.ConsultaDAO;
 import franquiamedica.Franquia;
 import franquiamedica.FranquiaDAO;
+import franquiamedica.FuncionarioAdmDAO;
 import franquiamedica.MatrizFranquia;
 import franquiamedica.MatrizFranquiaDAO;
 import franquiamedica.Pessoa;
@@ -25,13 +25,14 @@ import java.math.BigDecimal;
 public class Controller {
 
     Scanner scanner = new Scanner(System.in);
-    
+
     PessoaDAO p = new PessoaDAO();
     MedicoDAO m = new MedicoDAO(p);
     MatrizFranquiaDAO mf = new MatrizFranquiaDAO(p);
     FranquiaDAO f = new FranquiaDAO(p, mf);
     ConsultaDAO c = new ConsultaDAO(p, m, mf, f);
     InfoConsultaDAO ic = new InfoConsultaDAO(c);
+    FuncionarioAdmDAO fa = new FuncionarioAdmDAO(f, p);
 
     public Controller() {
 
@@ -60,6 +61,9 @@ public class Controller {
                     System.out.println("\n\n\n");
                     ic.mostraTodos();
                     System.out.println("\n\n\n");
+                    fa.mostraTodos();
+                    System.out.println("\n\n\n");
+
                     break;
 
                 case 1:
@@ -274,7 +278,7 @@ public class Controller {
                                 System.out.println("");
                                 Consulta novaC = new Consulta(p.verificaRegistro(id), m.verificaRegistro(id2), f.verificaRegistro(id3));
                                 System.out.println("Informe qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
-                                recebeString = scanner.nextLine();                                        
+                                recebeString = scanner.nextLine();
 
                                 System.out.println("E qual o horario (No formato hh:mm): ");
                                 string2 = scanner.nextLine();
@@ -302,7 +306,6 @@ public class Controller {
 
                 case 14://mostra crud financeiro medico       
                     break;*/
-
                 case 15: //testado - remove medico
                     System.out.println("\nremover medico");
                     //m.mostraTodos();
@@ -317,10 +320,21 @@ public class Controller {
                     //m.mostraTodos();
                     break;
 
-                /*case 16:
+                case 16://testado - delete FuncionarioAdm com null
+                    System.out.println("\nremover Funcionario_Adm");
+
+                    System.out.println("\nQual o id do funcionario?");
+                    id = Long.parseLong(scanner.nextLine());
+                    if (fa.verificaRegistro(id) != null) {
+                        fa.remove(id);
+                        System.out.println("Concluido com sucesso");
+                    } else {
+                        System.out.println("Funcionario não encontrado");
+                    }
+                    fa.mostraTodos();
                     break;
 
-                case 17:
+                /*case 17:
                     break;
 
                 case 18:

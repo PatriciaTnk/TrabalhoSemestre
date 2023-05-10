@@ -4,6 +4,7 @@
  */
 package franquiamedica;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ProcedimentoDAO {
@@ -13,14 +14,17 @@ public class ProcedimentoDAO {
     public ProcedimentoDAO(ConsultaDAO consultadao) {
         Procedimento novo = new Procedimento(consultadao.verificaRegistro(Long.parseLong("0")));
         novo.setLaudo("Identificado manchas brancas no pulmao");
+        novo.setValorPro(new BigDecimal(89.40));
         adiciona(novo);
 
         Procedimento novo1 = new Procedimento(consultadao.verificaRegistro(Long.parseLong("1")));
         novo1.setLaudo("Encontrado mais plaquetas que o ideal");
+        novo1.setValorPro(new BigDecimal(4.40));
         adiciona(novo1);
 
         Procedimento novo2 = new Procedimento(consultadao.verificaRegistro(Long.parseLong("2")));
         novo2.setLaudo("Paciente ainda nao realizou exame");
+        novo2.setValorPro(new BigDecimal(72.80));
         adiciona(novo2);
 
     }
@@ -88,13 +92,6 @@ public class ProcedimentoDAO {
             }
         }
         return false;
-    }
-
-    public String getConsulta(long idProcedimento) {
-        if (verificaRegistro(idProcedimento) == null){
-            return "Consulta nao encontrada";
-        }
-        return verificaRegistro(idProcedimento).getConsulta().toString();
     }
 
 }

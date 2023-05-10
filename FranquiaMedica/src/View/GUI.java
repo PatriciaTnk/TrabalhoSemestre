@@ -6,10 +6,10 @@ package View;
 
 import Controller.Controller;
 
-public class GUI{
+public class GUI {
 
     public static void main(String[] args) {
-        
+
     }
-    
+
 }

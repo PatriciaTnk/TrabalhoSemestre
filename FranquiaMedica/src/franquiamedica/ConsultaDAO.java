@@ -193,12 +193,12 @@ public class ConsultaDAO {
 
         Consulta c2 = new Consulta(p2, m2, f2);
         c2.setDiaHorario("06/05/2023", "11:30");
-        c2.setValor(new BigDecimal(55.55));
+        c2.setValor(new BigDecimal(65.55));
         adiciona(c2);
 
         Consulta c3 = new Consulta(p3, m3, f3);
         c3.setDiaHorario("07/05/2023", "12:30");
-        c3.setValor(new BigDecimal(55.55));
+        c3.setValor(new BigDecimal(75.55));
         adiciona(c3);
 
     }
@@ -269,13 +269,6 @@ public class ConsultaDAO {
         return false;
     }
 
-    public String getMedico(long idConsulta) {
-        if (verificaRegistro(idConsulta) == null) {
-            return "Medico nao encontrado";
-        }
-        return verificaRegistro(idConsulta).getMedico().toString();
-    }
-
     public boolean trocaMedico(long idConsulta, Medico novoMedico) {
         if (verificaRegistro(idConsulta) != null) {
             verificaRegistro(idConsulta).setMedico(novoMedico);
@@ -283,13 +276,6 @@ public class ConsultaDAO {
         } else {
             return false;
         }
-    }
-
-    public String getUnidade(long idConsulta) {
-        if (verificaRegistro(idConsulta) == null) {
-            return "Unidade nao encontrada";
-        }
-        return verificaRegistro(idConsulta).getUnidade().toString();
     }
 
     public boolean trocaUnidade(long idConsulta, Franquia novoLocal) {

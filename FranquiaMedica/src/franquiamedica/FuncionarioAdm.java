@@ -4,28 +4,23 @@
  */
 package franquiamedica;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import franquiamedica.Utilitario;
 
-public class Medico {
+public class FuncionarioAdm {
 
     private long id;
     private static long serial; //fica com o valor padrão
-    private String crm;
-    private String especialidade;
-    private Pessoa pessoa;
+    private long idFranquia;
+    private long idFuncionario;
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
     private boolean visible;
 
-    //so inicia medico depois de escolher a Pessoa
-    public Medico(Pessoa pessoa) {
-        this.id = Medico.serial++;
+    public FuncionarioAdm() {
+        this.id = FuncionarioAdm.serial++;
         this.visible = true;
-        this.pessoa = pessoa;
-        this.pessoa.setTipoUsuario("Medico");
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }
@@ -34,24 +29,24 @@ public class Medico {
         return id;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public long getIdFranquia() {
+        return idFranquia;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setIdFranquia(long idFranquia) {
+        this.idFranquia = idFranquia;
     }
 
-    public String getCrm() {
-        return crm;
+    public long getIdFuncionario() {
+        return idFuncionario;
     }
 
-    public void setCrm(String crm) {
-        this.crm = crm;
+    public void setIdFuncionario(long idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
     public LocalDateTime getDatamodificacao() {
@@ -75,19 +70,22 @@ public class Medico {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Medico{");
+        sb.append("Funcionario_Adm{");
         sb.append("id=").append(id);
-        sb.append(", especialidade=").append(especialidade);
-        sb.append(", pessoa=").append(pessoa);
+        sb.append(", idFranquia=").append(idFranquia);
+        sb.append(", idFuncionario=").append(idFuncionario);
+        sb.append(", dataCriacao=").append(dataCriacao);
+        sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
         return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.especialidade);
-        hash = 13 * hash + Objects.hashCode(this.pessoa);
+        int hash = 5;
+        hash = 47 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 47 * hash + (int) (this.idFranquia ^ (this.idFranquia >>> 32));
+        hash = 47 * hash + (int) (this.idFuncionario ^ (this.idFuncionario >>> 32));
         return hash;
     }
 
@@ -102,11 +100,14 @@ public class Medico {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Medico other = (Medico) obj;
-        if (!Objects.equals(this.especialidade, other.especialidade)) {
+        final FuncionarioAdm other = (FuncionarioAdm) obj;
+        if (this.id != other.id) {
             return false;
         }
-        return Objects.equals(this.pessoa, other.pessoa);
+        if (this.idFranquia != other.idFranquia) {
+            return false;
+        }
+        return this.idFuncionario == other.idFuncionario;
     }
 
 }

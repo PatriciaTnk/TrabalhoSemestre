@@ -195,10 +195,10 @@ public class FranquiaDAO {
     }
 
     public String getMatriz(long idFranquia) {
-        if (verificaRegistro(idFranquia) == null){
+        if (verificaRegistro(idFranquia) == null) {
             return "Matriz nao encontrada";
         }
-            return verificaRegistro(idFranquia).getFranquia().toString();
+        return verificaRegistro(idFranquia).getFranquia().toString();
     }
-    
+
 }

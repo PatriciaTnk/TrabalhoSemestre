@@ -27,7 +27,7 @@ public class Pessoa {
     private String login;
     private String senha;
     private String tipoUsuario;
-    
+
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
     private boolean visible;
