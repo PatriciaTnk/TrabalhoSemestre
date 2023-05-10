@@ -14,24 +14,27 @@ public class Medico {
     private static long serial; //fica com o valor padrão
     private String especialidade;
     private String crm;
+    
     private Pessoa pessoa;
-
+    
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     //so inicia medico depois de escolher a Pessoa
     public Medico(Pessoa pessoa) {
         this.id = Medico.serial++;
+        this.visible = true;                
         this.pessoa = pessoa;
         this.pessoa.setTipoUsuario("Medico");
         this.dataCriacao = Utilitario.dataCriacao;
-        this.datamodificacao = Utilitario.dataCriacao;        
+        this.datamodificacao = Utilitario.dataCriacao;
     }
-    
+
     public long getId() {
         return id;
     }
-    
+
     public String getEspecialidade() {
         return especialidade;
     }
@@ -60,6 +63,16 @@ public class Medico {
         this.datamodificacao = datamodificacao;
     }
 
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -70,7 +83,7 @@ public class Medico {
         sb.append('}');
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;

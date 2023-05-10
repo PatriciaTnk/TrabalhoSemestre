@@ -19,10 +19,12 @@ public class Franquia {
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     public Franquia(Pessoa funcionario, MatrizFranquia sede) {
         this.id = Franquia.serial++;
-        this.responsavel= funcionario;
+        this.visible = true;
+        this.responsavel = funcionario;
         this.responsavel.setTipoUsuario("Responsavel pela Franquia");
         this.franquia = sede;
         this.dataCriacao = Utilitario.dataCriacao;
@@ -52,7 +54,7 @@ public class Franquia {
     public Pessoa getResponsavel() {
         return responsavel;
     }
-    
+
     public MatrizFranquia getFranquia() {
         return franquia;
     }
@@ -69,6 +71,16 @@ public class Franquia {
         this.datamodificacao = datamodificacao;
     }
 
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -79,8 +91,6 @@ public class Franquia {
         sb.append('}');
         return sb.toString();
     }
-
-   
 
     @Override
     public int hashCode() {

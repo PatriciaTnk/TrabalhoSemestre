@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import Controller.Conexoes;
 
-//implements Conexoes
 public class Consulta {
 
     //
@@ -27,10 +25,12 @@ public class Consulta {
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     //so inicia medico depois de escolher a Pessoa
     public Consulta(Pessoa paciente, Medico medico, Franquia franquia) {
         this.id = Consulta.serial++;
+        this.visible = true;
         this.paciente = paciente;
         this.medico = medico;
         this.unidade = franquia;
@@ -54,22 +54,22 @@ public class Consulta {
     public LocalDateTime getDiaHorario() {
         return diaHorario;
     }
-    
+
     //"05/05/2023", "10:30"
-    public boolean setDiaHorario(String dia, String horario) {        
+    public boolean setDiaHorario(String dia, String horario) {
         DateTimeFormatter formatterDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate day = LocalDate.parse(dia, formatterDia);                        
-       
+        LocalDate day = LocalDate.parse(dia, formatterDia);
+
         LocalTime hour = LocalTime.parse(horario);
-        
+
         LocalDateTime hoje = LocalDateTime.now();
         this.diaHorario = LocalDateTime.of(day, hour);
-        if(this.diaHorario.isBefore(hoje)){
-            return false;            
+        if (this.diaHorario.isBefore(hoje)) {
+            return false;
         }
         return true;
     }
-    
+
     public BigDecimal getValor() {
         return valor;
     }
@@ -77,7 +77,7 @@ public class Consulta {
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
-    
+
     public Pessoa getPaciente() {
         return paciente;
     }
@@ -86,8 +86,16 @@ public class Consulta {
         return medico;
     }
 
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
     public Franquia getUnidade() {
         return unidade;
+    }
+
+    public void setUnidade(Franquia unidade) {
+        this.unidade = unidade;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -100,6 +108,16 @@ public class Consulta {
 
     public void setDatamodificacao(LocalDateTime datamodificacao) {
         this.datamodificacao = datamodificacao;
+    }
+
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
     }
 
     @Override
@@ -150,17 +168,6 @@ public class Consulta {
             return false;
         }
         return Objects.equals(this.unidade, other.unidade);
-    }
-
-    
-    public boolean autenticavel(String login, String senha) {
-        return login.equals(this.medico.getPessoa().getLogin()) && senha.equals(this.medico.getPessoa().getSenha())
-                || login.equals(this.paciente.getLogin()) && senha.equals(this.paciente.getSenha());    
-    }
-
-    
-    public boolean visivel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

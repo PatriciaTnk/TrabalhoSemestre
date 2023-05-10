@@ -4,20 +4,12 @@
  */
 package View;
 
-import javax.swing.JOptionPane;
+import Controller.Controller;
 
-public class GUI extends javax.swing.JFrame {
-        /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Controller.Controller();
-            }
-        });
+public class GUI{
+
+    public static void main(String[] args) {
+        
     }
-    
     
 }

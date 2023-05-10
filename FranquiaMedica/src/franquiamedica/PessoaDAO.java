@@ -122,7 +122,7 @@ public class PessoaDAO {
     
     public void mostraTodos() {
         for (Pessoa p : pessoas) {
-            if (p != null) {
+            if (p != null && p.getVisible() == true) {
                 System.out.println(p);
             }
         }
@@ -143,7 +143,7 @@ public class PessoaDAO {
     
     public Pessoa verificaRegistro(long id) {
         for (Pessoa pessoa : pessoas) {
-            if (pessoa.getId()== id) {                
+            if (pessoa != null && pessoa.getId()== id && pessoa.getVisible()) {                
                 return pessoa;
             }            
         }
@@ -167,7 +167,7 @@ public class PessoaDAO {
     public boolean remove(long id) {
         for (int i = 0; i < pessoas.length; i++) {
             if (pessoas[i].getId() == id) {
-                pessoas[i] = null;
+                pessoas[i].notVisible(true);
                 return true;
             }
         }
@@ -235,6 +235,7 @@ public class PessoaDAO {
         return false;
     }
 
+    
     public boolean alterarSenha(long id, String novaSenha) {
         for (Pessoa p : pessoas) {
             if (p.getId() == id) {

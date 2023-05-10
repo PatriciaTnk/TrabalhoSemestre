@@ -33,7 +33,6 @@ public class MedicoDAO {
         p2.setSenha("Mjas");
         pessoadao.adiciona(p2);
 
-
         Pessoa p3 = new Pessoa();
         p3.setNome("Mjiraia");
         p3.setEndereco("Mir");
@@ -43,7 +42,6 @@ public class MedicoDAO {
         p3.setSenha("Mjir");
         pessoadao.adiciona(p3);
 
-        
         Medico m1 = new Medico(p1);
         m1.setEspecialidade("oftalmologista");
         m1.setCrm("123oftalmo");
@@ -83,94 +81,26 @@ public class MedicoDAO {
 
     public void mostraTodos() {
         for (Medico m : medicos) {
-            if (m != null) {
+            if (m != null && m.getVisible() == true) {
                 System.out.println(m);
             }
         }
     }
 
     public Medico verificaRegistro(long id) {
-        for (Medico medico : medicos) {          
-            if (medico.getId() == id) {            
+        for (Medico medico : medicos) {
+            if (medico != null && medico.getId() == id && medico.getVisible()) {
                 return medico;
             }
         }
         return null;
     }
 
-    public boolean remove(String nome) {
-        for (int i = 0; i < medicos.length; i++) {
-            if (medicos[i] != null && medicos[i].getPessoa().getNome().equals(nome)) {
-                medicos[i] = null;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Todas os updates precisam de modify data
-     */
-    public boolean alterarNome(long idMedico, String novoNome) {
+    public boolean remove(long idRemover) {
         for (Medico medico : medicos) {
-            if (medico.getId() == idMedico) {
-                medico.getPessoa().setNome(novoNome);
-                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarEndereco(long idMedico, String novoEndereco) {
-        for (Medico medico : medicos) {
-            if (medico.getId() == idMedico) {
-                medico.getPessoa().setEndereco(novoEndereco);
-                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarCpf(long idMedico, String novoCpf) {
-        for (Medico medico : medicos) {
-            if (medico.getId() == idMedico) {
-                medico.getPessoa().setCpf(novoCpf);
-                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarTelefone(long idMedico, String novoTelefone) {
-        for (Medico medico : medicos) {
-            if (medico.getId() == idMedico) {
-                medico.getPessoa().setTelefone(novoTelefone);
-                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarLogin(long idMedico, String novoLogin) {
-        for (Medico medico : medicos) {
-            if (medico.getId() == idMedico) {
-                medico.getPessoa().setLogin(novoLogin);
-                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarSenha(long idMedico, String novaSenha) {
-        for (Medico medico : medicos) {
-            if (medico.getId() == idMedico) {
-                medico.getPessoa().setSenha(novaSenha);
-                medico.getPessoa().setDatamodificacao(LocalDateTime.now());
+            if (idRemover == (medico.getId())) {
+                //medicos[i] = null;
+                medico.notVisible(true);
                 return true;
             }
         }
@@ -197,6 +127,14 @@ public class MedicoDAO {
             }
         }
         return false;
+    }
+
+    public Pessoa getPessoa(long idMedico) {
+        if (verificaRegistro(idMedico) != null) {
+            return verificaRegistro(idMedico).getPessoa();
+        } else {
+            return null;
+        }
     }
 
 }

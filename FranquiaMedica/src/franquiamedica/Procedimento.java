@@ -13,7 +13,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Procedimento {
-    
+
     private long id;
     private static long serial; //fica com o valor padrão
     private String nome;
@@ -22,13 +22,15 @@ public class Procedimento {
     private String estado;
     private BigDecimal valorPro;
     private String laudo;
-    
+
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     //so inicia medico depois de escolher a Pessoa
     public Procedimento(Consulta c) {
         this.id = Procedimento.serial++;
+        this.visible = true;
         this.consulta = c;
         c.setValor(BigDecimal.valueOf(0));
         this.estado = "Agendado";
@@ -36,10 +38,11 @@ public class Procedimento {
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }
-    
+
     //O procedimento pode ser solicitado pelo paciente, sem realizar consulta
     public Procedimento() {
         this.id = Procedimento.serial++;
+        this.visible = true;
         this.consulta = null;
         this.estado = "Agendado";
         this.laudo = "A ser completado";
@@ -59,16 +62,16 @@ public class Procedimento {
         return diaHorario;
     }
 
-    public boolean setDiaHorario(String dia, String horario) {        
+    public boolean setDiaHorario(String dia, String horario) {
         DateTimeFormatter formatterDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate day = LocalDate.parse(dia, formatterDia);                        
-       
+        LocalDate day = LocalDate.parse(dia, formatterDia);
+
         LocalTime hour = LocalTime.parse(horario);
-        
+
         LocalDateTime hoje = LocalDateTime.now();
         this.diaHorario = LocalDateTime.of(day, hour);
-        if(this.diaHorario.isBefore(hoje)){
-            return false;            
+        if (this.diaHorario.isBefore(hoje)) {
+            return false;
         }
         return true;
     }
@@ -117,6 +120,16 @@ public class Procedimento {
         return dataCriacao;
     }
 
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -159,7 +172,5 @@ public class Procedimento {
         }
         return Objects.equals(this.nome, other.nome);
     }
-    
-    
-    
+
 }

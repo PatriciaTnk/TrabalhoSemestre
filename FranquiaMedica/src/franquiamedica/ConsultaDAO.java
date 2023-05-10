@@ -13,9 +13,9 @@ import java.time.LocalTime;
 public class ConsultaDAO {
 
     Consulta[] consultas = new Consulta[50];
-    
-    public ConsultaDAO (PessoaDAO pessoadao, MedicoDAO medicodao, MatrizFranquiaDAO matrizfranquiadao, FranquiaDAO franquiadao){
-        
+
+    public ConsultaDAO(PessoaDAO pessoadao, MedicoDAO medicodao, MatrizFranquiaDAO matrizfranquiadao, FranquiaDAO franquiadao) {
+
         Pessoa p1 = new Pessoa();
         p1.setNome("josephina");
         p1.setEndereco("jose");
@@ -42,7 +42,7 @@ public class ConsultaDAO {
         p3.setLogin("jir");
         p3.setSenha("jir");
         pessoadao.adiciona(p3);
-        
+
         Pessoa p4 = new Pessoa();
         p4.setNome("marcelo");
         p4.setEndereco("marc");
@@ -51,8 +51,7 @@ public class ConsultaDAO {
         p4.setLogin("marc");
         p4.setSenha("marc");
         pessoadao.adiciona(p4);
-        
-        
+
         //dados Medico
         Pessoa pM1 = new Pessoa();
         pM1.setNome("Mjosephina");
@@ -123,7 +122,7 @@ public class ConsultaDAO {
         pMF3.setLogin("MFjir");
         pMF3.setSenha("MFjir");
         pessoadao.adiciona(pMF3);
-        
+
         Pessoa pMF4 = new Pessoa();
         pMF4.setNome("FRjosephina");
         pMF4.setEndereco("FRjose");
@@ -171,7 +170,7 @@ public class ConsultaDAO {
         mF3.setEndereco("123oftalmo");
         mF3.setCidade("Araxa");
         matrizfranquiadao.adiciona(mF3);
-        
+
         Franquia f1 = new Franquia(pMF4, mF1);
         f1.setEndereco("123oftalmo");
         f1.setCidade("Araxa");
@@ -191,18 +190,18 @@ public class ConsultaDAO {
         c1.setDiaHorario("05/05/2023", "10:30");
         c1.setValor(new BigDecimal(55.55));
         adiciona(c1);
-        
+
         Consulta c2 = new Consulta(p2, m2, f2);
         c2.setDiaHorario("06/05/2023", "11:30");
         c2.setValor(new BigDecimal(55.55));
         adiciona(c2);
-        
+
         Consulta c3 = new Consulta(p3, m3, f3);
         c3.setDiaHorario("07/05/2023", "12:30");
         c3.setValor(new BigDecimal(55.55));
         adiciona(c3);
-    
-}
+
+    }
 
     private int proximaPosicaoLivre() {//só serve aqui dentro
         for (int i = 0; i < consultas.length; i++) {
@@ -226,7 +225,7 @@ public class ConsultaDAO {
 
     public void mostraTodos() {
         for (Consulta c : consultas) {
-            if (c != null) {
+            if (c != null && c.getVisible()) {
                 System.out.println(c);
             }
         }
@@ -240,17 +239,16 @@ public class ConsultaDAO {
      */
     public Consulta verificaRegistro(long idConsulta) {
         for (Consulta c : consultas) {
-            if (c.getId() == idConsulta) {
+            if (c != null && c.getId() == idConsulta && c.getVisible()) {
                 return c;
             }
         }
         return null;
     }
 
-    public boolean cancelaConsuta(String paciente, long idConsulta) {
+    public boolean cancelaConsuta(long idCancelar) {
         for (Consulta consulta : consultas) {
-            if (consulta != null && consulta.getPaciente().getNome().equals(paciente)                    
-                        && consulta.getId() == idConsulta){
+            if (consulta.getId() == idCancelar) {
                 consulta.setEstado("cancelada");
                 consulta.setDatamodificacao(LocalDateTime.now());
                 return true;
@@ -260,15 +258,47 @@ public class ConsultaDAO {
     }
 
     //Precisa do nome do paciente e do medico para verificar a cosulta dai alterar valor
-    public boolean alteraValor (long idConsulta, BigDecimal novoValor){
-         for (Consulta consulta : consultas) {
+    public boolean alteraValor(long idConsulta, BigDecimal novoValor) {
+        for (Consulta consulta : consultas) {
             if (consulta.getId() == idConsulta) {
                 consulta.setValor(novoValor);
                 consulta.setDatamodificacao(LocalDateTime.now());
                 return true;
-            }        
-         }
-         return false;
+            }
+        }
+        return false;
+    }
+
+    public String getMedico(long idConsulta) {
+        if (verificaRegistro(idConsulta) == null) {
+            return "Medico nao encontrado";
+        }
+        return verificaRegistro(idConsulta).getMedico().toString();
+    }
+
+    public boolean trocaMedico(long idConsulta, Medico novoMedico) {
+        if (verificaRegistro(idConsulta) != null) {
+            verificaRegistro(idConsulta).setMedico(novoMedico);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getUnidade(long idConsulta) {
+        if (verificaRegistro(idConsulta) == null) {
+            return "Unidade nao encontrada";
+        }
+        return verificaRegistro(idConsulta).getUnidade().toString();
+    }
+
+    public boolean trocaUnidade(long idConsulta, Franquia novoLocal) {
+        if (verificaRegistro(idConsulta) != null) {
+            verificaRegistro(idConsulta).setUnidade(novoLocal);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

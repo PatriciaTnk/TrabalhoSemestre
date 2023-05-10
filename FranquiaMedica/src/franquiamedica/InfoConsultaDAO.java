@@ -53,7 +53,7 @@ public class InfoConsultaDAO {
 
     public void mostraTodos() {
         for (InfoConsulta ic : infoCon) {
-            if (ic != null) {
+            if (ic != null && ic.getVisible()) {
                 System.out.println(ic);
             }
         }
@@ -62,12 +62,12 @@ public class InfoConsultaDAO {
     /**
      * A InfoConsulta verifica registro de acordo com o nome da Matriz
      *
-     * @param idConsulta
+     * @param idInfo
      * @return
      */
-    public InfoConsulta verificaRegistro(long idConsulta) {
+    public InfoConsulta verificaRegistro(long idInfo) {
         for (InfoConsulta ic : infoCon) {
-            if (ic.getId() == idConsulta) {
+            if (ic != null && ic.getId() == idInfo && ic.getVisible()) {
                 return ic;
             }
         }

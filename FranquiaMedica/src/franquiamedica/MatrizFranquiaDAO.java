@@ -6,7 +6,6 @@ package franquiamedica;
 
 import java.time.LocalDateTime;
 
-
 public class MatrizFranquiaDAO {
 
     MatrizFranquia[] matrizes = new MatrizFranquia[20];
@@ -85,7 +84,7 @@ public class MatrizFranquiaDAO {
 
     public void mostraTodos() {
         for (MatrizFranquia m : matrizes) {
-            if (m != null) {
+            if (m != null && m.getVisible() == true) {
                 System.out.println(m);
             }
         }
@@ -93,7 +92,7 @@ public class MatrizFranquiaDAO {
 
     public MatrizFranquia verificaRegistro(long id) {
         for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == id) {
+            if (matriz.getId() == id && matriz.getVisible()) {
                 return matriz;
             }
         }
@@ -103,7 +102,7 @@ public class MatrizFranquiaDAO {
     public boolean remove(String nome) {
         for (int i = 0; i < matrizes.length; i++) {
             if (matrizes[i] != null && matrizes[i].getNome().equals(nome)) {
-                matrizes[i] = null;
+                matrizes[i].notVisible(true);
                 return true;
             }
         }
@@ -157,70 +156,12 @@ public class MatrizFranquiaDAO {
         return false;
     }
 
-    public boolean alterarLogin(long idMatriz, String novoLogin) {
-        for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == idMatriz) {
-                matriz.getDono().setLogin(novoLogin);
-                matriz.getDono().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
+    public Pessoa getDono(long idMatriz) {
+        if (verificaRegistro(idMatriz) != null) {
+            return verificaRegistro(idMatriz).getDono();
+        } else {
+            return null;
         }
-        return false;
-    }
-
-    public boolean alterarSenha(long idMatriz, String novaSenha) {
-        for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == idMatriz) {
-                matriz.getDono().setSenha(novaSenha);
-                matriz.getDono().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alteraDonoNome(long idMatriz, String novoNome) {
-        for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == idMatriz) {
-                matriz.getDono().setNome(novoNome);
-                matriz.getDono().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarDonoEndereco(long idMatriz, String novaEndereco) {
-        for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == idMatriz) {
-                matriz.getDono().setEndereco(novaEndereco);
-                matriz.getDono().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarDonoCpf(long idMatriz, String novoCpf) {
-        for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == idMatriz) {
-                matriz.getDono().setCpf(novoCpf);
-                matriz.getDono().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean alterarDonoTelefone(long idMatriz, String novoTelefone) {
-        for (MatrizFranquia matriz : matrizes) {
-            if (matriz.getId() == idMatriz) {
-                matriz.getDono().setTelefone(novoTelefone);
-                matriz.getDono().setDatamodificacao(LocalDateTime.now());
-                return true;
-            }
-        }
-        return false;
     }
 
 }

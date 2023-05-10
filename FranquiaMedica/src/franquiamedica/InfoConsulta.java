@@ -10,19 +10,20 @@ import java.util.Objects;
 import franquiamedica.Utilitario;
 
 public class InfoConsulta {
-    
+
     private long id;
     private static long serial; //fica com o valor padrão
     private String descricao;
-
     private Consulta consulta;
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     //so inicia quando
     public InfoConsulta(Consulta origem) {
         this.id = InfoConsulta.serial++;
+        this.visible = true;
         this.descricao = "Esta acontecendo";
         this.consulta = origem;
         origem.setEstado("realizada");
@@ -52,6 +53,16 @@ public class InfoConsulta {
 
     public void setDatamodificacao(LocalDateTime datamodificacao) {
         this.datamodificacao = datamodificacao;
+    }
+
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
     }
 
     @Override
@@ -92,8 +103,5 @@ public class InfoConsulta {
         }
         return Objects.equals(this.consulta, other.consulta);
     }
-    
-    
-    
 
 }

@@ -27,11 +27,14 @@ public class Pessoa {
     private String login;
     private String senha;
     private String tipoUsuario;
+    
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     public Pessoa() {
         this.id = Pessoa.serial++;
+        this.visible = true;
         this.tipoUsuario = "Paciente";
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
@@ -109,6 +112,16 @@ public class Pessoa {
         this.datamodificacao = datamodificacao;
     }
 
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -120,7 +133,7 @@ public class Pessoa {
         sb.append('}');
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 3;

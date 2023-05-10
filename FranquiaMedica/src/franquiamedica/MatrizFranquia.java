@@ -9,7 +9,7 @@ import java.util.Objects;
 import franquiamedica.Utilitario;
 
 public class MatrizFranquia {
-    
+
     private long id;
     private static long serial; //fica com o valor padrão
     private String nome;
@@ -20,15 +20,17 @@ public class MatrizFranquia {
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
+    private boolean visible;
 
     public MatrizFranquia(Pessoa dono) {
         this.id = MatrizFranquia.serial++;
+        this.visible = true;
         this.dono = dono;
         this.dono.setTipoUsuario("Dono da Matriz");
         this.dataCriacao = Utilitario.dataCriacao;;
         this.datamodificacao = Utilitario.dataCriacao;;
     }
-    
+
     public long getId() {
         return id;
     }
@@ -77,6 +79,16 @@ public class MatrizFranquia {
         this.datamodificacao = datamodificacao;
     }
 
+    public void notVisible(boolean isDeleted) {
+        if (isDeleted == true) {
+            this.visible = false;
+        }
+    }
+
+    public boolean getVisible() {
+        return this.visible;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -112,6 +124,6 @@ public class MatrizFranquia {
             return false;
         }
         return Objects.equals(this.dono, other.dono);
-    }    
-    
+    }
+
 }

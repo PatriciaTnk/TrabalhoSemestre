@@ -25,6 +25,7 @@ import java.math.BigDecimal;
 public class Controller {
 
     Scanner scanner = new Scanner(System.in);
+    
     PessoaDAO p = new PessoaDAO();
     MedicoDAO m = new MedicoDAO(p);
     MatrizFranquiaDAO mf = new MatrizFranquiaDAO(p);
@@ -89,7 +90,7 @@ public class Controller {
                     id = Long.parseLong(scanner.nextLine());
                     if (m.verificaRegistro(id) != null) {
                         System.out.println("\nQual o novo nome ?");
-                        m.alterarNome(id, scanner.nextLine());
+                        m.getPessoa(id).setNome(scanner.nextLine());
                         System.out.println("Alteração realizada");
                     } else {
                         System.out.println("Medico não encontrado");
@@ -200,7 +201,7 @@ public class Controller {
                         System.out.println("Franquia não encontrada");
                     } else {
                         System.out.println("\nQual o novo login?");
-                        f.alterarLogin(id, scanner.nextLine());
+                        f.verificaRegistro(id).getResponsavel().setLogin(scanner.nextLine());
                         System.out.println("Alteração realizada");
                     }
                     mf.mostraTodos();
@@ -273,7 +274,7 @@ public class Controller {
                                 System.out.println("");
                                 Consulta novaC = new Consulta(p.verificaRegistro(id), m.verificaRegistro(id2), f.verificaRegistro(id3));
                                 System.out.println("Informe qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
-                                recebeString = scanner.nextLine();
+                                recebeString = scanner.nextLine();                                        
 
                                 System.out.println("E qual o horario (No formato hh:mm): ");
                                 string2 = scanner.nextLine();
@@ -300,12 +301,23 @@ public class Controller {
                     break;
 
                 case 14://mostra crud financeiro medico       
+                    break;*/
+
+                case 15: //testado - remove medico
+                    System.out.println("\nremover medico");
+                    //m.mostraTodos();
+                    System.out.println("\nQual o id do medico?");
+                    id = Long.parseLong(scanner.nextLine());
+                    if (m.verificaRegistro(id) != null) {
+                        m.remove(id);
+                        System.out.println("Concluido com sucesso");
+                    } else {
+                        System.out.println("Medico não encontrado");
+                    }
+                    //m.mostraTodos();
                     break;
 
-                case 15:
-                    break;
-
-                case 16:
+                /*case 16:
                     break;
 
                 case 17:
@@ -349,6 +361,7 @@ public class Controller {
         builderInicio.append("\n12 - Teste - alterar procedimento");
         builderInicio.append("\n13 - Teste - adicionar procedimento");
         builderInicio.append("\n14 - Teste - mostrar financeiro medico");
+        builderInicio.append("\n15 - Teste - remover medico");
         builderInicio.append("\nQual sua opção ? R: ");
 
         System.out.print(builderInicio.toString());
