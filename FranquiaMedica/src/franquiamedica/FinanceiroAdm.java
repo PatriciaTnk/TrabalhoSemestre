@@ -5,6 +5,7 @@
 package franquiamedica;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -43,6 +44,10 @@ public class FinanceiroAdm {
 
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public void setValor(BigDecimal preco) {
+        this.valor = preco.setScale(2, RoundingMode.HALF_DOWN);
     }
 
     public String getDescritivo() {
@@ -86,6 +91,7 @@ public class FinanceiroAdm {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("\n\n");
         sb.append("Financeiro_Adm{");
         sb.append("id=").append(id);
         sb.append(", tipoDeMovim=").append(tipoDeMovim);

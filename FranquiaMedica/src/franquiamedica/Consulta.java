@@ -5,6 +5,7 @@
 package franquiamedica;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -74,8 +75,8 @@ public class Consulta {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
+    public void setValor(BigDecimal preco) {
+        this.valor = preco.setScale(2, RoundingMode.HALF_DOWN);
     }
 
     public Pessoa getPaciente() {
@@ -125,13 +126,16 @@ public class Consulta {
         StringBuilder sb = new StringBuilder();
         sb.append("Consulta{");
         sb.append("id=").append(id);
+        sb.append(", estado=").append(estado);
+        sb.append(", diaHorario=").append(diaHorario);
+        sb.append(", valor=").append(valor);
         sb.append(", paciente=").append(paciente);
         sb.append(", medico=").append(medico);
         sb.append(", unidade=").append(unidade);
         sb.append('}');
         return sb.toString();
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

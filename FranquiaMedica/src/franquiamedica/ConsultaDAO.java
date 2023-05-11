@@ -188,7 +188,7 @@ public class ConsultaDAO {
 
         Consulta c1 = new Consulta(p1, m1, f1);
         c1.setDiaHorario("05/05/2023", "10:30");
-        c1.setValor(new BigDecimal(55.55));
+        c1.setValor(new BigDecimal(57.55));
         adiciona(c1);
 
         Consulta c2 = new Consulta(p2, m2, f2);

@@ -5,6 +5,7 @@
 package franquiamedica;
 
 import franquiamedica.FinanceiroAdm;
+import java.math.BigDecimal;
 
 public class FinanceiroAdmDAO {
 
@@ -14,21 +15,25 @@ public class FinanceiroAdmDAO {
         FinanceiroAdm novo = new FinanceiroAdm(franquiadao.franquias[0]);
         novo.setTipoDeMovim("entrada");        
         novo.setDescritivo("Valor: " + consultadao.consultas[0].getValor() + "\nRealizado com medico: " + consultadao.consultas[0].getMedico() + "\nPaciente: " + consultadao.consultas[0].getPaciente()+ "\nRealizada no dia: " + consultadao.consultas[0].getDiaHorario());
+        novo.setValor(new BigDecimal(consultadao.consultas[0].getValor().toString()));
         adiciona(novo);
         
         FinanceiroAdm novo1 = new FinanceiroAdm(franquiadao.franquias[0]);
         novo1.setTipoDeMovim("entrada");        
         novo1.setDescritivo("Valor: " + procedimentodao.proceds[0].getValorPro()+ "\nRealizado com medico: " + procedimentodao.proceds[0].getConsulta().getMedico()+ "\nPaciente: " + procedimentodao.proceds[0].getConsulta().getPaciente()+ "\nRealizada no dia: " + procedimentodao.proceds[0].getDiaHorario());
+        novo1.setValor(new BigDecimal(procedimentodao.proceds[0].getValorPro().toString()));
         adiciona(novo1);
         
         FinanceiroAdm novo2 = new FinanceiroAdm(franquiadao.franquias[0]);
         novo2.setTipoDeMovim("entrada");        
-        novo2.setDescritivo("Valor: " + consultadao.consultas[0].getValor() + "\nRealizado com medico: " + consultadao.consultas[0].getMedico() + "\nPaciente: " + consultadao.consultas[0].getPaciente()+ "\nRealizada no dia: " + consultadao.consultas[0].getDiaHorario());
+        novo2.setDescritivo("Valor: " + consultadao.consultas[1].getValor() + "\nRealizado com medico: " + consultadao.consultas[1].getMedico() + "\nPaciente: " + consultadao.consultas[1].getPaciente()+ "\nRealizada no dia: " + consultadao.consultas[1].getDiaHorario());
+        novo2.setValor(new BigDecimal(consultadao.consultas[1].getValor().toString()));
         adiciona(novo2);
         
         FinanceiroAdm novo3 = new FinanceiroAdm(franquiadao.franquias[0]);
         novo3.setTipoDeMovim("entrada");        
-        novo3.setDescritivo("Valor: " + consultadao.consultas[0].getValor() + "\nRealizado com medico: " + consultadao.consultas[0].getMedico() + "\nPaciente: " + consultadao.consultas[0].getPaciente()+ "\nRealizada no dia: " + consultadao.consultas[0].getDiaHorario());
+        novo3.setDescritivo("Valor: " + procedimentodao.proceds[1].getValorPro()+ "\nRealizado com medico: " + procedimentodao.proceds[1].getConsulta().getMedico() + "\nPaciente: " + procedimentodao.proceds[1].getConsulta().getPaciente()+ "\nRealizada no dia: " + procedimentodao.proceds[1].getDiaHorario());
+        novo3.setValor(new BigDecimal(procedimentodao.proceds[1].getValorPro().toString()));
         adiciona(novo3);
 
     }

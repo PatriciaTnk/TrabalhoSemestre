@@ -15,16 +15,19 @@ public class ProcedimentoDAO {
         Procedimento novo = new Procedimento(consultadao.verificaRegistro(Long.parseLong("0")));
         novo.setLaudo("Identificado manchas brancas no pulmao");
         novo.setValorPro(new BigDecimal(89.40));
+        novo.setDiaHorario("05/05/2023", "11:30");
         adiciona(novo);
 
         Procedimento novo1 = new Procedimento(consultadao.verificaRegistro(Long.parseLong("1")));
         novo1.setLaudo("Encontrado mais plaquetas que o ideal");
-        novo1.setValorPro(new BigDecimal(4.40));
+        novo1.setValorPro(new BigDecimal(54.40));
+        novo1.setDiaHorario("06/05/2023", "11:30");
         adiciona(novo1);
 
         Procedimento novo2 = new Procedimento(consultadao.verificaRegistro(Long.parseLong("2")));
         novo2.setLaudo("Paciente ainda nao realizou exame");
         novo2.setValorPro(new BigDecimal(72.80));
+        novo2.setDiaHorario("07/05/2023", "11:30");
         adiciona(novo2);
 
     }

@@ -5,6 +5,7 @@
 package franquiamedica;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -21,9 +22,11 @@ public class FinanceiroMedico {
     private LocalDateTime datamodificacao;
     private boolean visible;
 
-    public FinanceiroMedico() {
+    public FinanceiroMedico(Franquia pagador, Medico recebedor) {
         this.id = FinanceiroMedico.serial++;
         this.visible = true;
+        this.medico = recebedor;
+        this.unidade = pagador;
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }
@@ -34,6 +37,10 @@ public class FinanceiroMedico {
 
     public BigDecimal getValor() {
         return valor;
+    }
+    
+    public void setValor(BigDecimal preco) {
+        this.valor = preco.setScale(2, RoundingMode.HALF_DOWN);
     }
 
     public Medico getMedico() {

@@ -8,6 +8,8 @@ package Controller;
 //Quando for mexer com os menus lembrar de trocar o equals hash code de TODAS as CLASSES sem DAO
 import franquiamedica.Consulta;
 import franquiamedica.ConsultaDAO;
+import franquiamedica.FinanceiroAdmDAO;
+import franquiamedica.FinanceiroMedicoDAO;
 import franquiamedica.Franquia;
 import franquiamedica.FranquiaDAO;
 import franquiamedica.FuncionarioAdmDAO;
@@ -17,8 +19,8 @@ import franquiamedica.Pessoa;
 import franquiamedica.PessoaDAO;
 import franquiamedica.Medico;
 import franquiamedica.MedicoDAO;
-import franquiamedica.InfoConsulta;
 import franquiamedica.InfoConsultaDAO;
+import franquiamedica.ProcedimentoDAO;
 import java.util.Scanner;
 import java.math.BigDecimal;
 
@@ -32,21 +34,34 @@ public class Controller {
     FranquiaDAO f = new FranquiaDAO(p, mf);
     ConsultaDAO c = new ConsultaDAO(p, m, mf, f);
     InfoConsultaDAO ic = new InfoConsultaDAO(c);
+    ProcedimentoDAO proc = new ProcedimentoDAO(c);
+    FinanceiroAdmDAO fin = new FinanceiroAdmDAO(c, proc, f);
+    FinanceiroMedicoDAO finMed = new FinanceiroMedicoDAO(c, proc, f);
     FuncionarioAdmDAO fa = new FuncionarioAdmDAO(f, p);
 
     public Controller() {
 
         //tela de login, senha, cadastrar nova pessoa
-        int opcaoUsuario = 0;
+        int opcaoUsuario = 45;
         String recebeString;
         String string2;
+        String string3;
 
         long id;
         long id2;
         long id3;
         while (opcaoUsuario != 30) {
+            
+            try{
             opcaoUsuario = this.opcaoUsuarioTelaInicial();
+            } catch (NumberFormatException e){
+                System.out.println("NumberFormat Exception: invalid input string");
+            } finally {            
             switch (opcaoUsuario) {
+                default:
+                    System.out.println("Opcao Nao encontrada");
+                    break;
+                    
                 case 0:
                     System.out.println("\nmostrar todos");
                     p.mostraTodos();
@@ -60,6 +75,12 @@ public class Controller {
                     c.mostraTodos();
                     System.out.println("\n\n\n");
                     ic.mostraTodos();
+                    System.out.println("\n\n\n");
+                    proc.mostraTodos();
+                    System.out.println("\n\n\n");
+                    fin.mostraTodos();
+                    System.out.println("\n\n\n");
+                    finMed.mostraTodos();
                     System.out.println("\n\n\n");
                     fa.mostraTodos();
                     System.out.println("\n\n\n");
@@ -277,21 +298,25 @@ public class Controller {
                             if (f.verificaRegistro(id3) != null) {
                                 System.out.println("");
                                 Consulta novaC = new Consulta(p.verificaRegistro(id), m.verificaRegistro(id2), f.verificaRegistro(id3));
-                                System.out.println("Informe qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
                                 recebeString = scanner.nextLine();
 
-                                System.out.println("E qual o horario (No formato hh:mm): ");
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
                                 string2 = scanner.nextLine();
+
+                                System.out.println("\nQual o valor da consulta? ");
+                                string3 = scanner.nextLine();
+                                novaC.setValor(new BigDecimal(string3));
 
                                 novaC.setDiaHorario(recebeString, string2);
                                 c.adiciona(novaC);
-                                System.out.println("Nova consulta registrada com sucesso");
+                                System.out.println("\nNova consulta registrada com sucesso");
 
                             } else {
-                                System.out.println("Franquia não encontrada");
+                                System.out.println("\nFranquia não encontrada");
                             }
                         } else {
-                            System.out.println("Medico não encontrado");
+                            System.out.println("\nMedico não encontrado");
                         }
                     }
 
@@ -347,6 +372,7 @@ public class Controller {
                     break;*/
             }
         }
+        }
         System.out.println("Saí do menu");
     }
 
@@ -375,7 +401,8 @@ public class Controller {
         builderInicio.append("\n12 - Teste - alterar procedimento");
         builderInicio.append("\n13 - Teste - adicionar procedimento");
         builderInicio.append("\n14 - Teste - mostrar financeiro medico");
-        builderInicio.append("\n15 - Teste - remover medico");
+        builderInicio.append("\n15 - Testado - remover medico");
+        builderInicio.append("\n16 - Testado - remover Funcionario_Adm");
         builderInicio.append("\nQual sua opção ? R: ");
 
         System.out.print(builderInicio.toString());

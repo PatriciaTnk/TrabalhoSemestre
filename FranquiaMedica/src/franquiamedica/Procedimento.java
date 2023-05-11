@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import franquiamedica.Utilitario;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +33,6 @@ public class Procedimento {
         this.id = Procedimento.serial++;
         this.visible = true;
         this.consulta = c;
-        c.setValor(BigDecimal.valueOf(0));
         this.estado = "Agendado";
         this.laudo = "A ser completado";
         this.dataCriacao = Utilitario.dataCriacao;
@@ -89,7 +89,7 @@ public class Procedimento {
     }
 
     public void setValorPro(BigDecimal valorPro) {
-        this.valorPro = valorPro;
+        this.valorPro = valorPro.setScale(2, RoundingMode.HALF_DOWN);
     }
 
     public String getLaudo() {
