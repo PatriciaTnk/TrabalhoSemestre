@@ -9,19 +9,16 @@ public class FuncionarioAdmDAO {
     FuncionarioAdm[] func_adm = new FuncionarioAdm[25];
 
     public FuncionarioAdmDAO(FranquiaDAO franquiadao, PessoaDAO pessoadao) {
-        FuncionarioAdm novo = new FuncionarioAdm();
+        FuncionarioAdm novo = new FuncionarioAdm(pessoadao.pessoas[0]);
         novo.setIdFranquia(franquiadao.franquias[0].getId());
-        novo.setIdFuncionario(pessoadao.pessoas[0].getId());
         adiciona(novo);
 
-        FuncionarioAdm novo1 = new FuncionarioAdm();
+        FuncionarioAdm novo1 = new FuncionarioAdm(pessoadao.pessoas[1]);
         novo1.setIdFranquia(franquiadao.franquias[1].getId());
-        novo1.setIdFuncionario(pessoadao.pessoas[1].getId());
         adiciona(novo1);
 
-        FuncionarioAdm novo2 = new FuncionarioAdm();
+        FuncionarioAdm novo2 = new FuncionarioAdm(pessoadao.pessoas[2]);
         novo2.setIdFranquia(franquiadao.franquias[2].getId());
-        novo2.setIdFuncionario(pessoadao.pessoas[2].getId());
         adiciona(novo2);
 
     }

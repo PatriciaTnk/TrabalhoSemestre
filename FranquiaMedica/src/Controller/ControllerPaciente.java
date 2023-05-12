@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import View.GUI;
 import franquiamedica.ConsultaDAO;
 import franquiamedica.FranquiaDAO;
 import franquiamedica.InfoConsultaDAO;
@@ -29,87 +30,86 @@ public class ControllerPaciente {
     public ControllerPaciente() {
 
         int opcaoUsuario = 0;
-        String recebeString;
-
         long id;
 
         while (opcaoUsuario != 6) {
-            opcaoUsuario = this.recebeOpcaoUsuario();
-            switch (opcaoUsuario) {
-                
-                default:
-                    System.out.println("\nOpcao nao encontrada");
-                    break;
+            try {
+                opcaoUsuario = this.menuPaciente();
+            } catch (NumberFormatException e) {
+                System.out.println("NumberFormat Exception: invalid input string");
+            } finally {
+                switch (opcaoUsuario) {
+                    default:
+                        System.out.println("Opcao Nao encontrada");
+                        break;
 
-                case 0:
-                    System.out.println("\nmostrar todos");
-                    p.mostraTodos();
-                    System.out.println("\n\n\n");
-                    break;
+                    case 0:
+                        System.out.println("\nmostrar todos");
+                        p.mostraTodos();
+                        System.out.println("\n\n\n");
+                        break;
 
-                case 1:
-                    break;
+                    case 1:
+                        break;
 
-                case 2:
-                    System.out.println("\nalterar pessoa nome");
-                    System.out.println("\nQual o id da pessoa?");
-                    id = Long.parseLong(scanner.nextLine());
+                    case 2:
+                        System.out.println("\nalterar pessoa nome");
+                        System.out.println("\nQual o id da pessoa?");
+                        id = Long.parseLong(scanner.nextLine());
 
-                    if (p.verificaRegistro(id) != null) {
-                        System.out.println("\nQual o novo nome ?");
-                        p.alterarNome(id, scanner.nextLine());
-                        System.out.println("Alteração realizada");
-                    } else {
-                        System.out.println("Pessoa não encontrada");
-                    }
-                    break;
+                        if (p.verificaRegistro(id) != null) {
+                            System.out.println("\nQual o novo nome ?");
+                            p.alterarNome(id, scanner.nextLine());
+                            System.out.println("Alteração realizada");
+                        } else {
+                            System.out.println("Pessoa não encontrada");
+                        }
+                        break;
 
-                case 3:
-                    break;
+                    case 3:
+                        break;
 
-                case 4://testado adicionar Pessoa
-                    Pessoa novaP = new Pessoa();
-                    System.out.println("\nadicionar pessoa");
+                    case 4://testado adicionar Pessoa
+                        Pessoa novaP = new Pessoa();
+                        System.out.println("\nadicionar pessoa");
 
-                    System.out.println("\nQual o nome ?");
-                    novaP.setNome(scanner.nextLine());
+                        System.out.println("\nQual o nome ?");
+                        novaP.setNome(scanner.nextLine());
 
-                    System.out.println("\nQual o endereço ?");
-                    novaP.setEndereco(scanner.nextLine());
+                        System.out.println("\nQual o endereço ?");
+                        novaP.setEndereco(scanner.nextLine());
 
-                    System.out.println("\nQual o CPF ?");
-                    novaP.setCpf(scanner.nextLine());
+                        System.out.println("\nQual o CPF ?");
+                        novaP.setCpf(scanner.nextLine());
 
-                    System.out.println("\nQual o telefone ?");
-                    novaP.setTelefone(scanner.nextLine());
+                        System.out.println("\nQual o telefone ?");
+                        novaP.setTelefone(scanner.nextLine());
 
-                    System.out.println("\nQual o Login ?");
-                    novaP.setLogin(scanner.nextLine());
+                        System.out.println("\nQual o Login ?");
+                        novaP.setLogin(scanner.nextLine());
 
-                    System.out.println("\nQual a Senha ?");
-                    novaP.setSenha(scanner.nextLine());
-                    p.adiciona(novaP);
+                        System.out.println("\nQual a Senha ?");
+                        novaP.setSenha(scanner.nextLine());
+                        p.adiciona(novaP);
 
-                    p.mostraTodos();
-                    System.out.println("Seu cadastro foi realizado com sucesso");
+                        p.mostraTodos();
+                        System.out.println("Seu cadastro foi realizado com sucesso");
 
-                    break;
+                        break;
 
-                case 5:
-                    break;
+                    case 5:
+                        break;
 
-                case 6:
-                    return;
+                    case 6:
+                        GUI voltar = new GUI();
+                        break;
+                }
             }
+            System.out.println("Saí do menu");
         }
-        System.out.println("Saí do menu");
     }
 
-    public static void main(String[] args) {
-        new ControllerPaciente();
-    }
-
-    private int recebeOpcaoUsuario() {
+    private int menuPaciente() {
 
         StringBuilder builderAdm = new StringBuilder("");
 

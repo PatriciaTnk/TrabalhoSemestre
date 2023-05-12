@@ -7,17 +7,16 @@ package Controller;
 import View.GUI;
 import java.util.Scanner;
 
-public class ControllerResponsavelFranquia {
-
-    Scanner scanner = new Scanner(System.in);
-
-    public ControllerResponsavelFranquia() {
+public class ControllerRegente {
+        Scanner scanner = new Scanner(System.in);
+        
+    public ControllerRegente() {
         int opcaoUsuario = 0;
         long id;
 
         while (opcaoUsuario != 6) {
             try {
-                opcaoUsuario = this.menuResponsavel();
+                opcaoUsuario = this.menuRegente();
             } catch (NumberFormatException e) {
                 System.out.println("NumberFormat Exception: invalid input string");
             } finally {
@@ -52,12 +51,12 @@ public class ControllerResponsavelFranquia {
             }
         }
     }
-
-    private int menuResponsavel() {
+    
+        private int menuRegente() {
 
         StringBuilder builderAdm = new StringBuilder("");
 
-        builderAdm.append("Responsavel pela Franquia\n\n");
+        builderAdm.append("Master\n\n");
         builderAdm.append("\n1 - Alterar informações do Perfil");
         builderAdm.append("\n2 - Verificar Consultas");
         builderAdm.append("\n3 - Registro de Consultas");
@@ -70,5 +69,4 @@ public class ControllerResponsavelFranquia {
 
         return Integer.parseInt(scanner.nextLine());
     }
-
 }

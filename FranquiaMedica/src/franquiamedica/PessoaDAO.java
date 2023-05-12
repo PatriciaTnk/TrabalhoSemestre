@@ -240,5 +240,14 @@ public class PessoaDAO {
         }
         return false;
     }
+    
+    public Pessoa buscaLoginSenha (String login, String senha){
+        for (Pessoa pessoaConfirmada : pessoas) {
+            if (pessoaConfirmada != null && pessoaConfirmada.getLogin().equals(login) && pessoaConfirmada.getSenha().equals(senha)){
+                return pessoaConfirmada;
+            }
+        }
+        return null;
+    }   
 
 }

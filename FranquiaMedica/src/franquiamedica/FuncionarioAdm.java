@@ -6,21 +6,24 @@ package franquiamedica;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class FuncionarioAdm {
 
     private long id;
     private static long serial; //fica com o valor padrão
     private long idFranquia;
-    private long idFuncionario;
+    private Pessoa funcionario;
 
     private LocalDateTime dataCriacao;
     private LocalDateTime datamodificacao;
     private boolean visible;
 
-    public FuncionarioAdm() {
+    public FuncionarioAdm(Pessoa trabalhador) {
         this.id = FuncionarioAdm.serial++;
         this.visible = true;
+        this.funcionario = trabalhador;
+        funcionario.setTipoUsuario("FuncAdministrativo");
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }
@@ -37,12 +40,12 @@ public class FuncionarioAdm {
         this.idFranquia = idFranquia;
     }
 
-    public long getIdFuncionario() {
-        return idFuncionario;
+    public Pessoa getFuncionario() {
+        return funcionario;
     }
 
-    public void setIdFuncionario(long idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public void setFuncionario(Pessoa trabalhador) {
+        this.funcionario = trabalhador;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -73,7 +76,7 @@ public class FuncionarioAdm {
         sb.append("Funcionario_Adm{");
         sb.append("id=").append(id);
         sb.append(", idFranquia=").append(idFranquia);
-        sb.append(", idFuncionario=").append(idFuncionario);
+        sb.append(", idFuncionario=").append(funcionario);
         sb.append(", dataCriacao=").append(dataCriacao);
         sb.append(", datamodificacao=").append(datamodificacao);
         sb.append('}');
@@ -82,10 +85,10 @@ public class FuncionarioAdm {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 47 * hash + (int) (this.idFranquia ^ (this.idFranquia >>> 32));
-        hash = 47 * hash + (int) (this.idFuncionario ^ (this.idFuncionario >>> 32));
+        int hash = 7;
+        hash = 89 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 89 * hash + (int) (this.idFranquia ^ (this.idFranquia >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.funcionario);
         return hash;
     }
 
@@ -107,7 +110,9 @@ public class FuncionarioAdm {
         if (this.idFranquia != other.idFranquia) {
             return false;
         }
-        return this.idFuncionario == other.idFuncionario;
+        return Objects.equals(this.funcionario, other.funcionario);
     }
+
+    
 
 }
