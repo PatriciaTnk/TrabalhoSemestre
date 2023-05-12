@@ -21,12 +21,12 @@ public class InfoConsulta {
     private boolean visible;
 
     //so inicia quando
-    public InfoConsulta(Consulta origem) {
+    public InfoConsulta(Consulta c) {
         this.id = InfoConsulta.serial++;
         this.visible = true;
         this.descricao = "Esta acontecendo";
-        this.consulta = origem;
-        origem.setEstado("realizada");
+        this.consulta = c;
+        consulta.setEstado("realizada");
         this.dataCriacao = Utilitario.dataCriacao;
         this.datamodificacao = Utilitario.dataCriacao;
     }

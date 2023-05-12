@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class FinanceiroAdmDAO {
 
-    FinanceiroAdm[] finAdm = new FinanceiroAdm[100];
+    public FinanceiroAdm[] finAdm = new FinanceiroAdm[100];
 
     public FinanceiroAdmDAO(ConsultaDAO consultadao, ProcedimentoDAO procedimentodao, FranquiaDAO franquiadao) {
         FinanceiroAdm novo = new FinanceiroAdm(franquiadao.franquias[0]);

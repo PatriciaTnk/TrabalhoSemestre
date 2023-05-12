@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class MatrizFranquiaDAO {
 
-    MatrizFranquia[] matrizes = new MatrizFranquia[20];
+    public MatrizFranquia[] matrizes = new MatrizFranquia[20];
 
     public MatrizFranquiaDAO(PessoaDAO pessoadao) {
         //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA

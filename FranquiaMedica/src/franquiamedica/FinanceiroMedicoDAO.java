@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public class FinanceiroMedicoDAO {
 
-    FinanceiroMedico[] finAdm = new FinanceiroMedico[100];
+    public FinanceiroMedico[] finAdm = new FinanceiroMedico[100];
 
     public FinanceiroMedicoDAO(ConsultaDAO consultadao, ProcedimentoDAO procedimentodao, FranquiaDAO franquiadao) {
         FinanceiroMedico novo = new FinanceiroMedico(franquiadao.franquias[0],consultadao.consultas[0].getMedico());

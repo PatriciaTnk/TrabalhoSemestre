@@ -12,7 +12,7 @@ import java.time.LocalTime;
 
 public class ConsultaDAO {
 
-    Consulta[] consultas = new Consulta[50];
+    public Consulta[] consultas = new Consulta[50];
 
     public ConsultaDAO(PessoaDAO pessoadao, MedicoDAO medicodao, MatrizFranquiaDAO matrizfranquiadao, FranquiaDAO franquiadao) {
 

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 public class ProcedimentoDAO {
 
-    Procedimento[] proceds = new Procedimento[50];
+    public Procedimento[] proceds = new Procedimento[50];
 
     public ProcedimentoDAO(ConsultaDAO consultadao) {
         Procedimento novo = new Procedimento(consultadao.verificaRegistro(Long.parseLong("0")));

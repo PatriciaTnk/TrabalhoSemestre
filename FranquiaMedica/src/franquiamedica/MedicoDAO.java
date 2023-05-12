@@ -11,7 +11,7 @@ public class MedicoDAO {
     //para já ter dados cadastrados, popular dados no construtor
 
     //preciso de um array para popular
-    Medico[] medicos = new Medico[30];
+    public Medico[] medicos = new Medico[30];
 
     public MedicoDAO(PessoaDAO pessoadao) {
         //LEMBRAR DE TROOOCAAARR ESSAS PESSOAS SÃO NOVAS E TEM QUE SER UMA PESSOA CADASTRADA

@@ -12,16 +12,15 @@ import franquiamedica.Pessoa;
 public class GUI {
 
     Scanner scanner = new Scanner(System.in);
-
-    PessoaDAO p = new PessoaDAO();
     Controller novo = new Controller();
-
+    
     public GUI() {
         int opcaoUsuario = 0;
         String login;
         String senha;
-
-        while (opcaoUsuario != 30) {
+        novo.primeiroCadastro();
+        
+        while (opcaoUsuario != 5) {
             try {
                 opcaoUsuario = this.menuPadrao();
             } catch (NumberFormatException e) {
@@ -40,8 +39,7 @@ public class GUI {
                         senha = scanner.nextLine();
 
                         novo.validaLogin(login, senha);
-                        //como salvei a pessoa logada no utilitario agora posso usar o utilitario.getPessoaLogada();
-                        
+                        //como salvei a pessoa logada no utilitario agora posso usar o utilitario.getPessoaLogada();                        
                         break;
 
                     case 2:
@@ -65,15 +63,16 @@ public class GUI {
 
                         System.out.println("\nQual a Senha ?");
                         novaP.setSenha(scanner.nextLine());
-                        
-                        if(novo.novoCadastro(novaP)){
+
+                        if (novo.novoCadastro(novaP)) {
                             System.out.println("Seu cadastro foi realizado com sucesso");
                         } else {
                             System.out.println("Cadastro não deu certo");
-                        }                        
+                        }
                         break;
 
                     case 3:
+                        System.out.println("Programa encerrado");
                         return;
 
                 }

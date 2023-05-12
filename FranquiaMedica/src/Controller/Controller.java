@@ -39,12 +39,14 @@ public class Controller {
     FuncionarioAdmDAO fa = new FuncionarioAdmDAO(f, p);
 
     public boolean validaLogin(String login, String senha) {
+        p.mostraTodos();
         if (p.buscaLoginSenha(login, senha) != null) {
             System.out.println("Login Realizado com sucesso");
             Utilitario.setPessoaLogada(p.buscaLoginSenha(login, senha));
             chamaMenus();
             return true;
         } else {
+            System.out.println("Login não encontrado.\nTente novamente");
         return false;
         }
     }
@@ -55,20 +57,24 @@ public class Controller {
     }
     
     private void chamaMenus () {
-        if(Utilitario.getPessoaLogada().getTipoUsuario().equals("Paciente")){
+        if(Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Paciente")){
             ControllerPaciente cp = new ControllerPaciente();
-        } else if (Utilitario.getPessoaLogada().getTipoUsuario().equals("Medico")) {
+        } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Medico")) {
             ControllerMedico cm = new ControllerMedico();
-        }else if (Utilitario.getPessoaLogada().getTipoUsuario().equals("FuncAdministrativo")) {
+        }else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("FuncAdministrativo")) {
             ControllerFuncionarioAdm cfa = new ControllerFuncionarioAdm();
-        }else if (Utilitario.getPessoaLogada().getTipoUsuario().equals("Responsavel pela Franquia")) {
+        }else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Responsavel pela Franquia")) {
             ControllerResponsavelFranquia crf = new ControllerResponsavelFranquia();
-        }else if (Utilitario.getPessoaLogada().getTipoUsuario().equals("Dono da Matriz")) {
+        }else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Dono da Matriz")) {
             ControllerDonoDeMatriz cdm = new ControllerDonoDeMatriz();
         } else { //Controle do Admin
             ControllerRegente cR = new ControllerRegente();
-        }
-        
+        }        
     }  
+    
+    public void primeiroCadastro (){
+        p.verificaRegistro(Long.parseLong("0")).setTipoUsuario("Regente");
+        p.verificaRegistro(Long.parseLong("1")).setTipoUsuario("Dono da Matriz");
+    }
 
 }

@@ -13,6 +13,7 @@ import franquiamedica.MedicoDAO;
 import franquiamedica.Pessoa;
 import franquiamedica.PessoaDAO;
 import franquiamedica.ProcedimentoDAO;
+import franquiamedica.Utilitario;
 import java.util.Scanner;
 
 public class ControllerPaciente {
@@ -33,79 +34,72 @@ public class ControllerPaciente {
         long id;
 
         while (opcaoUsuario != 6) {
-            try {
+            {
                 opcaoUsuario = this.menuPaciente();
-            } catch (NumberFormatException e) {
-                System.out.println("NumberFormat Exception: invalid input string");
-            } finally {
                 switch (opcaoUsuario) {
                     default:
-                        System.out.println("Opcao Nao encontrada");
-                        break;
-
-                    case 0:
-                        System.out.println("\nmostrar todos");
-                        p.mostraTodos();
-                        System.out.println("\n\n\n");
+                        System.out.println("\nOpcao Nao encontrada");
                         break;
 
                     case 1:
-                        break;
+                        int alterarDado = this.pacienteAlterarDados();
+
+                        switch (alterarDado) {
+                            case 1:
+                                System.out.println("\nQual o novo nome:");
+                                Utilitario.getPessoaLogada().setNome(scanner.nextLine());
+                                break;
+
+                            case 2:
+                                System.out.println("\nQual o novo endereço ?");
+                                Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
+                                break;
+
+                            case 3:
+                                System.out.println("\nQual o novo CPF ?");
+                                Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
+                                break;
+
+                            case 4:
+                                System.out.println("\nQual o novo telefone ?");
+                                Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
+                                break;
+
+                            case 5:
+                                System.out.println("\nQual o novo Login ?");
+                                Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
+                                break;
+
+                            case 6:
+                                System.out.println("\nQual a nova Senha ?");
+                                Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
+                                break;
+                        }
 
                     case 2:
-                        System.out.println("\nalterar pessoa nome");
-                        System.out.println("\nQual o id da pessoa?");
-                        id = Long.parseLong(scanner.nextLine());
-
-                        if (p.verificaRegistro(id) != null) {
-                            System.out.println("\nQual o novo nome ?");
-                            p.alterarNome(id, scanner.nextLine());
-                            System.out.println("Alteração realizada");
-                        } else {
-                            System.out.println("Pessoa não encontrada");
+                        System.out.println("Relatorio de consultas: ");
+                        for (int i = 0; i < c.consultas.length; ++i) {
+                            if (c.consultas[i].getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
+                                System.out.println("\n" + c.consultas[i]);
+                            }
                         }
                         break;
 
                     case 3:
+                        System.out.println("Relatorio de Procedimentos: ");
+                        for (int i = 0; i < proc.proceds.length; ++i) {
+                            if (proc.proceds[i].getConsulta().getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
+                                System.out.println("\n" + proc.proceds[i]);
+                            }
+                        }
                         break;
 
-                    case 4://testado adicionar Pessoa
-                        Pessoa novaP = new Pessoa();
-                        System.out.println("\nadicionar pessoa");
-
-                        System.out.println("\nQual o nome ?");
-                        novaP.setNome(scanner.nextLine());
-
-                        System.out.println("\nQual o endereço ?");
-                        novaP.setEndereco(scanner.nextLine());
-
-                        System.out.println("\nQual o CPF ?");
-                        novaP.setCpf(scanner.nextLine());
-
-                        System.out.println("\nQual o telefone ?");
-                        novaP.setTelefone(scanner.nextLine());
-
-                        System.out.println("\nQual o Login ?");
-                        novaP.setLogin(scanner.nextLine());
-
-                        System.out.println("\nQual a Senha ?");
-                        novaP.setSenha(scanner.nextLine());
-                        p.adiciona(novaP);
-
-                        p.mostraTodos();
-                        System.out.println("Seu cadastro foi realizado com sucesso");
-
-                        break;
-
-                    case 5:
-                        break;
-
-                    case 6:
+                    case 4:
                         GUI voltar = new GUI();
                         break;
                 }
             }
-            System.out.println("Saí do menu");
+            System.out.println("\nSaí do menu");
         }
     }
 
@@ -113,13 +107,30 @@ public class ControllerPaciente {
 
         StringBuilder builderAdm = new StringBuilder("");
 
-        builderAdm.append("Paciente\n\n");
+        builderAdm.append("\n\nPaciente\n");
         builderAdm.append("\n1 - Alterar informações do Perfil");
         builderAdm.append("\n2 - Verificar Consultas");
-        builderAdm.append("\n3 - Registro de Consultas");
-        builderAdm.append("\n4 - Verificar Procedimentos");
-        builderAdm.append("\n5 - Registro de Procedimentos");
-        builderAdm.append("\n6 - Para voltar à tela inicial\n");
+        builderAdm.append("\n3 - Verificar Procedimentos");
+        builderAdm.append("\n4 - Para voltar à tela inicial\n");
+        builderAdm.append("\nQual sua opção ? R: ");
+
+        System.out.print(builderAdm.toString());
+
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private int pacienteAlterarDados() {
+
+        StringBuilder builderAdm = new StringBuilder("");
+
+        System.out.println("\nGostaria de alterar qual informação?\n");
+        builderAdm.append("\n1 - Alterar nome");
+        builderAdm.append("\n2 - Alterar endereco");
+        builderAdm.append("\n3 - Alterar CPF");
+        builderAdm.append("\n4 - Alterar telefone");
+        builderAdm.append("\n5 - Alterar Login");
+        builderAdm.append("\n6 - Alterar Senha\n");
+        builderAdm.append("\n7 - Voltar\n");
         builderAdm.append("\nQual sua opção ? R: ");
 
         System.out.print(builderAdm.toString());

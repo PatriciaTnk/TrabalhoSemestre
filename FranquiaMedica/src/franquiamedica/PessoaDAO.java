@@ -16,25 +16,25 @@ public class PessoaDAO {
      * Deverão ser realizados mais cadastros da mesma pessoa, pois para cada id
      * de cadastro só pode ser atribuido um login e um papel
      */
-    Pessoa[] pessoas = new Pessoa[60];
+    public Pessoa[] pessoas = new Pessoa[60];
 
     public PessoaDAO() {
         Pessoa p0 = new Pessoa();
-        p0.setNome("patricia");
-        p0.setEndereco("patri");
-        p0.setCpf("patri");
-        p0.setTelefone("patricia");
-        p0.setLogin("patri");
-        p0.setSenha("patri");
+        p0.setNome("Administrador");
+        p0.setEndereco("xxxxx xxxxx");
+        p0.setCpf("000 111 222");
+        p0.setTelefone("12345678");
+        p0.setLogin("Admin");
+        p0.setSenha("teste");
         adiciona(p0);
 
         Pessoa p1 = new Pessoa();
-        p1.setNome("josephina");
-        p1.setEndereco("jose");
-        p1.setCpf("jose");
-        p1.setTelefone("josephina");
-        p1.setLogin("jose");
-        p1.setSenha("jose");
+        p1.setNome("Dono Primeira Franquia");
+        p1.setEndereco("wwwww wwwww");
+        p1.setCpf("999 888 777");
+        p1.setTelefone("98765432");
+        p1.setLogin("DonoMatriz");
+        p1.setSenha("teste");
         adiciona(p1);
 
         Pessoa p2 = new Pessoa();
@@ -99,9 +99,9 @@ public class PessoaDAO {
         p8.setLogin("manoe");
         p8.setSenha("manoe");
         adiciona(p8);
-
+        
     }
-
+    
     private int proximaPosicaoLivre() {//só serve aqui dentro
         for (int i = 0; i < pessoas.length; i++) {
             Pessoa p = pessoas[i];
@@ -243,7 +243,7 @@ public class PessoaDAO {
     
     public Pessoa buscaLoginSenha (String login, String senha){
         for (Pessoa pessoaConfirmada : pessoas) {
-            if (pessoaConfirmada != null && pessoaConfirmada.getLogin().equals(login) && pessoaConfirmada.getSenha().equals(senha)){
+            if (pessoaConfirmada != null && pessoaConfirmada.getLogin().equalsIgnoreCase(login) && pessoaConfirmada.getSenha().equalsIgnoreCase(senha)){
                 return pessoaConfirmada;
             }
         }

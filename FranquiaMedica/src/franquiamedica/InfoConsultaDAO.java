@@ -9,18 +9,18 @@ import java.time.LocalDateTime;
 
 public class InfoConsultaDAO {
 
-    InfoConsulta[] infoCon = new InfoConsulta[30];
+    public InfoConsulta[] infoCon = new InfoConsulta[30];
 
     public InfoConsultaDAO(ConsultaDAO consultadao) {
-        InfoConsulta novo = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("0")));
+        InfoConsulta novo = new InfoConsulta(consultadao.consultas[0]);
         novo.setDescricao("Paciente mostra recuperacao");
         adiciona(novo);
 
-        InfoConsulta novo1 = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("1")));
+        InfoConsulta novo1 = new InfoConsulta(consultadao.consultas[1]);
         novo1.setDescricao("Paciente piorou");
         adiciona(novo1);
 
-        InfoConsulta novo2 = new InfoConsulta(consultadao.verificaRegistro(Long.parseLong("2")));
+        InfoConsulta novo2 = new InfoConsulta(consultadao.consultas[2]);
         novo2.setDescricao("Paciente ainda nao realizou exame");
         adiciona(novo2);
 

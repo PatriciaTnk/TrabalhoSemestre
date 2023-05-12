@@ -130,10 +130,13 @@ public class Pessoa {
         sb.append(", nome=").append(nome);
         sb.append(", login=").append(login);
         sb.append(", senha=").append(senha);
+        sb.append(", tipoUsuario=").append(tipoUsuario);
+        sb.append(", dataCriacao=").append(dataCriacao);
+        sb.append(", visible=").append(visible);
         sb.append('}');
         return sb.toString();
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;
