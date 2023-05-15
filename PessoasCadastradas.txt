@@ -1,0 +1,34 @@
+Pessoa{id=0, nome=Administrador, login=Admin, senha=teste, tipoUsuario=Regente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=1, nome=Dono Primeira Franquia, login=DonoMatriz, senha=teste, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=2, nome=jaspion, login=jas, senha=jas, tipoUsuario=FuncAdministrativo, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=3, nome=jiraia, login=jir, senha=jir, tipoUsuario=FuncAdministrativo, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=4, nome=marcelo, login=marc, senha=marc, tipoUsuario=FuncAdministrativo, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=5, nome=carlos, login=carl, senha=carl, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=6, nome=amanda, login=aman, senha=aman, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=7, nome=laiane, login=laia, senha=laia, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=8, nome=manoela, login=manoe, senha=manoe, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=9, nome=Mjosephina, login=Mjose, senha=Mjose, tipoUsuario=Medico, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=10, nome=Mjaspion, login=Mjas, senha=Mjas, tipoUsuario=Medico, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=11, nome=Mjiraia, login=Mjir, senha=Mjir, tipoUsuario=Medico, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=12, nome=MFjosephina, login=MFjose, senha=MFjose, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=13, nome=MFjaspion, login=MFjas, senha=MFjas, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=14, nome=MFjiraia, login=MFjir, senha=MFjir, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=15, nome=MFjosephina, login=MFjose, senha=MFjose, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=16, nome=MFjaspion, login=MFjas, senha=MFjas, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=17, nome=MFjiraia, login=MFjir, senha=MFjir, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=18, nome=FRjosephina, login=FRjose, senha=FRjose, tipoUsuario=Responsavel pela Franquia, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=19, nome=FRjaspion, login=FRjas, senha=FRjas, tipoUsuario=Responsavel pela Franquia, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=20, nome=FRjiraia, login=FRjir, senha=FRjir, tipoUsuario=Responsavel pela Franquia, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=21, nome=josephina, login=jose, senha=jose, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=22, nome=jaspion, login=jas, senha=jas, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=23, nome=jiraia, login=jir, senha=jir, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=24, nome=marcelo, login=marc, senha=marc, tipoUsuario=Paciente, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=25, nome=Mjosephina, login=Mjose, senha=Mjose, tipoUsuario=Medico, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=26, nome=Mjaspion, login=Mjas, senha=Mjas, tipoUsuario=Medico, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=27, nome=Mjiraia, login=Mjir, senha=Mjir, tipoUsuario=Medico, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=28, nome=MFjosephina, login=MFjose, senha=MFjose, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=29, nome=MFjaspion, login=MFjas, senha=MFjas, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=30, nome=MFjiraia, login=MFjir, senha=MFjir, tipoUsuario=Dono da Matriz, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=31, nome=FRjosephina, login=FRjose, senha=FRjose, tipoUsuario=Responsavel pela Franquia, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=32, nome=FRjaspion, login=FRjas, senha=FRjas, tipoUsuario=Responsavel pela Franquia, dataCriacao=2023-01-10T12:00, visible=true}
+Pessoa{id=33, nome=FRjiraia, login=FRjir, senha=FRjir, tipoUsuario=Responsavel pela Franquia, dataCriacao=2023-01-10T12:00, visible=true

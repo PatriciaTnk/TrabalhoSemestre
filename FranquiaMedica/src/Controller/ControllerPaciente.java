@@ -4,15 +4,6 @@
  */
 package Controller;
 
-import View.GUI;
-import franquiamedica.ConsultaDAO;
-import franquiamedica.FranquiaDAO;
-import franquiamedica.InfoConsultaDAO;
-import franquiamedica.MatrizFranquiaDAO;
-import franquiamedica.MedicoDAO;
-import franquiamedica.Pessoa;
-import franquiamedica.PessoaDAO;
-import franquiamedica.ProcedimentoDAO;
 import franquiamedica.Utilitario;
 import java.util.Scanner;
 
@@ -20,87 +11,94 @@ public class ControllerPaciente {
 
     Scanner scanner = new Scanner(System.in);
 
-    PessoaDAO p = new PessoaDAO();
-    MedicoDAO m = new MedicoDAO(p);
-    MatrizFranquiaDAO mf = new MatrizFranquiaDAO(p);
-    FranquiaDAO f = new FranquiaDAO(p, mf);
-    ConsultaDAO c = new ConsultaDAO(p, m, mf, f);
-    InfoConsultaDAO ic = new InfoConsultaDAO(c);
-    ProcedimentoDAO proc = new ProcedimentoDAO(c);
-
-    public ControllerPaciente() {
+    public ControllerPaciente(Controller controller) {
 
         int opcaoUsuario = 0;
-        long id;
 
         while (opcaoUsuario != 6) {
-            {
-                opcaoUsuario = this.menuPaciente();
-                switch (opcaoUsuario) {
-                    default:
-                        System.out.println("\nOpcao Nao encontrada");
-                        break;
+            opcaoUsuario = this.menuPaciente();
+            switch (opcaoUsuario) {
+                default:
+                    System.out.println("\nOpcao Nao encontrada");
+                    break;
 
-                    case 1:
-                        int alterarDado = this.pacienteAlterarDados();
+                case 1:
+                    int alterarDado = this.pacienteAlterarDados();
 
-                        switch (alterarDado) {
-                            case 1:
-                                System.out.println("\nQual o novo nome:");
-                                Utilitario.getPessoaLogada().setNome(scanner.nextLine());
-                                break;
+                    switch (alterarDado) {
+                        case 1:
+                            System.out.println("\nQual o novo nome:");
+                            Utilitario.getPessoaLogada().setNome(scanner.nextLine());
+                            break;
 
-                            case 2:
-                                System.out.println("\nQual o novo endereço ?");
-                                Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
-                                break;
+                        case 2:
+                            System.out.println("\nQual o novo endereço ?");
+                            Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
+                            break;
 
-                            case 3:
-                                System.out.println("\nQual o novo CPF ?");
-                                Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
-                                break;
+                        case 3:
+                            System.out.println("\nQual o novo CPF ?");
+                            Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
+                            break;
 
-                            case 4:
-                                System.out.println("\nQual o novo telefone ?");
-                                Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
-                                break;
+                        case 4:
+                            System.out.println("\nQual o novo telefone ?");
+                            Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
+                            break;
 
-                            case 5:
-                                System.out.println("\nQual o novo Login ?");
-                                Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
-                                break;
+                        case 5:
+                            System.out.println("\nQual o novo Login ?");
+                            Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
+                            break;
 
-                            case 6:
-                                System.out.println("\nQual a nova Senha ?");
-                                Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
-                                break;
-                        }
+                        case 6:
+                            System.out.println("\nQual a nova Senha ?");
+                            Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
+                            break;
+                    }
+                    break;
 
-                    case 2:
-                        System.out.println("Relatorio de consultas: ");
-                        for (int i = 0; i < c.consultas.length; ++i) {
-                            if (c.consultas[i].getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
-                                System.out.println("\n" + c.consultas[i]);
+                case 2:
+                    System.out.println("\nRelatorio de consultas: ");
+                    if (relatorioConsultasPaciente(controller)) {
+                        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+                            if (controller.getC().consultas[i] != null
+                                    && controller.getC().consultas[i].getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
+                                System.out.println("\nHistorico de consultas");
+                                System.out.println("\n" + controller.getC().consultas[i]);
                             }
                         }
-                        break;
+                    } else {
+                        System.out.println("\nPaciente nao tem historico de consultas");
+                    }
+                    break;
 
-                    case 3:
-                        System.out.println("Relatorio de Procedimentos: ");
-                        for (int i = 0; i < proc.proceds.length; ++i) {
-                            if (proc.proceds[i].getConsulta().getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
-                                System.out.println("\n" + proc.proceds[i]);
+                case 3:
+                    System.out.println("\nRelatorio de Procedimentos: ");
+                    //validando se tem historico ou nao
+                    if (relatorioProcedimentoPaciente(controller)) {
+                        //se tiver entao vai mostrar
+                        for (int i = 0; i < controller.getProc().proceds.length; ++i) {
+                            if (controller.getProc().proceds[i] != null
+                                    && controller.getProc().proceds[i].getConsulta().getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
+                                System.out.println("\nHistorico de procedimentos");
+                                System.out.println("\n" + controller.getProc().proceds[i]);
                             }
                         }
-                        break;
+                    } else {
+                        System.out.println("\nPaciente nao tem historico de procedimentos");
+                    }
+                    break;
 
-                    case 4:
-                        GUI voltar = new GUI();
-                        break;
-                }
+                case 4:
+                    Utilitario.setPessoaLogada(null);
+                    Utilitario.getTelaInicial();
+                    return;
+
             }
-            System.out.println("\nSaí do menu");
         }
+        System.out.println("\nSaí do menu");
+
     }
 
     private int menuPaciente() {
@@ -111,7 +109,7 @@ public class ControllerPaciente {
         builderAdm.append("\n1 - Alterar informações do Perfil");
         builderAdm.append("\n2 - Verificar Consultas");
         builderAdm.append("\n3 - Verificar Procedimentos");
-        builderAdm.append("\n4 - Para voltar à tela inicial\n");
+        builderAdm.append("\n4 - Deslogar\n");
         builderAdm.append("\nQual sua opção ? R: ");
 
         System.out.print(builderAdm.toString());
@@ -136,6 +134,27 @@ public class ControllerPaciente {
         System.out.print(builderAdm.toString());
 
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public boolean relatorioConsultasPaciente(Controller controller) {
+        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+            if (controller.getC().consultas[i] != null
+                    && controller.getC().consultas[i].getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
+                //retorna verdadeiro se o paciente tem pelo menos 1 consulta
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean relatorioProcedimentoPaciente(Controller controller) {
+        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+            if (controller.getProc().proceds[i] != null
+                    && controller.getProc().proceds[i].getConsulta().getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

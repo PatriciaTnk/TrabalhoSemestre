@@ -4,53 +4,48 @@
  */
 package Controller;
 
-import View.GUI;
+import franquiamedica.Utilitario;
 import java.util.Scanner;
 
 public class ControllerResponsavelFranquia {
 
     Scanner scanner = new Scanner(System.in);
 
-    public ControllerResponsavelFranquia() {
+    public ControllerResponsavelFranquia(Controller controller) {
         int opcaoUsuario = 0;
-        long id;
 
         while (opcaoUsuario != 6) {
-            try {
-                opcaoUsuario = this.menuResponsavel();
-            } catch (NumberFormatException e) {
-                System.out.println("NumberFormat Exception: invalid input string");
-            } finally {
-                switch (opcaoUsuario) {
-                    default:
-                        System.out.println("Opcao Nao encontrada");
-                        break;
+            opcaoUsuario = this.menuResponsavel();
+            switch (opcaoUsuario) {
+                default:
+                    System.out.println("Opcao Nao encontrada");
+                    break;
 
-                    case 1:
-                        break;
+                case 1:
+                    break;
 
-                    case 2:
-                        break;
+                case 2:
+                    break;
 
-                    case 3:
-                        break;
+                case 3:
+                    break;
 
-                    case 4:
-                        break;
+                case 4:
+                    break;
 
-                    case 5:
-                        break;
+                case 5:
+                    break;
 
-                    case 6:
-                        break;
+                case 6:
+                    break;
 
-                    case 7:
-                        GUI voltar = new GUI();
-                        break;
-
-                }
+                case 7:
+                    Utilitario.setPessoaLogada(null);
+                    Utilitario.getTelaInicial();
+                    return;
             }
         }
+
     }
 
     private int menuResponsavel() {

@@ -4,6 +4,7 @@
  */
 package franquiamedica;
 
+import View.GUI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -71,4 +72,17 @@ public class Utilitario {
     public static Pessoa setPessoaLogada(Pessoa pessoaConfirmada) {
         return Utilitario.pessoaLogando = pessoaConfirmada;
     }
+    
+    //tela inicial
+    private static GUI telaInicial = null;
+    
+    public static GUI getTelaInicial () {
+        return telaInicial;
+    }
+    
+    public static GUI setTelaInicial (GUI origem) {
+        return Utilitario.telaInicial = origem;
+    }
+    
+    
 }
