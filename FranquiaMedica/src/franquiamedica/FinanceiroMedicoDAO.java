@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public class FinanceiroMedicoDAO {
 
-    public FinanceiroMedico[] finAdm = new FinanceiroMedico[100];
+    public FinanceiroMedico[] finMedico = new FinanceiroMedico[100];
 
     public FinanceiroMedicoDAO(ConsultaDAO consultadao, ProcedimentoDAO procedimentodao, FranquiaDAO franquiadao) {
         FinanceiroMedico novo = new FinanceiroMedico(franquiadao.franquias[0],consultadao.consultas[0].getMedico());
@@ -34,8 +34,8 @@ public class FinanceiroMedicoDAO {
     }
 
     private int proximaPosicaoLivre() {//só serve aqui dentro
-        for (int i = 0; i < finAdm.length; i++) {
-            FinanceiroMedico fin = finAdm[i];
+        for (int i = 0; i < finMedico.length; i++) {
+            FinanceiroMedico fin = finMedico[i];
             if (fin == null) {
                 return i;
             }
@@ -46,7 +46,7 @@ public class FinanceiroMedicoDAO {
     public boolean adiciona(FinanceiroMedico fin) {
         int x = proximaPosicaoLivre();
         if (x != -1) {
-            finAdm[x] = fin;
+            finMedico[x] = fin;
             return true;
         } else {
             return false;
@@ -54,7 +54,7 @@ public class FinanceiroMedicoDAO {
     }
 
     public void mostraTodos() {
-        for (FinanceiroMedico fin : finAdm) {
+        for (FinanceiroMedico fin : finMedico) {
             if (fin != null && fin.getVisible() == true) {
                 System.out.println(fin);
             }
@@ -62,7 +62,7 @@ public class FinanceiroMedicoDAO {
     }
 
     public FinanceiroMedico verificaRegistro(long id) {
-        for (FinanceiroMedico fin : finAdm) {
+        for (FinanceiroMedico fin : finMedico) {
             if (fin != null && fin.getId() == id && fin.getVisible()) {
                 return fin;
             }
@@ -71,20 +71,13 @@ public class FinanceiroMedicoDAO {
     }
 
     public boolean remove(long idRemover) {
-        for (FinanceiroMedico fin : finAdm) {
+        for (FinanceiroMedico fin : finMedico) {
             if (idRemover == (fin.getId())) {
                 fin.notVisible(true);
                 return true;
             }
         }
         return false;
-    }
-
-    public String getUnidade(long idConsulta) {
-        if (verificaRegistro(idConsulta) == null) {
-            return "Unidade nao encontrada";
-        }
-        return verificaRegistro(idConsulta).getUnidade().toString();
     }
 
 }

@@ -22,6 +22,40 @@ public class ControllerDonoDeMatriz {
                     break;
 
                 case 1:
+
+                    int alterarDado = this.pessoaAlterarDados();
+
+                    switch (alterarDado) {
+                        case 1:
+                            System.out.println("\nQual o novo nome:");
+                            Utilitario.getPessoaLogada().setNome(scanner.nextLine());
+                            break;
+
+                        case 2:
+                            System.out.println("\nQual o novo endereço ?");
+                            Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
+                            break;
+
+                        case 3:
+                            System.out.println("\nQual o novo CPF ?");
+                            Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
+                            break;
+
+                        case 4:
+                            System.out.println("\nQual o novo telefone ?");
+                            Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
+                            break;
+
+                        case 5:
+                            System.out.println("\nQual o novo Login ?");
+                            Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
+                            break;
+
+                        case 6:
+                            System.out.println("\nQual a nova Senha ?");
+                            Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
+                            break;
+                    }
                     break;
 
                 case 2:
@@ -66,4 +100,23 @@ public class ControllerDonoDeMatriz {
         return Integer.parseInt(scanner.nextLine());
     }
 
+        private int pessoaAlterarDados() {
+
+        StringBuilder builderAdm = new StringBuilder("");
+
+        System.out.println("\nGostaria de alterar qual informação?\n");
+        builderAdm.append("\n1 - Alterar nome");
+        builderAdm.append("\n2 - Alterar endereco");
+        builderAdm.append("\n3 - Alterar CPF");
+        builderAdm.append("\n4 - Alterar telefone");
+        builderAdm.append("\n5 - Alterar Login");
+        builderAdm.append("\n6 - Alterar Senha\n");
+        builderAdm.append("\n7 - Voltar\n");
+        builderAdm.append("\nQual sua opção ? R: ");
+
+        System.out.print(builderAdm.toString());
+
+        return Integer.parseInt(scanner.nextLine());
+    }
+    
 }

@@ -42,6 +42,10 @@ public class InfoConsulta {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public Consulta getConsulta() {
+        return consulta;
+    }
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
@@ -103,5 +107,5 @@ public class InfoConsulta {
         }
         return Objects.equals(this.consulta, other.consulta);
     }
-
+    
 }

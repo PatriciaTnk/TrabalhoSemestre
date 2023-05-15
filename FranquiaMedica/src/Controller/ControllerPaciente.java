@@ -60,14 +60,8 @@ public class ControllerPaciente {
 
                 case 2:
                     System.out.println("\nRelatorio de consultas: ");
-                    if (relatorioConsultasPaciente(controller)) {
-                        for (int i = 0; i < controller.getC().consultas.length; ++i) {
-                            if (controller.getC().consultas[i] != null
-                                    && controller.getC().consultas[i].getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
-                                System.out.println("\nHistorico de consultas");
-                                System.out.println("\n" + controller.getC().consultas[i]);
-                            }
-                        }
+                    if (controller.validaGeral("CONSULTA")) {
+                        mostraRelatorioConsultas(controller);
                     } else {
                         System.out.println("\nPaciente nao tem historico de consultas");
                     }
@@ -76,15 +70,9 @@ public class ControllerPaciente {
                 case 3:
                     System.out.println("\nRelatorio de Procedimentos: ");
                     //validando se tem historico ou nao
-                    if (relatorioProcedimentoPaciente(controller)) {
+                    if (controller.validaGeral("Procedimento")) {
                         //se tiver entao vai mostrar
-                        for (int i = 0; i < controller.getProc().proceds.length; ++i) {
-                            if (controller.getProc().proceds[i] != null
-                                    && controller.getProc().proceds[i].getConsulta().getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
-                                System.out.println("\nHistorico de procedimentos");
-                                System.out.println("\n" + controller.getProc().proceds[i]);
-                            }
-                        }
+                        mostraRelatorioProcedimento(controller);
                     } else {
                         System.out.println("\nPaciente nao tem historico de procedimentos");
                     }
@@ -136,25 +124,24 @@ public class ControllerPaciente {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public boolean relatorioConsultasPaciente(Controller controller) {
+    public void mostraRelatorioConsultas(Controller controller) {
         for (int i = 0; i < controller.getC().consultas.length; ++i) {
             if (controller.getC().consultas[i] != null
                     && controller.getC().consultas[i].getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
-                //retorna verdadeiro se o paciente tem pelo menos 1 consulta
-                return true;
+                System.out.println("\nHistorico de consultas");
+                System.out.println("\n" + controller.getC().consultas[i]);
             }
         }
-        return false;
     }
 
-    public boolean relatorioProcedimentoPaciente(Controller controller) {
-        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+    public void mostraRelatorioProcedimento(Controller controller) {
+        for (int i = 0; i < controller.getProc().proceds.length; ++i) {
             if (controller.getProc().proceds[i] != null
                     && controller.getProc().proceds[i].getConsulta().getPaciente().getId() == Utilitario.getPessoaLogada().getId()) {
-                return true;
+                System.out.println("\nHistorico de procedimentos");
+                System.out.println("\n" + controller.getProc().proceds[i]);
             }
         }
-        return false;
     }
 
 }
