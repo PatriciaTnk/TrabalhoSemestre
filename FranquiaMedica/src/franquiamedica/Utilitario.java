@@ -73,16 +73,14 @@ public class Utilitario {
         return Utilitario.pessoaLogando = pessoaConfirmada;
     }
     
-    //tela inicial
-    private static GUI telaInicial = null;
+    /*private static GUI gui = null;
     
-    public static GUI getTelaInicial () {
-        return telaInicial;
+    public static GUI getGui (){
+        return gui;
     }
     
-    public static GUI setTelaInicial (GUI origem) {
-        return Utilitario.telaInicial = origem;
-    }
-    
+    public static GUI setGui (GUI telaInicial){
+        return Utilitario.gui = telaInicial;
+    }*/
     
 }

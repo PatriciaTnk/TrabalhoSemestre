@@ -4,126 +4,50 @@
  */
 package Controller;
 
-import View.GUI;
 import franquiamedica.Utilitario;
-import java.util.Scanner;
 
 public class ControllerMedico {
-
-    Scanner scanner = new Scanner(System.in);
-
-    public ControllerMedico(Controller controller) {
-        int opcaoUsuario = 0;
-
-        while (opcaoUsuario != 6) {
-            opcaoUsuario = this.menuMedico();
-            switch (opcaoUsuario) {
-                default:
-                    System.out.println("Opcao Nao encontrada");
-                    break;
-
-                case 1:
-
-                    int alterarDado = this.pessoaAlterarDados();
-
-                    switch (alterarDado) {
-                        case 1:
-                            System.out.println("\nQual o novo nome:");
-                            Utilitario.getPessoaLogada().setNome(scanner.nextLine());
-                            break;
-
-                        case 2:
-                            System.out.println("\nQual o novo endereço ?");
-                            Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
-                            break;
-
-                        case 3:
-                            System.out.println("\nQual o novo CPF ?");
-                            Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
-                            break;
-
-                        case 4:
-                            System.out.println("\nQual o novo telefone ?");
-                            Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
-                            break;
-
-                        case 5:
-                            System.out.println("\nQual o novo Login ?");
-                            Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
-                            break;
-
-                        case 6:
-                            System.out.println("\nQual a nova Senha ?");
-                            Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
-                            break;
-                    }
-                    break;
-
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    break;
-
-                case 5:
-                    break;
-
-                case 6:
-                    break;
-
-                case 7:
-                    Utilitario.setPessoaLogada(null);
-                    Utilitario.getTelaInicial();
-                    return;
+    
+    public void mostraRelatorioConsultas(Controller controller) {
+        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+            if (controller.getC().consultas[i] != null
+                    && controller.getC().consultas[i].getMedico().getId() == Utilitario.getPessoaLogada().getId()) {
+                System.out.println("\nRelatorio de consultas");
+                System.out.println("\n" + controller.getC().consultas[i]);
             }
         }
-
     }
 
-    private int menuMedico() {
-
-        StringBuilder builderAdm = new StringBuilder("");
-
-        builderAdm.append("Medico\n\n");
-        builderAdm.append("\n1 - Alterar informações do Perfil");
-        builderAdm.append("\n2 - Verificar Consultas");
-        builderAdm.append("\n3 - Verificar Procedimentos");
-        builderAdm.append("\n4 - Relatorio Financeiro");
-        builderAdm.append("\n6 - Para voltar à tela inicial\n");
-        builderAdm.append("\nQual sua opção ? R: ");
-
-        System.out.print(builderAdm.toString());
-
-        return Integer.parseInt(scanner.nextLine());
+    public void mostraConsultasRealizadas(Controller controller) {
+        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+            if (controller.getC().consultas[i] != null
+                    && controller.getC().consultas[i].getMedico().getId() == Utilitario.getPessoaLogada().getId()
+                    //coloquei por estado, pq se fosse por data as canceladas tbm iriam aparecer
+                    && controller.getC().consultas[i].getEstado().equalsIgnoreCase("realizada")) {
+                System.out.println("\nRelatorio de consultas");
+                System.out.println("\n" + controller.getC().consultas[i]);
+            }
+        }
     }
 
-    private int pessoaAlterarDados() {
-
-        StringBuilder builderAdm = new StringBuilder("");
-
-        System.out.println("\nGostaria de alterar qual informação?\n");
-        builderAdm.append("\n1 - Alterar nome");
-        builderAdm.append("\n2 - Alterar endereco");
-        builderAdm.append("\n3 - Alterar CPF");
-        builderAdm.append("\n4 - Alterar telefone");
-        builderAdm.append("\n5 - Alterar Login");
-        builderAdm.append("\n6 - Alterar Senha\n");
-        builderAdm.append("\n7 - Voltar\n");
-        builderAdm.append("\nQual sua opção ? R: ");
-
-        System.out.print(builderAdm.toString());
-
-        return Integer.parseInt(scanner.nextLine());
+    public void mostraRelatorioProcedimento(Controller controller) {
+        for (int i = 0; i < controller.getProc().proceds.length; ++i) {
+            if (controller.getProc().proceds[i] != null
+                    && controller.getProc().proceds[i].getConsulta().getMedico().getId() == Utilitario.getPessoaLogada().getId()) {
+                System.out.println("\nRelatorio de procedimentos");
+                System.out.println("\n" + controller.getProc().proceds[i]);
+            }
+        }
     }
-    
-    public boolean validaGeral (Controller controller){
-        
-        
-        
-        return false;
+
+    public void mostraRelatorioFinanceiroMedico(Controller controller) {
+        for (int i = 0; i < controller.getFinMed().finMedico.length; ++i) {
+            if (controller.getFinMed().finMedico[i] != null
+                    && controller.getFinMed().finMedico[i].getMedico().getId() == Utilitario.getPessoaLogada().getId()) {
+                System.out.println("\nRelatorio Financeiro");
+                System.out.println("\n" + controller.getFinMed().finMedico[i]);
+            }
+        }
     }
 
 }

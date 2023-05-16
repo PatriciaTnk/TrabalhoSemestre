@@ -19,8 +19,24 @@ import franquiamedica.MedicoDAO;
 import franquiamedica.InfoConsultaDAO;
 import franquiamedica.ProcedimentoDAO;
 import franquiamedica.Utilitario;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Controller {
+    
+    GUI telaIni = null;
+    
+    public void setGUI (GUI tela){
+       this.telaIni = tela;
+    }
+    
+    public GUI getTela () {
+        return telaIni;   
+    }
 
     private PessoaDAO p = new PessoaDAO();
     private MedicoDAO m = new MedicoDAO(p);
@@ -32,16 +48,22 @@ public class Controller {
     private FinanceiroAdmDAO fin = new FinanceiroAdmDAO(c, proc, f);
     private FinanceiroMedicoDAO finMed = new FinanceiroMedicoDAO(c, proc, f);
     private FuncionarioAdmDAO fa = new FuncionarioAdmDAO(f, p);
+    
+    private ControllerPaciente cPaciente = new ControllerPaciente();
+    private ControllerMedico cMedico = new ControllerMedico();
+    private ControllerFuncionarioAdm cFuncAdm = new ControllerFuncionarioAdm();
+    private ControllerResponsavelFranquia cResp = new ControllerResponsavelFranquia();
+    private ControllerRegente cReg = new ControllerRegente();
 
     public boolean validaLogin(String login, String senha, Controller controller) {
         p.mostraTodos();
         if (p.buscaLoginSenha(login, senha) != null) {
-            System.out.println("Login Realizado com sucesso");
+            System.out.println("\n\nLogin Realizado com sucesso");
             Utilitario.setPessoaLogada(p.buscaLoginSenha(login, senha));
             chamaMenus(controller);
             return true;
         } else {
-            System.out.println("Login não encontrado.\nTente novamente");
+            System.out.println("\n\nLogin não encontrado.\nTente novamente");
             return false;
         }
     }
@@ -53,16 +75,16 @@ public class Controller {
 
     private void chamaMenus(Controller controller) {
         if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Paciente")) {
-            ControllerPaciente cp = new ControllerPaciente(controller);
+            telaIni.pacienteAll(this, cPaciente);
         } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Medico")) {
-            ControllerMedico cm = new ControllerMedico(controller);
+            telaIni.medicoAll(this, cMedico);
         } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("FuncAdministrativo")) {
-            ControllerFuncionarioAdm cfa = new ControllerFuncionarioAdm(controller);
+            telaIni.funcionarioAdmAll(controller, cFuncAdm);
         } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Responsavel pela Franquia")) {
             ControllerResponsavelFranquia crf = new ControllerResponsavelFranquia(controller);
         } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Dono da Matriz")) {
             ControllerDonoDeMatriz cdm = new ControllerDonoDeMatriz(controller);
-        } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Regente")){ //Controle do Admin
+        } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Regente")) { //Controle do Admin
             ControllerRegente cR = new ControllerRegente(controller);
         }
     }
@@ -161,7 +183,7 @@ public class Controller {
                         return true;
                     }
                 }
-            } else {
+            } else if (validaNoLugar.equalsIgnoreCase("FinanceiroMedico")) {
                 for (int i = 0; i < finMed.finMedico.length; ++i) {
                     if (finMed.finMedico[i] != null
                             && finMed.finMedico[i].getMedico().getPessoa().getId() == Utilitario.getPessoaLogada().getId()) {
@@ -171,6 +193,40 @@ public class Controller {
             }
 
         } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("FuncAdministrativo")) {
+            if (validaNoLugar.equalsIgnoreCase("consulta")) {
+                for (int j = 0; j < fa.funcAdm.length; ++j) {
+                    for (int i = 0; i < c.consultas.length; ++i) {
+                        if (c.consultas[i] != null
+                                && c.consultas[i].getUnidade().getId() == fa.funcAdm[j].getIdFranquia()
+                                && fa.funcAdm[j] != null
+                                && fa.funcAdm[j].getFuncionario().getId() == Utilitario.getPessoaLogada().getId()) {
+                            return true;
+                        }
+                    }
+                }
+            } else if (validaNoLugar.equalsIgnoreCase("procedimento")) {
+                for (int j = 0; j < fa.funcAdm.length; ++j) {
+                    for (int i = 0; i < proc.proceds.length; ++i) {
+                        if (proc.proceds[i] != null
+                                && proc.proceds[i].getConsulta().getUnidade().getId() == fa.funcAdm[j].getIdFranquia()
+                                && fa.funcAdm[j] != null
+                                && fa.funcAdm[j].getFuncionario().getId() == Utilitario.getPessoaLogada().getId()) {
+                            return true;
+                        }
+                    }
+                }
+            } else if (validaNoLugar.equalsIgnoreCase("InfoConsulta")) {
+                for (int j = 0; j < fa.funcAdm.length; ++j) {
+                    for (int i = 0; i < ic.infoCon.length; ++i) {
+                        if (ic.infoCon[i] != null
+                                && ic.infoCon[i].getConsulta().getUnidade().getId() == fa.funcAdm[j].getIdFranquia()
+                                && fa.funcAdm[j] != null
+                                && fa.funcAdm[j].getFuncionario().getId() == Utilitario.getPessoaLogada().getId()) {
+                            return true;
+                        }
+                    }
+                }
+            }
 
         } else if (Utilitario.getPessoaLogada().getTipoUsuario().equalsIgnoreCase("Responsavel pela Franquia")) {
             if (validaNoLugar.equalsIgnoreCase("consulta")) {
@@ -202,7 +258,7 @@ public class Controller {
                         return true;
                     }
                 }
-            } else if (validaNoLugar.equalsIgnoreCase("FinanceiroMedico")){
+            } else if (validaNoLugar.equalsIgnoreCase("FinanceiroMedico")) {
                 for (int i = 0; i < finMed.finMedico.length; ++i) {
                     if (finMed.finMedico[i] != null
                             && finMed.finMedico[i].getUnidade().getFranquia().getDono().getId() == Utilitario.getPessoaLogada().getId()) {
@@ -241,7 +297,7 @@ public class Controller {
                         return true;
                     }
                 }
-            } else if (validaNoLugar.equalsIgnoreCase("FinanceiroMedico")){
+            } else if (validaNoLugar.equalsIgnoreCase("FinanceiroMedico")) {
                 for (int i = 0; i < finMed.finMedico.length; ++i) {
                     if (finMed.finMedico[i] != null
                             && finMed.finMedico[i].getUnidade().getFranquia().getDono().getId() == Utilitario.getPessoaLogada().getId()) {
@@ -280,7 +336,7 @@ public class Controller {
                         return true;
                     }
                 }
-            } else {
+            } else if (validaNoLugar.equalsIgnoreCase("FinanceiroMedico")) {
                 for (int i = 0; i < finMed.finMedico.length; ++i) {
                     if (finMed.finMedico[i] != null
                             && finMed.finMedico[i].getUnidade().getFranquia().getDono().getId() == Utilitario.getPessoaLogada().getId()) {
@@ -292,6 +348,21 @@ public class Controller {
         }
         System.out.println("Teste em cada lugar que chamar a funcao escreve a mensagem que quer apresentar para o usuario");
         return false;
+    }
+
+    public LocalDateTime validaDiaHora(String dia, String horario) {
+        DateTimeFormatter formatterDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate day = LocalDate.parse(dia, formatterDia);
+
+        LocalTime hour = LocalTime.parse(horario);
+
+        return LocalDateTime.of(day, hour);
+    }
+
+    public BigDecimal validaBigDecimal(String valorB) {
+        BigDecimal novoB = new BigDecimal(valorB);
+        novoB = novoB.setScale(2, RoundingMode.HALF_DOWN);
+        return novoB;
     }
 
 }

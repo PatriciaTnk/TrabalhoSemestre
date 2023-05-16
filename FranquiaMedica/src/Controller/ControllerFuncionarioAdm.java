@@ -4,120 +4,62 @@
  */
 package Controller;
 
-import View.GUI;
-import franquiamedica.Utilitario;
-import java.util.Scanner;
+import franquiamedica.Consulta;
+import franquiamedica.Franquia;
+import franquiamedica.Medico;
+import franquiamedica.Pessoa;
+import franquiamedica.Procedimento;
 
 public class ControllerFuncionarioAdm {
 
-    Scanner scanner = new Scanner(System.in);
-
-    public ControllerFuncionarioAdm(Controller controller) {
-        int opcaoUsuario = 0;
-
-        while (opcaoUsuario != 6) {
-            opcaoUsuario = this.menuFuncAdministrativo();
-            switch (opcaoUsuario) {
-                default:
-                    System.out.println("Opcao Nao encontrada");
-                    break;
-
-                case 1:
-
-                    int alterarDado = this.pessoaAlterarDados();
-
-                    switch (alterarDado) {
-                        case 1:
-                            System.out.println("\nQual o novo nome:");
-                            Utilitario.getPessoaLogada().setNome(scanner.nextLine());
-                            break;
-
-                        case 2:
-                            System.out.println("\nQual o novo endereço ?");
-                            Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
-                            break;
-
-                        case 3:
-                            System.out.println("\nQual o novo CPF ?");
-                            Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
-                            break;
-
-                        case 4:
-                            System.out.println("\nQual o novo telefone ?");
-                            Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
-                            break;
-
-                        case 5:
-                            System.out.println("\nQual o novo Login ?");
-                            Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
-                            break;
-
-                        case 6:
-                            System.out.println("\nQual a nova Senha ?");
-                            Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
-                            break;
-                    }
-                    break;
-
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    break;
-
-                case 5:
-                    break;
-
-                case 6:
-                    break;
-
-                case 7:
-                    Utilitario.setPessoaLogada(null);
-                    Utilitario.getTelaInicial();
-                    return;
+    public void mostraRelatorioConsultas(Controller controller) {
+        for (int i = 0; i < controller.getC().consultas.length; ++i) {
+            if (controller.getC().consultas[i] != null
+                    && controller.getC().consultas[i].getVisible()) {
+                System.out.println("\nRelatorio de consultas");
+                System.out.println("\n" + controller.getC().consultas[i]);
             }
         }
-
     }
 
-    private int menuFuncAdministrativo() {
-
-        StringBuilder builderAdm = new StringBuilder("");
-
-        builderAdm.append("Funcionario_Administrativo\n\n");
-        builderAdm.append("\n1 - Alterar informações do Perfil");
-        builderAdm.append("\n2 - Verificar Consultas");
-        builderAdm.append("\n3 - Registro de Consultas");
-        builderAdm.append("\n4 - Verificar Procedimentos");
-        builderAdm.append("\n5 - Registro de Procedimentos");
-        builderAdm.append("\n6 - Para voltar à tela inicial\n");
-        builderAdm.append("\nQual sua opção ? R: ");
-
-        System.out.print(builderAdm.toString());
-
-        return Integer.parseInt(scanner.nextLine());
+    public void mostraInformacaoConsulta(Controller controller) {
+        for (int i = 0; i < controller.getIc().infoCon.length; ++i) {
+            if (controller.getIc().infoCon[i] != null
+                    && controller.getIc().infoCon[i].getVisible()) {
+                System.out.println("\nDescricao de consultas");
+                System.out.println("\n" + controller.getC().consultas[i]);
+            }
+        }
     }
 
-        private int pessoaAlterarDados() {
-
-        StringBuilder builderAdm = new StringBuilder("");
-
-        System.out.println("\nGostaria de alterar qual informação?\n");
-        builderAdm.append("\n1 - Alterar nome");
-        builderAdm.append("\n2 - Alterar endereco");
-        builderAdm.append("\n3 - Alterar CPF");
-        builderAdm.append("\n4 - Alterar telefone");
-        builderAdm.append("\n5 - Alterar Login");
-        builderAdm.append("\n6 - Alterar Senha\n");
-        builderAdm.append("\n7 - Voltar\n");
-        builderAdm.append("\nQual sua opção ? R: ");
-
-        System.out.print(builderAdm.toString());
-
-        return Integer.parseInt(scanner.nextLine());
+    public void mostraRelatorioProcedimento(Controller controller) {
+        for (int i = 0; i < controller.getProc().proceds.length; ++i) {
+            if (controller.getProc().proceds[i] != null
+                    && controller.getProc().proceds[i].getVisible()) {
+                System.out.println("\nRelatorio de procedimentos");
+                System.out.println("\n" + controller.getProc().proceds[i] + "\n" + controller.getProc().proceds[i].getLaudo());
+            }
+        }
     }
-    
+
+    public boolean marcarConsulta(Controller controller, String dia, String hora, String valor, Pessoa paciente, Medico medico, Franquia franquia) {
+        if (controller.validaDiaHora(dia, hora)!= null
+                &&controller.validaBigDecimal(valor) != null){
+            Consulta nova = new Consulta(paciente, medico, franquia);
+            controller.getC().adiciona(nova);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean marcarProcedimento(Controller controller, String dia, String hora, String valor, Consulta consultaP) {
+        if (controller.validaDiaHora(dia, hora)!= null
+                &&controller.validaBigDecimal(valor) != null){
+            Procedimento novo = new Procedimento(consultaP);
+            controller.getProc().adiciona(novo);
+            return true;
+        }
+        return false;
+    }
+
 }

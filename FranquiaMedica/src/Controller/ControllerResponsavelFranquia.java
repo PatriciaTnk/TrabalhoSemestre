@@ -23,41 +23,8 @@ public class ControllerResponsavelFranquia {
 
                 case 1:
 
-                    int alterarDado = this.pessoaAlterarDados();
-
-                    switch (alterarDado) {
-                        case 1:
-                            System.out.println("\nQual o novo nome:");
-                            Utilitario.getPessoaLogada().setNome(scanner.nextLine());
-                            break;
-
-                        case 2:
-                            System.out.println("\nQual o novo endereço ?");
-                            Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
-                            break;
-
-                        case 3:
-                            System.out.println("\nQual o novo CPF ?");
-                            Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
-                            break;
-
-                        case 4:
-                            System.out.println("\nQual o novo telefone ?");
-                            Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
-                            break;
-
-                        case 5:
-                            System.out.println("\nQual o novo Login ?");
-                            Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
-                            break;
-
-                        case 6:
-                            System.out.println("\nQual a nova Senha ?");
-                            Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
-                            break;
-                    }
                     break;
-                    
+
                 case 2:
                     break;
 
@@ -72,10 +39,25 @@ public class ControllerResponsavelFranquia {
 
                 case 6:
                     break;
-
+                    
                 case 7:
+
+                    break;
+
+                case 8:
+                    break;
+
+                case 9:
+                    break;
+
+                case 10:
+                    break;
+
+                case 11:
+                    break;
+
+                case 12:
                     Utilitario.setPessoaLogada(null);
-                    Utilitario.getTelaInicial();
                     return;
             }
         }
@@ -88,19 +70,25 @@ public class ControllerResponsavelFranquia {
 
         builderAdm.append("Responsavel pela Franquia\n\n");
         builderAdm.append("\n1 - Alterar informações do Perfil");
-        builderAdm.append("\n2 - Verificar Consultas");
-        builderAdm.append("\n3 - Registro de Consultas");
-        builderAdm.append("\n4 - Verificar Procedimentos");
-        builderAdm.append("\n5 - Registro de Procedimentos");
-        builderAdm.append("\n6 - Para voltar à tela inicial\n");
+        builderAdm.append("\n2 - Alterar tipo de um usuario");
+        builderAdm.append("\n3 - Relatorio de Informacoes de consulta");
+        builderAdm.append("\n4 - Relatorio de Consultas");
+        builderAdm.append("\n5 - Relatorio de Procedimentos");
+        builderAdm.append("\n6 - Relatorio de Financeiro do Medico");
+        builderAdm.append("\n7 - Relatorio de Financeiro da Franquia");
+        builderAdm.append("\n8 - Marcar consulta");
+        builderAdm.append("\n9 - Marcar Procedimento");
+        builderAdm.append("\n10 - Realizar pagamento para a Matriz");
+        builderAdm.append("\n11 - Extra");
+        builderAdm.append("\n12 - Para voltar à tela inicial\n");
         builderAdm.append("\nQual sua opção ? R: ");
 
         System.out.print(builderAdm.toString());
 
         return Integer.parseInt(scanner.nextLine());
     }
-    
-        private int pessoaAlterarDados() {
+
+    private int pessoaAlterarDados() {
 
         StringBuilder builderAdm = new StringBuilder("");
 

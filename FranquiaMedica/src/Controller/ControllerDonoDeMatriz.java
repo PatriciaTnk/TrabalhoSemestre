@@ -75,7 +75,6 @@ public class ControllerDonoDeMatriz {
 
                 case 7:
                     Utilitario.setPessoaLogada(null);
-                    Utilitario.getTelaInicial();
                     return;
             }
         }
@@ -88,9 +87,9 @@ public class ControllerDonoDeMatriz {
 
         builderAdm.append("Dono de Matriz de Franquia\n\n");
         builderAdm.append("\n1 - Alterar informações do Perfil");
-        builderAdm.append("\n2 - Verificar Consultas");
-        builderAdm.append("\n3 - Registro de Consultas");
-        builderAdm.append("\n4 - Verificar Procedimentos");
+        builderAdm.append("\n2 - Alterar tipo de um usuario");
+        builderAdm.append("\n3 - Adicionar Unidade de Franquia");
+        builderAdm.append("\n4 - Adicionar Matriz");
         builderAdm.append("\n5 - Registro de Procedimentos");
         builderAdm.append("\n6 - Para voltar à tela inicial\n");
         builderAdm.append("\nQual sua opção ? R: ");

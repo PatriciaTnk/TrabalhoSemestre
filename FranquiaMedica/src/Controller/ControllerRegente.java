@@ -75,7 +75,6 @@ public class ControllerRegente {
 
                 case 7:
                     Utilitario.setPessoaLogada(null);
-                    Utilitario.getTelaInicial();
                     return;
             }
         }

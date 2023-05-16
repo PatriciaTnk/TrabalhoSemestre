@@ -6,7 +6,7 @@ package franquiamedica;
 
 public class FuncionarioAdmDAO {
 
-    FuncionarioAdm[] func_adm = new FuncionarioAdm[25];
+    public FuncionarioAdm[] funcAdm = new FuncionarioAdm[25];
 
     public FuncionarioAdmDAO(FranquiaDAO franquiadao, PessoaDAO pessoadao) {
         FuncionarioAdm novo = new FuncionarioAdm(pessoadao.pessoas[2]);
@@ -24,8 +24,8 @@ public class FuncionarioAdmDAO {
     }
 
     private int proximaPosicaoLivre() {//só serve aqui dentro
-        for (int i = 0; i < func_adm.length; i++) {
-            FuncionarioAdm fa = func_adm[i];
+        for (int i = 0; i < funcAdm.length; i++) {
+            FuncionarioAdm fa = funcAdm[i];
             if (fa == null) {
                 return i;
             }
@@ -36,7 +36,7 @@ public class FuncionarioAdmDAO {
     public boolean adiciona(FuncionarioAdm fa) {
         int x = proximaPosicaoLivre();
         if (x != -1) {
-            func_adm[x] = fa;
+            funcAdm[x] = fa;
             return true;
         } else {
             return false;
@@ -44,7 +44,7 @@ public class FuncionarioAdmDAO {
     }
 
     public void mostraTodos() {
-        for (FuncionarioAdm fa : func_adm) {
+        for (FuncionarioAdm fa : funcAdm) {
             if (fa != null && fa.getVisible() == true) {
                 System.out.println(fa);
             }
@@ -52,7 +52,7 @@ public class FuncionarioAdmDAO {
     }
 
     public FuncionarioAdm verificaRegistro(long id) {
-        for (FuncionarioAdm fa : func_adm) {
+        for (FuncionarioAdm fa : funcAdm) {
             if (fa.getId() == id && fa.getVisible()) {
                 return fa;
             }
@@ -61,10 +61,10 @@ public class FuncionarioAdmDAO {
     }
 
     public boolean remove(long idRemover) {
-        for (int i = 0; i < func_adm.length; i++) {
-            if (func_adm[i] != null && func_adm[i].getId() == idRemover) {
-                func_adm[i].notVisible(true);
-                func_adm[i] = null;
+        for (int i = 0; i < funcAdm.length; i++) {
+            if (funcAdm[i] != null && funcAdm[i].getId() == idRemover) {
+                funcAdm[i].notVisible(true);
+                funcAdm[i] = null;
                 return true;
             }
         }
