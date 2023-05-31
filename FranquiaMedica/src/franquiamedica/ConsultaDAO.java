@@ -1,4 +1,3 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -58,8 +57,8 @@ public class ConsultaDAO {
         pM1.setEndereco("Mjose");
         pM1.setCpf("Mjose");
         pM1.setTelefone("Mjosephina");
-        pM1.setLogin("Mjose");
-        pM1.setSenha("Mjose");
+        pM1.setLogin("MCjose");
+        pM1.setSenha("MCjose");
         pessoadao.adiciona(pM1);
 
         Pessoa pM2 = new Pessoa();
@@ -67,8 +66,8 @@ public class ConsultaDAO {
         pM2.setEndereco("Mjas");
         pM2.setCpf("Mjas");
         pM2.setTelefone("Mjaspion");
-        pM2.setLogin("Mjas");
-        pM2.setSenha("Mjas");
+        pM2.setLogin("MCjas");
+        pM2.setSenha("MCjas");
         pessoadao.adiciona(pM2);
 
         Pessoa pM3 = new Pessoa();
@@ -76,8 +75,8 @@ public class ConsultaDAO {
         pM3.setEndereco("Mir");
         pM3.setCpf("Mjir");
         pM3.setTelefone("Mjiraia");
-        pM3.setLogin("Mjir");
-        pM3.setSenha("Mjir");
+        pM3.setLogin("MCjir");
+        pM3.setSenha("MCjir");
         pessoadao.adiciona(pM3);
 
         Medico m1 = new Medico(pM1);

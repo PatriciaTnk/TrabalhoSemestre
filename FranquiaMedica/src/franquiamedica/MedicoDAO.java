@@ -20,8 +20,8 @@ public class MedicoDAO {
         p1.setEndereco("Mjose");
         p1.setCpf("Mjose");
         p1.setTelefone("Mjosephina");
-        p1.setLogin("Mjose");
-        p1.setSenha("Mjose");
+        p1.setLogin("MTjose");
+        p1.setSenha("MTjose");
         pessoadao.adiciona(p1);
 
         Pessoa p2 = new Pessoa();
@@ -29,8 +29,8 @@ public class MedicoDAO {
         p2.setEndereco("Mjas");
         p2.setCpf("Mjas");
         p2.setTelefone("Mjaspion");
-        p2.setLogin("Mjas");
-        p2.setSenha("Mjas");
+        p2.setLogin("MTjas");
+        p2.setSenha("MTjas");
         pessoadao.adiciona(p2);
 
         Pessoa p3 = new Pessoa();
@@ -38,8 +38,8 @@ public class MedicoDAO {
         p3.setEndereco("Mir");
         p3.setCpf("Mjir");
         p3.setTelefone("Mjiraia");
-        p3.setLogin("Mjir");
-        p3.setSenha("Mjir");
+        p3.setLogin("MTjir");
+        p3.setSenha("MTjir");
         pessoadao.adiciona(p3);
 
         Medico m1 = new Medico(p1);

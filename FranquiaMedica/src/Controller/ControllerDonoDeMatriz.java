@@ -4,118 +4,145 @@
  */
 package Controller;
 
+import franquiamedica.FinanceiroAdm;
+import franquiamedica.Franquia;
 import franquiamedica.Utilitario;
-import java.util.Scanner;
+import static franquiamedica.Utilitario.diaSistema;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.time.LocalDateTime;
+import java.time.Year;
 
 public class ControllerDonoDeMatriz {
 
-    Scanner scanner = new Scanner(System.in);
+    public void financeiroMensal(Controller controller, Franquia franquia) {
+        int[] mesesUm = {1, 3, 5, 7, 8, 10, 12};
+        int[] mesesZero = {4, 6, 9, 11};
+        int qtdMeses = Utilitario.diaSistema.getMonthValue();
 
-    public ControllerDonoDeMatriz(Controller controller) {
-        int opcaoUsuario = 0;
+        LocalDateTime dataParaIncrementar = Utilitario.diaSistema;
 
-        while (opcaoUsuario != 6) {
-            opcaoUsuario = this.menuDono();
-            switch (opcaoUsuario) {
-                default:
-                    System.out.println("Opcao Nao encontrada");
-                    break;
+        BigDecimal montanteCons = new BigDecimal("0");
+        montanteCons = montanteCons.setScale(2, RoundingMode.HALF_DOWN);
 
-                case 1:
+        BigDecimal montanteConsM = new BigDecimal("0");
+        montanteCons = montanteCons.setScale(2, RoundingMode.HALF_DOWN);
 
-                    int alterarDado = this.pessoaAlterarDados();
+        BigDecimal montanteProc = new BigDecimal("0");
+        montanteProc = montanteProc.setScale(2, RoundingMode.HALF_DOWN);
 
-                    switch (alterarDado) {
-                        case 1:
-                            System.out.println("\nQual o novo nome:");
-                            Utilitario.getPessoaLogada().setNome(scanner.nextLine());
-                            break;
+        BigDecimal montanteProcM = new BigDecimal("0");
+        montanteProc = montanteProc.setScale(2, RoundingMode.HALF_DOWN);
 
-                        case 2:
-                            System.out.println("\nQual o novo endereço ?");
-                            Utilitario.getPessoaLogada().setEndereco(scanner.nextLine());
-                            break;
-
-                        case 3:
-                            System.out.println("\nQual o novo CPF ?");
-                            Utilitario.getPessoaLogada().setCpf(scanner.nextLine());
-                            break;
-
-                        case 4:
-                            System.out.println("\nQual o novo telefone ?");
-                            Utilitario.getPessoaLogada().setTelefone(scanner.nextLine());
-                            break;
-
-                        case 5:
-                            System.out.println("\nQual o novo Login ?");
-                            Utilitario.getPessoaLogada().setLogin(scanner.nextLine());
-                            break;
-
-                        case 6:
-                            System.out.println("\nQual a nova Senha ?");
-                            Utilitario.getPessoaLogada().setSenha(scanner.nextLine());
-                            break;
+        for (int i = 0; i < qtdMeses; ++i) {
+            if ((qtdMeses + 12) % 12 == 2 && !Year.isLeap(diaSistema.getYear())) {
+                dataParaIncrementar = dataParaIncrementar.minusDays(28);
+            } else if ((qtdMeses + 12) % 12 == 2 && Year.isLeap(diaSistema.getYear())) {
+                dataParaIncrementar = dataParaIncrementar.minusDays(29);
+            } else {
+                if (mesesZero.equals(qtdMeses)) {
+                    for (int j = 0; j < mesesZero.length; ++j) {
+                        if ((qtdMeses + 12) % 12 == mesesZero[j]) {
+                            dataParaIncrementar = dataParaIncrementar.minusDays(30);
+                        }
                     }
-                    break;
-
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    break;
-
-                case 5:
-                    break;
-
-                case 6:
-                    break;
-
-                case 7:
-                    Utilitario.setPessoaLogada(null);
-                    return;
+                } else {
+                    for (int l = 0; l < mesesUm.length; ++l) {
+                        if ((qtdMeses + 12) % 12 == mesesUm[l]) {
+                            dataParaIncrementar = dataParaIncrementar.minusDays(31);
+                        }
+                    }
+                }
             }
         }
 
+        for (int j = 0; j < controller.getC().consultas.length; ++j) {
+            if (controller.getC().consultas[j].getDiaHorario().isBefore(LocalDateTime.of(2023, qtdMeses, 1, 12, 00))
+                    && controller.getC().consultas[j].getDiaHorario().isAfter(dataParaIncrementar)) {
+                montanteCons = montanteCons.add(controller.getC().consultas[j].getValor());
+                montanteConsM = montanteConsM.add(controller.getC().consultas[j].getValor());
+                FinanceiroAdm novoSaida = new FinanceiroAdm(franquia);
+
+                novoSaida.setTipoDeMovim("Saida");
+                novoSaida.setDescritivo("Valor: " + montanteProc + "\nPara Franquia: " + franquia);
+                novoSaida.setValor(montanteCons);
+                controller.getFin().adiciona(novoSaida);
+
+                FinanceiroAdm novoSaidaM = new FinanceiroAdm(franquia);
+
+                novoSaida.setTipoDeMovim("Saida");
+                novoSaida.setDescritivo("Valor: " + montanteProc + "\nPara Medicos");
+                novoSaida.setValor(montanteConsM);
+                controller.getFin().adiciona(novoSaidaM);
+            }
+        }
+
+        //calculo valor para a franquia
+        MathContext res = new MathContext(100);
+
+        MathContext n = new MathContext(30);
+        montanteCons.divide(montanteCons.multiply(montanteCons, n), res);
+
+        FinanceiroAdm novoSaida = new FinanceiroAdm(franquia);
+
+        novoSaida.setTipoDeMovim("Saida");
+        novoSaida.setDescritivo("Valor: " + montanteProc + "\nPara Franquia: " + franquia);
+        novoSaida.setValor(montanteCons);
+        controller.getFin().adiciona(novoSaida);
+
+        //calculo valor para o medico
+        MathContext resM = new MathContext(100);
+
+        MathContext nM = new MathContext(70);
+        montanteConsM.divide(montanteConsM.multiply(montanteConsM, nM), resM);
+
+        FinanceiroAdm novoSaidaM = new FinanceiroAdm(franquia);
+
+        novoSaida.setTipoDeMovim("Saida");
+        novoSaida.setDescritivo("Valor: " + montanteProc + "\nPara Medicos");
+        novoSaida.setValor(montanteConsM);
+        controller.getFin().adiciona(novoSaidaM);
+
+        for (int j = 0; j < controller.getProc().proceds.length; ++j) {
+            if (controller.getProc().proceds[j].getDiaHorario().isBefore(LocalDateTime.of(2023, qtdMeses, 1, 12, 00))
+                    && controller.getProc().proceds[j].getDiaHorario().isAfter(dataParaIncrementar)) {
+                montanteProc = montanteProc.add(controller.getProc().proceds[j].getValorPro());
+                montanteProcM = montanteProcM.add(controller.getProc().proceds[j].getValorPro());
+
+                FinanceiroAdm novoSaidaProc = new FinanceiroAdm(franquia);
+                novoSaidaProc.setTipoDeMovim("Saida");
+                novoSaidaProc.setDescritivo("Valor: " + montanteProc + "\nPara Franquia: " + franquia);
+                novoSaidaProc.setValor(montanteProc);
+                controller.getFin().adiciona(novoSaidaProc);
+
+                FinanceiroAdm novoSaidaProcM = new FinanceiroAdm(franquia);
+                novoSaidaProc.setTipoDeMovim("Saida");
+                novoSaidaProc.setDescritivo("Valor: " + montanteProc + "\nPara Franquia: " + franquia);
+                novoSaidaProc.setValor(montanteProcM);
+                controller.getFin().adiciona(novoSaidaProcM);
+            }
+        }
+
+        //valor para a franquia e para o medico é o mesmo, mas vou deixar o calculo separado
+        MathContext m = new MathContext(50);
+        montanteProc.divide(montanteProc.multiply(montanteProc, m), res);
+
+        FinanceiroAdm novoSaidaProc = new FinanceiroAdm(franquia);
+        novoSaidaProc.setTipoDeMovim("Saida");
+        novoSaidaProc.setDescritivo("Valor: " + montanteProc + "\nPara Franquia: " + franquia);
+        novoSaidaProc.setValor(montanteProc);
+        controller.getFin().adiciona(novoSaidaProc);
+
+        //calculo valor de procedimento para o medico, caso fosse != de 50%
+        MathContext mM = new MathContext(50);
+        montanteProcM.divide(montanteProcM.multiply(montanteProcM, mM), resM);
+
+        FinanceiroAdm novoSaidaProcM = new FinanceiroAdm(franquia);
+        novoSaidaProc.setTipoDeMovim("Saida");
+        novoSaidaProc.setDescritivo("Valor: " + montanteProc + "\nPara Franquia: " + franquia);
+        novoSaidaProc.setValor(montanteProcM);
+        controller.getFin().adiciona(novoSaidaProcM);
+
     }
-
-    private int menuDono() {
-
-        StringBuilder builderAdm = new StringBuilder("");
-
-        builderAdm.append("Dono de Matriz de Franquia\n\n");
-        builderAdm.append("\n1 - Alterar informações do Perfil");
-        builderAdm.append("\n2 - Alterar tipo de um usuario");
-        builderAdm.append("\n3 - Adicionar Unidade de Franquia");
-        builderAdm.append("\n4 - Adicionar Matriz");
-        builderAdm.append("\n5 - Registro de Procedimentos");
-        builderAdm.append("\n6 - Para voltar à tela inicial\n");
-        builderAdm.append("\nQual sua opção ? R: ");
-
-        System.out.print(builderAdm.toString());
-
-        return Integer.parseInt(scanner.nextLine());
-    }
-
-        private int pessoaAlterarDados() {
-
-        StringBuilder builderAdm = new StringBuilder("");
-
-        System.out.println("\nGostaria de alterar qual informação?\n");
-        builderAdm.append("\n1 - Alterar nome");
-        builderAdm.append("\n2 - Alterar endereco");
-        builderAdm.append("\n3 - Alterar CPF");
-        builderAdm.append("\n4 - Alterar telefone");
-        builderAdm.append("\n5 - Alterar Login");
-        builderAdm.append("\n6 - Alterar Senha\n");
-        builderAdm.append("\n7 - Voltar\n");
-        builderAdm.append("\nQual sua opção ? R: ");
-
-        System.out.print(builderAdm.toString());
-
-        return Integer.parseInt(scanner.nextLine());
-    }
-    
 }

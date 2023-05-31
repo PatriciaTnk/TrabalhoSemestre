@@ -62,6 +62,9 @@ public class Utilitario {
         System.out.println("Novo dia do sistema" + diaSistema);
     }
     
+    //parte do calendario
+    
+    
     //parte de login
     private static Pessoa pessoaLogando = null;
 
@@ -72,15 +75,5 @@ public class Utilitario {
     public static Pessoa setPessoaLogada(Pessoa pessoaConfirmada) {
         return Utilitario.pessoaLogando = pessoaConfirmada;
     }
-    
-    /*private static GUI gui = null;
-    
-    public static GUI getGui (){
-        return gui;
-    }
-    
-    public static GUI setGui (GUI telaInicial){
-        return Utilitario.gui = telaInicial;
-    }*/
-    
+
 }

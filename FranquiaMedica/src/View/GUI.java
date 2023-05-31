@@ -9,12 +9,13 @@ import Controller.Controller;
 import Controller.ControllerFuncionarioAdm;
 import Controller.ControllerMedico;
 import Controller.ControllerPaciente;
+import Controller.ControllerResponsavelFranquia;
 import franquiamedica.Consulta;
+import franquiamedica.FinanceiroAdm;
 import franquiamedica.Franquia;
 import franquiamedica.InfoConsulta;
 import franquiamedica.Medico;
 import franquiamedica.Pessoa;
-import franquiamedica.Procedimento;
 import franquiamedica.Utilitario;
 import java.math.BigDecimal;
 
@@ -225,7 +226,7 @@ public class GUI {
     public void medicoAll(Controller novo, ControllerMedico cm) {
         int opcaoUsuario = 0;
 
-        while (opcaoUsuario != 6) {
+        while (opcaoUsuario != 7) {
             opcaoUsuario = this.menuMedico();
             switch (opcaoUsuario) {
                 default:
@@ -312,7 +313,7 @@ public class GUI {
         builderAdm.append("\n4 - Verificar Procedimentos");
         builderAdm.append("\n5 - Adicionar Laudo no Procedimento");
         builderAdm.append("\n6 - Relatorio Financeiro");
-        builderAdm.append("\n7 - Para voltar à tela inicial\n");
+        builderAdm.append("\n7 - Deslogar\n");
         builderAdm.append("\nQual sua opção ? R: ");
 
         System.out.print(builderAdm.toString());
@@ -323,7 +324,7 @@ public class GUI {
     public void funcionarioAdmAll(Controller controller, ControllerFuncionarioAdm cAdm) {
         int opcaoUsuario = 0;
 
-        while (opcaoUsuario != 6) {
+        while (opcaoUsuario != 7) {
             opcaoUsuario = this.menuFuncAdministrativo();
             switch (opcaoUsuario) {
                 default:
@@ -335,95 +336,118 @@ public class GUI {
                     break;
 
                 case 2:
-                    cAdm.mostraRelatorioConsultas(controller);
+                    if (controller.validaGeral("Consulta")) {
+                        cAdm.mostraRelatorioConsultas(controller);
+                    } else {
+                        System.out.println("Nao tem consultas cadastradas");
+                    }
+
                     break;
 
                 case 3:
-                    cAdm.mostraInformacaoConsulta(controller);
+                    if (controller.validaGeral("Consulta")) {
+                        cAdm.mostraInformacaoConsulta(controller);
+                    } else {
+                        System.out.println("Nao tem informacoes de consulta cadastradas");
+                    }
+
                     break;
 
                 case 4:
-                    cAdm.mostraRelatorioProcedimento(controller);
+                    if (controller.validaGeral("Procedimento")) {
+                        cAdm.mostraRelatorioProcedimento(controller);
+                    } else {
+                        System.out.println("Nao tem procedimentos cadastrados");
+                    }
+
                     break;
 
                 case 5:
-                    int sair = 0;
-                    Pessoa paciente = null;
-                    Medico medico = null;
-                    Franquia franquia = null;
-                    String dia = null;
-                    String horario = null;
-                    String valor = null;
-                    while (sair != 4) {
-                        System.out.println("Informe o paciente que gostaria de consultar: ");
-                        paciente = controller.getP().verificaRegistro(Long.parseLong(scanner.nextLine()));
+                    if (controller.validaGeral("Consulta")) {
+                        int sair = 0;
+                        Pessoa paciente = null;
+                        Medico medico = null;
+                        Franquia franquia = null;
+                        String dia = null;
+                        String horario = null;
+                        String valor = null;
+                        while (sair != 4) {
+                            System.out.println("Informe o paciente que gostaria de consultar: ");
+                            paciente = controller.getP().verificaRegistro(Long.parseLong(scanner.nextLine()));
 
-                        System.out.println("Informe o paciente que gostaria de consultar: ");
-                        medico = controller.getM().verificaRegistro(Long.parseLong(scanner.nextLine()));
+                            System.out.println("Informe o paciente que gostaria de consultar: ");
+                            medico = controller.getM().verificaRegistro(Long.parseLong(scanner.nextLine()));
 
-                        System.out.println("Informe em qual Franquia gostaria de consultar: ");
-                        franquia = controller.getF().verificaRegistro(Long.parseLong(scanner.nextLine()));
+                            System.out.println("Informe em qual Franquia gostaria de consultar: ");
+                            franquia = controller.getF().verificaRegistro(Long.parseLong(scanner.nextLine()));
 
-                        if (paciente == null || medico == null || franquia == null) {
-                            System.out.println("Informaces inconsistentes");
-                            System.out.println("1 - Gostaria de tentar novamente");
-                            System.out.println("2 - sair");
-                            sair = Integer.parseInt(scanner.nextLine());
-                        } else {
-                            System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
-                            dia = scanner.nextLine();
+                            if (paciente == null || medico == null || franquia == null) {
+                                System.out.println("Informaces inconsistentes");
+                                System.out.println("1 - Gostaria de tentar novamente");
+                                System.out.println("2 - sair");
+                                sair = Integer.parseInt(scanner.nextLine());
+                            } else {
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                dia = scanner.nextLine();
 
-                            System.out.println("\nE qual o horario (No formato hh:mm): ");
-                            horario = scanner.nextLine();
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
+                                horario = scanner.nextLine();
 
-                            System.out.println("\nQual o valor da consulta?");
-                            valor = scanner.nextLine();
-                            sair = 4;
+                                System.out.println("\nQual o valor da consulta?");
+                                valor = scanner.nextLine();
+                                sair = 4;
+                            }
                         }
-                    }
-                    if(cAdm.marcarConsulta(controller, dia, horario, valor, paciente, medico, franquia)){
-                        System.out.println("\nConsulta marcada com sucesso");
+                        if (cAdm.marcarConsulta(controller, dia, horario, valor, paciente, medico, franquia)) {
+                            System.out.println("\nConsulta marcada com sucesso");
+                        } else {
+                            System.out.println("\nNao deu certo marcar a consulta");
+                        }
                     } else {
-                        System.out.println("\nNao deu certo marcar a consulta");
+                        System.out.println("Nao tem consultas cadastradas");
                     }
+
                     break;
 
-
                 case 6:
-                    int sairP = 0;
-                    Consulta consultaP = null;
-                    String diaP = null;
-                    String horarioP = null;
-                    String valorP = null;
-                    while (sairP != 4) {
-                        System.out.println("\nO procecedimento foi pedido: ");
-                        System.out.println("\n1 - Na consulta");
-                        System.out.println("\n2 - Pelo paciente");
-                        sairP = Integer.parseInt(scanner.nextLine());
-                        
-                        if(sairP == 2){
-                            consultaP = null;
-                        } else {
-                            System.out.println("Informe a consulta: ");
-                            consultaP = controller.getC().verificaRegistro(Long.parseLong(scanner.nextLine()));
-                            
-                            System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
-                            diaP = scanner.nextLine();
+                    if (controller.validaGeral("Procedimento")) {
+                        int sairP = 0;
+                        Consulta consultaP = null;
+                        String diaP = null;
+                        String horarioP = null;
+                        String valorP = null;
+                        while (sairP != 4) {
+                            System.out.println("\nO procecedimento foi pedido: ");
+                            System.out.println("\n1 - Na consulta");
+                            System.out.println("\n2 - Pelo paciente");
+                            sairP = Integer.parseInt(scanner.nextLine());
 
-                            System.out.println("\nE qual o horario (No formato hh:mm): ");
-                            horarioP = scanner.nextLine();
+                            if (sairP == 2) {
+                                consultaP = null;
+                            } else {
+                                System.out.println("Informe a consulta: ");
+                                consultaP = controller.getC().verificaRegistro(Long.parseLong(scanner.nextLine()));
 
-                            System.out.println("\nQual o valor da consulta?");
-                            valorP = scanner.nextLine();
-                            sairP = 4;
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                diaP = scanner.nextLine();
+
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
+                                horarioP = scanner.nextLine();
+
+                                System.out.println("\nQual o valor da consulta?");
+                                valorP = scanner.nextLine();
+                                sairP = 4;
+                            }
                         }
-                    }
-                    if(cAdm.marcarProcedimento(controller, diaP, horarioP, valorP, consultaP)){
-                        System.out.println("\nConsulta marcada com sucesso");
+                        if (cAdm.marcarProcedimento(controller, diaP, horarioP, valorP, consultaP)) {
+                            System.out.println("\nConsulta marcada com sucesso");
+                        } else {
+                            System.out.println("\nNao deu certo marcar a consulta");
+                        }
                     } else {
-                        System.out.println("\nNao deu certo marcar a consulta");
+                        System.out.println("Nao pode marcar procedimento");
                     }
-                    
+
                     break;
 
                 case 7:
@@ -445,7 +469,437 @@ public class GUI {
         builderAdm.append("\n4 - Relatorio de procedimentos");
         builderAdm.append("\n5 - Marcar consulta");
         builderAdm.append("\n6 - Marcar procedimento");
-        builderAdm.append("\n7 - Para voltar à tela inicial\n");
+        builderAdm.append("\n7 - Deslogarl\n");
+        builderAdm.append("\nQual sua opção ? R: ");
+
+        System.out.print(builderAdm.toString());
+
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public void responsavelFranquiaAll(Controller controller, ControllerResponsavelFranquia controllerRF, ControllerFuncionarioAdm cAdm) {
+        int opcaoUsuario = 0;
+
+        while (opcaoUsuario != 11) {
+            opcaoUsuario = this.menuResponsavel();
+            switch (opcaoUsuario) {
+                default:
+                    System.out.println("Opcao Nao encontrada");
+                    break;
+
+                case 1:
+                    menuAlterarDados();
+                    break;
+
+                case 2:
+                    System.out.println("Informe o Id do usuario que gostaria de mudar?");
+                    for (int i = 0; i < controller.getP().pessoas.length; ++i) {
+                        if (controller.getP().pessoas[i] != null
+                                && controller.getP().pessoas[i].getTipoUsuario().equalsIgnoreCase("Paciente")) {
+                            System.out.println("\nID: " + controller.getP().pessoas[i].getId() + "\nNome: " + controller.getP().pessoas[i].getNome());
+                        }
+                    }
+                    long idRF = Long.parseLong(scanner.nextLine());
+                    if (controllerRF.alterarTipodoUsuario(controller, idRF)) {
+                        System.out.println("\nTipo alterado com sucesso");
+                    } else {
+                        System.out.println("\nNao foi possivel alterar");
+                    }
+                    break;
+
+                case 3://
+                    if (controller.validaGeral("Consulta")) {
+                        cAdm.mostraInformacaoConsulta(controller);
+                    } else {
+                        System.out.println("Nao tem informacoes de consulta cadastradas");
+                    }
+
+                    break;
+
+                case 4://
+                    if (controller.validaGeral("Consulta")) {
+                        cAdm.mostraRelatorioConsultas(controller);
+                    } else {
+                        System.out.println("Nao tem consultas cadastradas");
+                    }
+                    break;
+
+                case 5://
+                    if (controller.validaGeral("Procedimento")) {
+                        cAdm.mostraRelatorioProcedimento(controller);
+                    } else {
+                        System.out.println("Nao tem procedimentos cadastrados");
+                    }
+                    break;
+
+                case 6:
+                    if (controller.validaGeral("FinanceiroMedico")) {
+                        controllerRF.relatorioFinanceiroMedico(controller);
+                    } else {
+                        System.out.println("Sem Relatorio financeiro Medico gerado");
+                    }
+
+                    break;
+
+                case 7:
+                    if (controller.validaGeral("FinanceiroAdm")) {
+                        controllerRF.relatorioFinanceiroFranquia(controller);
+                    } else {
+                        System.out.println("Sem Relatorio financeiro Medico gerado");
+                    }
+                    break;
+
+                case 8://
+                    if (controller.validaGeral("Consulta")) {
+                        int sair = 0;
+                        Pessoa paciente = null;
+                        Medico medico = null;
+                        Franquia franquia = null;
+                        String dia = null;
+                        String horario = null;
+                        String valor = null;
+                        while (sair != 4) {
+                            System.out.println("Informe o paciente que gostaria de consultar: ");
+                            paciente = controller.getP().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                            System.out.println("Informe o paciente que gostaria de consultar: ");
+                            medico = controller.getM().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                            System.out.println("Informe em qual Franquia gostaria de consultar: ");
+                            franquia = controller.getF().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                            if (paciente == null || medico == null || franquia == null) {
+                                System.out.println("Informaces inconsistentes");
+                                System.out.println("1 - Gostaria de tentar novamente");
+                                System.out.println("2 - sair");
+                                sair = Integer.parseInt(scanner.nextLine());
+                            } else {
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                dia = scanner.nextLine();
+
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
+                                horario = scanner.nextLine();
+
+                                System.out.println("\nQual o valor da consulta?");
+                                valor = scanner.nextLine();
+                                sair = 4;
+                            }
+                        }
+                        if (cAdm.marcarConsulta(controller, dia, horario, valor, paciente, medico, franquia)) {
+                            System.out.println("\nConsulta marcada com sucesso");
+                        } else {
+                            System.out.println("\nNao deu certo marcar a consulta");
+                        }
+                    } else {
+                        System.out.println("Nao tem consultas cadastradas");
+                    }
+
+                    break;
+
+                case 9://
+                    if (controller.validaGeral("Procedimento")) {
+                        int sairP = 0;
+                        Consulta consultaP = null;
+                        String diaP = null;
+                        String horarioP = null;
+                        String valorP = null;
+                        while (sairP != 4) {
+                            System.out.println("\nO procecedimento foi pedido: ");
+                            System.out.println("\n1 - Na consulta");
+                            System.out.println("\n2 - Pelo paciente");
+                            sairP = Integer.parseInt(scanner.nextLine());
+
+                            if (sairP == 2) {
+                                consultaP = null;
+                            } else {
+                                System.out.println("Informe a consulta: ");
+                                consultaP = controller.getC().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                diaP = scanner.nextLine();
+
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
+                                horarioP = scanner.nextLine();
+
+                                System.out.println("\nQual o valor da consulta?");
+                                valorP = scanner.nextLine();
+                                sairP = 4;
+                            }
+                        }
+                        if (cAdm.marcarProcedimento(controller, diaP, horarioP, valorP, consultaP)) {
+                            System.out.println("\nConsulta marcada com sucesso");
+                        } else {
+                            System.out.println("\nNao deu certo marcar a consulta");
+                        }
+                    } else {
+                        System.out.println("Nao pode marcar procedimento");
+                    }
+
+                    break;
+
+                case 10:
+                    Franquia fran = null;
+                    System.out.println("Gostaria de verificar qual Franquia? ");
+                    String verifica = scanner.nextLine();
+
+                    for (int l = 0; l < controller.getF().franquias.length; ++l) {
+                        if (controller.getF().franquias[l].getId() == Long.parseLong(verifica)) {
+                            fran = controller.getF().franquias[l];
+                        }
+                    }
+
+                    controllerRF.pagamentoMensalParaMatriz(controller, fran);
+
+                    FinanceiroAdm novoFin = new FinanceiroAdm(controller.getF().franquias[0]);
+                    novoFin.setTipoDeMovim("entrada");
+                    novoFin.setDescritivo("Valor: " + controller.getProc().proceds[0].getValorPro() + "\nRealizado com medico: " + controller.getProc().proceds[0].getConsulta().getMedico() + "\nPaciente: " + controller.getProc().proceds[0].getConsulta().getPaciente() + "\nRealizada no dia: " + controller.getProc().proceds[0].getDiaHorario());
+                    novoFin.setValor(new BigDecimal(controller.getProc().proceds[0].getValorPro().toString()));
+
+                    break;
+
+                case 11:
+                    Utilitario.setPessoaLogada(null);
+                    return;
+            }
+        }
+
+    }
+
+    private int menuResponsavel() {
+
+        StringBuilder builderAdm = new StringBuilder("");
+
+        builderAdm.append("Responsavel pela Franquia\n\n");
+        builderAdm.append("\n1 - Alterar informações do Perfil");
+        builderAdm.append("\n2 - Alterar tipo de um usuario");
+        builderAdm.append("\n3 - Relatorio de Informacoes de consulta");
+        builderAdm.append("\n4 - Relatorio de Consultas");
+        builderAdm.append("\n5 - Relatorio de Procedimentos");
+        builderAdm.append("\n6 - Relatorio de Financeiro do Medico");
+        builderAdm.append("\n7 - Relatorio de Financeiro da Franquia");
+        builderAdm.append("\n8 - Marcar consulta");
+        builderAdm.append("\n9 - Marcar Procedimento");
+        builderAdm.append("\n10 - Realizar pagamento para a Matriz");
+        builderAdm.append("\n11 - Deslogars\n");
+        builderAdm.append("\nQual sua opção ? R: ");
+
+        System.out.print(builderAdm.toString());
+
+        return Integer.parseInt(scanner.nextLine());
+    }
+    
+        public void donoFranquiaAll(Controller controller, ControllerResponsavelFranquia controllerRF, ControllerFuncionarioAdm cAdm) {
+        int opcaoUsuario = 0;
+
+        while (opcaoUsuario != 12) {
+            opcaoUsuario = this.menuDonoMatriz();
+            switch (opcaoUsuario) {
+                default:
+                    System.out.println("Opcao Nao encontrada");
+                    break;
+
+                case 1:
+                    menuAlterarDados();
+                    break;
+
+                case 2:
+                    System.out.println("Informe o Id do usuario que gostaria de mudar?");
+                    for (int i = 0; i < controller.getP().pessoas.length; ++i) {
+                        if (controller.getP().pessoas[i] != null
+                                && controller.getP().pessoas[i].getTipoUsuario().equalsIgnoreCase("Paciente")) {
+                            System.out.println("\nID: " + controller.getP().pessoas[i].getId() + "\nNome: " + controller.getP().pessoas[i].getNome());
+                        }
+                    }
+                    long idRF = Long.parseLong(scanner.nextLine());
+                    if (controllerRF.alterarTipodoUsuario(controller, idRF)) {
+                        System.out.println("\nTipo alterado com sucesso");
+                    } else {
+                        System.out.println("\nNao foi possivel alterar");
+                    }
+                    break;
+
+                case 3://
+                    if (controller.validaGeral("Consulta")) {
+                        cAdm.mostraInformacaoConsulta(controller);
+                    } else {
+                        System.out.println("Nao tem informacoes de consulta cadastradas");
+                    }
+
+                    break;
+
+                case 4://
+                    if (controller.validaGeral("Consulta")) {
+                        cAdm.mostraRelatorioConsultas(controller);
+                    } else {
+                        System.out.println("Nao tem consultas cadastradas");
+                    }
+                    break;
+
+                case 5://
+                    if (controller.validaGeral("Procedimento")) {
+                        cAdm.mostraRelatorioProcedimento(controller);
+                    } else {
+                        System.out.println("Nao tem procedimentos cadastrados");
+                    }
+                    break;
+
+                case 6:
+                    if (controller.validaGeral("FinanceiroMedico")) {
+                        controllerRF.relatorioFinanceiroMedico(controller);
+                    } else {
+                        System.out.println("Sem Relatorio financeiro Medico gerado");
+                    }
+
+                    break;
+
+                case 7:
+                    if (controller.validaGeral("FinanceiroAdm")) {
+                        controllerRF.relatorioFinanceiroFranquia(controller);
+                    } else {
+                        System.out.println("Sem Relatorio financeiro Medico gerado");
+                    }
+                    break;
+
+                case 8://
+                    if (controller.validaGeral("Consulta")) {
+                        int sair = 0;
+                        Pessoa paciente = null;
+                        Medico medico = null;
+                        Franquia franquia = null;
+                        String dia = null;
+                        String horario = null;
+                        String valor = null;
+                        while (sair != 4) {
+                            System.out.println("Informe o paciente que gostaria de consultar: ");
+                            paciente = controller.getP().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                            System.out.println("Informe o paciente que gostaria de consultar: ");
+                            medico = controller.getM().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                            System.out.println("Informe em qual Franquia gostaria de consultar: ");
+                            franquia = controller.getF().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                            if (paciente == null || medico == null || franquia == null) {
+                                System.out.println("Informaces inconsistentes");
+                                System.out.println("1 - Gostaria de tentar novamente");
+                                System.out.println("2 - sair");
+                                sair = Integer.parseInt(scanner.nextLine());
+                            } else {
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                dia = scanner.nextLine();
+
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
+                                horario = scanner.nextLine();
+
+                                System.out.println("\nQual o valor da consulta?");
+                                valor = scanner.nextLine();
+                                sair = 4;
+                            }
+                        }
+                        if (cAdm.marcarConsulta(controller, dia, horario, valor, paciente, medico, franquia)) {
+                            System.out.println("\nConsulta marcada com sucesso");
+                        } else {
+                            System.out.println("\nNao deu certo marcar a consulta");
+                        }
+                    } else {
+                        System.out.println("Nao tem consultas cadastradas");
+                    }
+
+                    break;
+
+                case 9://
+                    if (controller.validaGeral("Procedimento")) {
+                        int sairP = 0;
+                        Consulta consultaP = null;
+                        String diaP = null;
+                        String horarioP = null;
+                        String valorP = null;
+                        while (sairP != 4) {
+                            System.out.println("\nO procecedimento foi pedido: ");
+                            System.out.println("\n1 - Na consulta");
+                            System.out.println("\n2 - Pelo paciente");
+                            sairP = Integer.parseInt(scanner.nextLine());
+
+                            if (sairP == 2) {
+                                consultaP = null;
+                            } else {
+                                System.out.println("Informe a consulta: ");
+                                consultaP = controller.getC().verificaRegistro(Long.parseLong(scanner.nextLine()));
+
+                                System.out.println("\nInforme qual o dia que gostaria de consultar (No formato dd/MM/yyyy): ");
+                                diaP = scanner.nextLine();
+
+                                System.out.println("\nE qual o horario (No formato hh:mm): ");
+                                horarioP = scanner.nextLine();
+
+                                System.out.println("\nQual o valor da consulta?");
+                                valorP = scanner.nextLine();
+                                sairP = 4;
+                            }
+                        }
+                        if (cAdm.marcarProcedimento(controller, diaP, horarioP, valorP, consultaP)) {
+                            System.out.println("\nConsulta marcada com sucesso");
+                        } else {
+                            System.out.println("\nNao deu certo marcar a consulta");
+                        }
+                    } else {
+                        System.out.println("Nao pode marcar procedimento");
+                    }
+
+                    break;
+
+                case 10:
+                    Franquia fran = null;
+                    System.out.println("Gostaria de verificar qual Franquia? ");
+                    String verifica = scanner.nextLine();
+
+                    for (int l = 0; l < controller.getF().franquias.length; ++l) {
+                        if (controller.getF().franquias[l].getId() == Long.parseLong(verifica)) {
+                            fran = controller.getF().franquias[l];
+                        }
+                    }
+
+                    controllerRF.pagamentoMensalParaMatriz(controller, fran);
+                    break;
+
+                case 11:
+                    Franquia franQ = null;
+                    System.out.println("\nRelatorio de todas as Franquia: ");
+                    String verific = scanner.nextLine();
+
+                    for (int l = 0; l < controller.getF().franquias.length; ++l) {
+                        if (controller.getF().franquias[l].getId() == Long.parseLong(verific)) {
+                            franQ = controller.getF().franquias[l];
+                            controllerRF.pagamentoMensalParaMatriz(controller, franQ);
+                        }
+                    }
+                    break;
+
+                case 12:
+                    Utilitario.setPessoaLogada(null);
+                    return;
+            }
+        }
+
+    }
+
+    private int menuDonoMatriz() {
+
+        StringBuilder builderAdm = new StringBuilder("");
+
+        builderAdm.append("Responsavel pela Franquia\n\n");
+        builderAdm.append("\n1 - Alterar informações do Perfil");
+        builderAdm.append("\n2 - Alterar tipo de um usuario");
+        builderAdm.append("\n3 - Relatorio de Informacoes de consulta");
+        builderAdm.append("\n4 - Relatorio de Consultas");
+        builderAdm.append("\n5 - Relatorio de Procedimentos");
+        builderAdm.append("\n6 - Relatorio de Financeiro do Medico");
+        builderAdm.append("\n7 - Relatorio de Financeiro da Franquia");
+        builderAdm.append("\n8 - Marcar consulta");
+        builderAdm.append("\n9 - Marcar Procedimento");
+        builderAdm.append("\n10 - Relatorios de uma franquia");
+        builderAdm.append("\n11 - Relatorios de todas as franquias");
+        builderAdm.append("\n12 - Deslogar\n");
         builderAdm.append("\nQual sua opção ? R: ");
 
         System.out.print(builderAdm.toString());
