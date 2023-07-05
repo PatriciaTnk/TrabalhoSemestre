@@ -1,0 +1,313 @@
+Gael: 496.18
+Matheus: 353.92
+Helena: 398.99
+Bernardo: 156.50
+Beatriz: 324.30
+
+Franquia: 1
+Valor total recebido: 329.67
+Franquia: 2
+Valor total recebido: 153.94
+Franquia: 3
+Valor total recebido: 399.56
+Franquia: 4
+Valor total recebido: 240.76
+
+Franquia: 1
+Valor total recebido: 329.67
+Franquia: 2
+Valor total recebido: 153.94
+Franquia: 3
+Valor total recebido: 399.56
+Franquia: 4
+Valor total recebido: 240.76
+
+
+Valor total recebido pela Franquia escolhida: 399.56
+
+
+Financeiro_Adm{id=1, tipoDeMovim=Entrada, valor=21.15, descritivo=Entrada, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=2, tipoDeMovim=Entrada, valor=21.18, descritivo=Entrada, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=3, tipoDeMovim=Entrada, valor=25.77, descritivo=Entrada, unidade=2, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=4, tipoDeMovim=Entrada, valor=45.00, descritivo=Entrada, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=5, tipoDeMovim=Entrada, valor=28.29, descritivo=Entrada, unidade=4, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=6, tipoDeMovim=Entrada, valor=36.21, descritivo=Entrada, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=7, tipoDeMovim=Entrada, valor=36.21, descritivo=Entrada, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=8, tipoDeMovim=Entrada, valor=21.15, descritivo=Entrada, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=9, tipoDeMovim=Entrada, valor=21.18, descritivo=Entrada, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=10, tipoDeMovim=Entrada, valor=25.77, descritivo=Entrada, unidade=2, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=11, tipoDeMovim=Entrada, valor=28.29, descritivo=Entrada, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=12, tipoDeMovim=Entrada, valor=28.29, descritivo=Entrada, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=13, tipoDeMovim=Entrada, valor=36.21, descritivo=Entrada, unidade=3, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=14, tipoDeMovim=Entrada, valor=36.21, descritivo=Entrada, unidade=3, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=15, tipoDeMovim=Entrada, valor=43.56, descritivo=Entrada, unidade=1, dataCriacao=2023-05-17, datamodificacao=2023-05-17, visible=true}
+
+
+
+Financeiro_Adm{id=16, tipoDeMovim=Entrada, valor=50.00, descritivo=Entrada, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=17, tipoDeMovim=Entrada, valor=50.50, descritivo=Entrada, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=18, tipoDeMovim=Entrada, valor=51.00, descritivo=Entrada, unidade=2, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=19, tipoDeMovim=Entrada, valor=51.50, descritivo=Entrada, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=20, tipoDeMovim=Entrada, valor=52.00, descritivo=Entrada, unidade=4, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=21, tipoDeMovim=Entrada, valor=52.50, descritivo=Entrada, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=22, tipoDeMovim=Entrada, valor=53.00, descritivo=Entrada, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+
+
+Financeiro_Adm{id=23, tipoDeMovim=Entrada, valor=50.20, descritivo=Entrada, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=24, tipoDeMovim=Entrada, valor=50.75, descritivo=Entrada, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=25, tipoDeMovim=Entrada, valor=51.40, descritivo=Entrada, unidade=2, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=26, tipoDeMovim=Entrada, valor=51.57, descritivo=Entrada, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=27, tipoDeMovim=Entrada, valor=52.32, descritivo=Entrada, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+
+
+Financeiro_Adm{id=28, tipoDeMovim=Entrada, valor=52.72, descritivo=Entrada, unidade=3, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=1, valor=49.35, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=2, valor=49.42, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=3, valor=60.13, medico=2, estado=A ser pago, unidade=2, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=4, valor=105.00, medico=3, estado=A ser pago, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=5, valor=66.01, medico=4, estado=A ser pago, unidade=4, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=6, valor=84.49, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=7, valor=84.49, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=8, valor=49.35, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=9, valor=49.42, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=10, valor=60.13, medico=2, estado=A ser pago, unidade=2, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=11, valor=66.01, medico=4, estado=A ser pago, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=12, valor=66.01, medico=4, estado=A ser pago, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=13, valor=84.49, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=14, valor=84.49, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=15, valor=101.64, medico=2, estado=A ser pago, unidade=1, dataCriacao=2023-05-17, datamodificacao=2023-05-17, visible=true}
+
+FinanceiroMedico{id=16, valor=50.00, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=17, valor=50.50, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=18, valor=51.00, medico=2, estado=A ser pago, unidade=2, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=19, valor=51.50, medico=3, estado=A ser pago, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=20, valor=52.00, medico=4, estado=A ser pago, unidade=4, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=21, valor=52.50, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=22, valor=53.00, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-14, datamodificacao=2023-05-14, visible=true}
+
+FinanceiroMedico{id=23, valor=50.20, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=24, valor=50.75, medico=1, estado=A ser pago, unidade=1, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=25, valor=51.40, medico=2, estado=A ser pago, unidade=2, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=26, valor=51.57, medico=4, estado=A ser pago, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=27, valor=52.32, medico=4, estado=A ser pago, unidade=4, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+FinanceiroMedico{id=28, valor=52.72, medico=5, estado=A ser pago, unidade=3, dataCriacao=2023-05-15, datamodificacao=2023-05-15, visible=true}
+
+Procedimento{id=1, nome=Exame de sangue, consulta=1, diaHorario=2023-05-15, estado=Realizado, valorPro=100.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=2, nome=Radiografia, consulta=2, diaHorario=2023-05-16, estado=Realizado, valorPro=100.40, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=3, nome=Tomografia computadorizada, consulta=3, diaHorario=2023-05-15, estado=Realizado, valorPro=101.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=4, nome=Ressonância magnética, consulta=4, diaHorario=2023-05-16, estado=Realizado, valorPro=101.50, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=5, nome=Cirurgia de Endoscopia, consulta=5, diaHorario=2023-05-15, estado=Realizado, valorPro=102.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=6, nome=Colonoscopia, consulta=6, diaHorario=2023-05-16, estado=Realizado, valorPro=102.80, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=7, nome=Ultrassonografia, consulta=7, diaHorario=2023-05-15, estado=Realizado, valorPro=103.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=8, nome=Ecocardiograma, consulta=8, diaHorario=2023-05-16, estado=Realizado, valorPro=103.15, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=9, nome=Mamografia, consulta=9, diaHorario=2023-05-15, estado=Realizado, valorPro=104.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=10, nome=Biópsia de pele, consulta=10, diaHorario=2023-05-16, estado=Realizado, valorPro=104.65, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=11, nome=Endoscopia digestiva, consulta=11, diaHorario=2023-05-15, estado=Realizado, valorPro=105.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=12, nome=Cirurgia de apendicite, consulta=12, diaHorario=2023-05-16, estado=Realizado, valorPro=105.45, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=13, nome=Teste de esforço (ergometria), consulta=13, diaHorario=2023-05-15, estado=Realizado, valorPro=106.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=1, estado=Realizado, diaHorario=2023-05-15, valor=70.50, paciente=14, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=2, estado=Realizado, diaHorario=2023-05-16, valor=70.50, paciente=15, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=3, estado=Realizado, diaHorario=2023-05-15, valor=70.60, paciente=16, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=4, estado=Realizado, diaHorario=2023-05-16, valor=70.60, paciente=17, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=5, estado=Realizado, diaHorario=2023-05-15, valor=85.90, paciente=18, medico=2, unidade=2, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=6, estado=Realizado, diaHorario=2023-05-16, valor=85.90, paciente=19, medico=2, unidade=2, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=7, estado=Realizado, diaHorario=2023-05-15, valor=150.00, paciente=20, medico=3, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=8, estado=Realizado, diaHorario=2023-05-16, valor=94.30, paciente=21, medico=4, unidade=4, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=9, estado=Realizado, diaHorario=2023-05-15, valor=94.30, paciente=14, medico=4, unidade=4, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=10, estado=Realizado, diaHorario=2023-05-16, valor=94.30, paciente=15, medico=4, unidade=4, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=11, estado=Realizado, diaHorario=2023-05-16, valor=120.70, paciente=16, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=12, estado=Realizado, diaHorario=2023-05-15, valor=120.70, paciente=17, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=13, estado=Realizado, diaHorario=2023-05-16, valor=120.70, paciente=18, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=14, estado=Realizado, diaHorario=2023-05-15, valor=120.70, paciente=19, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=15, estado=Realizado, diaHorario=2023-05-18, valor=145.20, paciente=1, medico=2, unidade=1, dataCriacao=2023-06-28, datamodificacao=2023-07-02, visible=true}
+
+InfoConsulta{id=1, descricao=Teste deu certo, consulta=1, dataCriacao=2023-05-13, datamodificacao=2023-05-13, visible=true}
+O valor total de pagamento para a Matriz foi de: 1056.20
+Sendo que o lucro foi de:67.73
+Consulta{id=1, estado=Realizado, diaHorario=2023-05-15, valor=70.50, paciente=14, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=2, estado=Realizado, diaHorario=2023-05-16, valor=70.50, paciente=15, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=3, estado=Realizado, diaHorario=2023-05-15, valor=70.60, paciente=16, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=4, estado=Realizado, diaHorario=2023-05-16, valor=70.60, paciente=17, medico=1, unidade=1, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=5, estado=Realizado, diaHorario=2023-05-15, valor=85.90, paciente=18, medico=2, unidade=2, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=6, estado=Realizado, diaHorario=2023-05-16, valor=85.90, paciente=19, medico=2, unidade=2, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=7, estado=Realizado, diaHorario=2023-05-15, valor=150.00, paciente=20, medico=3, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=8, estado=Realizado, diaHorario=2023-05-16, valor=94.30, paciente=21, medico=4, unidade=4, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=9, estado=Realizado, diaHorario=2023-05-15, valor=94.30, paciente=14, medico=4, unidade=4, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=10, estado=Realizado, diaHorario=2023-05-16, valor=94.30, paciente=15, medico=4, unidade=4, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=11, estado=Realizado, diaHorario=2023-05-16, valor=120.70, paciente=16, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=12, estado=Realizado, diaHorario=2023-05-15, valor=120.70, paciente=17, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=13, estado=Realizado, diaHorario=2023-05-16, valor=120.70, paciente=18, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=14, estado=Realizado, diaHorario=2023-05-15, valor=120.70, paciente=19, medico=5, unidade=3, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=15, estado=Realizado, diaHorario=2023-05-18, valor=145.20, paciente=1, medico=2, unidade=1, dataCriacao=2023-06-28, datamodificacao=2023-07-02, visible=true}
+
+Consulta{id=16, estado=Realizado, diaHorario=2023-05-22, valor=1000.00, paciente=10, medico=2, unidade=1, dataCriacao=2023-07-02, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=1, nome=Exame de sangue, consulta=1, diaHorario=2023-05-15, estado=Realizado, valorPro=100.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=2, nome=Radiografia, consulta=2, diaHorario=2023-05-16, estado=Realizado, valorPro=100.40, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=3, nome=Tomografia computadorizada, consulta=3, diaHorario=2023-05-15, estado=Realizado, valorPro=101.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=4, nome=Ressonância magnética, consulta=4, diaHorario=2023-05-16, estado=Realizado, valorPro=101.50, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=5, nome=Cirurgia de Endoscopia, consulta=5, diaHorario=2023-05-15, estado=Realizado, valorPro=102.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=6, nome=Colonoscopia, consulta=6, diaHorario=2023-05-16, estado=Realizado, valorPro=102.80, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=7, nome=Ultrassonografia, consulta=7, diaHorario=2023-05-15, estado=Realizado, valorPro=103.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=8, nome=Ecocardiograma, consulta=8, diaHorario=2023-05-16, estado=Realizado, valorPro=103.15, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=9, nome=Mamografia, consulta=9, diaHorario=2023-05-15, estado=Realizado, valorPro=104.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=10, nome=Biópsia de pele, consulta=10, diaHorario=2023-05-16, estado=Realizado, valorPro=104.65, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=11, nome=Endoscopia digestiva, consulta=11, diaHorario=2023-05-15, estado=Realizado, valorPro=105.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=12, nome=Cirurgia de apendicite, consulta=12, diaHorario=2023-05-16, estado=Realizado, valorPro=105.45, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=13, nome=Teste de esforço (ergometria), consulta=13, diaHorario=2023-05-15, estado=Realizado, valorPro=106.00, laudo=Sera preenchido no dia, dataCriacao=2023-03-09, datamodificacao=2023-07-02, visible=true}
+
+Procedimento{id=38, nome=EDB, consulta=14, diaHorario=2023-05-22, estado=Realizado, valorPro=2000.00, laudo=A ser realizado, dataCriacao=2023-07-02, datamodificacao=2023-07-02, visible=true}
+
